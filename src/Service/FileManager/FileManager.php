@@ -15,11 +15,13 @@ class FileManager implements FileManagerInterface
      */
     private $logger;
     private $uploadDir;
+    private $removeDir;
 
-    public function __construct($uploadDir, LoggerInterface $logger)
+    public function __construct($uploadDir, $removeDir, LoggerInterface $logger)
     {
         $this->uploadDir = $uploadDir;
         $this->logger = $logger;
+        $this->removeDir = $removeDir;
     }
 
     public function uploadFile(?UploadedFile $uploadedFile, string $folder, $hash = null): ?string
@@ -56,10 +58,10 @@ class FileManager implements FileManagerInterface
     public function deleteFile(string $fileName): void
     {
         try{
-            @unlink($this->getUploadDir().$fileName);
+            @unlink($this->removeDir.$fileName);
         }
         catch (FileException $fileException){
-
+            $this->logger->error('Error of file removing cause of: '.$fileException->getMessage());
         }
     }
 }

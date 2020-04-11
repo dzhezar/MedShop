@@ -16,3 +16,9 @@ admin_category_index:
 admin_category_create:
     path: /admin_panel/category/create
     controller: App\Controller\Admin\CategoryController::create
+admin_category_update:
+    path: /admin_panel/category/update/{id}
+    controller: App\Controller\Admin\CategoryController::update
+admin_category_remove:
+    path: /admin_panel/category/remove/{id}
+    controller: App\Controller\Admin\CategoryController::remove

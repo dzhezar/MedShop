@@ -24,6 +24,9 @@ class CategoryModel
     /** @var string|null */
     private $seo_description;
 
+    /** @var string|null */
+    private $sub_category;
+
     /**
      * @return int|null
      */
@@ -132,6 +135,23 @@ class CategoryModel
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getSubCategory(): ?string
+    {
+        return $this->sub_category;
+    }
+
+    /**
+     * @param string|null $sub_category
+     * @return CategoryModel
+     */
+    public function setSubCategory(?string $sub_category): CategoryModel
+    {
+        $this->sub_category = $sub_category;
+        return $this;
+    }
 
 
 }

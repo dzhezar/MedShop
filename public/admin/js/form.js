@@ -2,9 +2,9 @@ $(document).ready(function () {
     $('label').each(function () {
         let text = $(this).attr('for');
         if (text.includes('RU')) {
-            $(this).parent().appendTo($('#collapseOne').children());
+            $(this).parent().prependTo($('#collapseOne').children());
         } else if (text.includes('EN')) {
-            $(this).parent().appendTo($('#collapseTwo').children());
+            $(this).parent().prependTo($('#collapseTwo').children());
         }
     });
 
@@ -19,6 +19,13 @@ $(document).ready(function () {
             $(this).prependTo($(this).parent());
         }
     });
+
+
+    Object.keys(tooltips).forEach(function (key) {
+        $("label[for='" + key + "']").after($('<i style="padding-left: 10px" data-toggle="tooltip" title="'+tooltips[key]+'" class="far fa-question-circle"></i>'));
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
 
     $('.enable-ckeditor').each(function () {
         let textarea = $(this);

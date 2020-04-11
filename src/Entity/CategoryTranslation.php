@@ -106,7 +106,7 @@ class CategoryTranslation implements EntityInterface
         return $this->seo_title;
     }
 
-    public function setSeoTitle(string $seo_title): self
+    public function setSeoTitle(?string $seo_title): self
     {
         $this->seo_title = $seo_title;
 

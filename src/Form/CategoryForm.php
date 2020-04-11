@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Model\FormModel\CategoryModel;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -33,6 +34,12 @@ class CategoryForm extends AbstractType
                 'required'   => false,
                 'empty_data' => null,
                 'placeholder' => 'Пустая категория',
+                'query_builder' => function (EntityRepository $er) use($options) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.id != :category_id')
+                        ->setParameter('category_id', $options['category_id'])
+                        ->andWhere('c.category is NULL');
+                },
                 'choice_label' => function (Category $category) {
                     return $category->getCategoryTranslations()->first()->getTitle();
                 }
@@ -49,11 +56,11 @@ class CategoryForm extends AbstractType
                 ]
             ])
             ->add('seoTitleRU', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Сео тайтл'
             ])
             ->add('seoDescriptionRU', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Сео описание'
             ])
             ->add('titleEN', TextType::class, [
@@ -68,11 +75,11 @@ class CategoryForm extends AbstractType
                 ]
             ])
             ->add('seoTitleEN', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Сео тайтл'
             ])
             ->add('seoDescriptionEN', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Сео описание'
             ])
             ->add('submit', SubmitType::class,[
@@ -85,7 +92,8 @@ class CategoryForm extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => CategoryModel::class,
-                'image_required' => false
+                'image_required' => false,
+                'category_id' => null
             ]
         );
     }

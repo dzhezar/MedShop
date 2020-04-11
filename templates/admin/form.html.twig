@@ -49,6 +49,12 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        let tooltips = [];
+        {% if tooltips is defined %}
+            tooltips = {{ tooltips|json_encode|raw }};
+        {% endif %}
+    </script>
     <script src="/admin/js/ckeditor.js"></script>
     <script src="/admin/js/form.js"></script>
 {% endblock %}

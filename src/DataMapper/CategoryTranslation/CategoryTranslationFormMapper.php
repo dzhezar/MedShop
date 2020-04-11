@@ -26,10 +26,14 @@ class CategoryTranslationFormMapper implements FormMapperInterface
         $this->languageService = $languageService;
     }
 
-    public function modelToEntity(CategoryModel $categoryModel, Category $category, $locale)
+    public function modelToEntity(CategoryModel $categoryModel, Category $category, $locale, CategoryTranslation $categoryTranslation = null)
     {
+        if(!$categoryTranslation) {
+            $categoryTranslation = new CategoryTranslation();
+        }
+
         $language = strtoupper($locale);
-        return (new CategoryTranslation())
+        return $categoryTranslation
             ->setTitle($categoryModel->{'getTitle' . $language}())
             ->setDescription($categoryModel->{'getDescription' . $language}())
             ->setSeoTitle($categoryModel->{'getSeoTitle' . $language}())

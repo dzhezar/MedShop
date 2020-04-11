@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DataMapper\Category\CategoryFormMapper;
 use App\DataMapper\Category\CategoryOutputMapper as CategoryOutputMapper;
 use App\DataMapper\CategoryTranslation\CategoryTranslationFormMapper;
+use App\Entity\Category;
 use App\Entity\Language;
 use App\Model\FormModel\CategoryModel;
 use App\Repository\CategoryTranslationRepository;
@@ -124,6 +125,43 @@ class CategoryService
         $category->addCategoryTranslation($ruCategoryTranslation);
         $category->addCategoryTranslation($enCategoryTranslation);
 
+        $this->entityManager->flush();
+    }
+
+    public function update(CategoryModel $categoryModel, Category $entity)
+    {
+        if ($categoryModel->getImage()) {
+            $image = $this->fileManager->uploadFile($categoryModel->getImage(), self::UPLOAD_FOLDER, true);
+            $image = $this->relative_path . self::UPLOAD_FOLDER . '/' . $image;
+        } else {
+            $image = $entity->getImage();
+        }
+
+        $category = $this->categoryFormMapper->modelToEntity(
+            $categoryModel,
+            $image,
+            $entity
+        );
+
+        $this->entityManager->flush();
+
+        foreach ($entity->getCategoryTranslations() as $categoryTranslation) {
+            $this->categoryTranslationFormMapper->modelToEntity(
+                $categoryModel,
+                $category,
+                $categoryTranslation->getLanguage()->getShortName(),
+                $categoryTranslation
+            );
+        }
+
+
+        $this->entityManager->flush();
+    }
+
+    public function remove(Category $id)
+    {
+        $this->fileManager->deleteFile($id->getImage());
+        $this->entityManager->remove($id);
         $this->entityManager->flush();
     }
 }

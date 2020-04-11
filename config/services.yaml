@@ -28,6 +28,7 @@ services:
     App\Service\FileManager\FileManager:
         arguments:
             - '%app.uploads_dir%'
+            - '%kernel.project_dir%/public'
 
     App\Service\CategoryService:
         arguments:

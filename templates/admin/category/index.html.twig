@@ -20,6 +20,8 @@
                                     <th>Тайтл</th>
                                     <th>Фото</th>
                                     <th>Сео описание</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -27,8 +29,14 @@
                                     <tr>
                                         <th scope="row">{{ category.id }}</th>
                                         <td>{{ category.title }}</td>
-                                        <td><img src="{{ category.image }}"></td>
+                                        <td><img style="width: 200px; height: 200px; object-fit: contain" src="{{ category.image }}"></td>
                                         <td>{{ category.seoTitle }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_category_update', {id: category.id}) }}" class="btn btn-primary">Редактировать</a>
+                                        </td>
+                                        <td>
+                                            <a data-id="{{ category.id }}" style="color: white" class="btn btn-primary remove-category">Удалить</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -39,4 +47,17 @@
             </div>
         </section>
     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on('click', '.remove-category', function () {
+            let id = $(this).attr('data-id');
+            if (confirm('Внимание. Удаление этой категории приведёт к удаления всех вложенных категорий, товаров. Вы уверены, что хотите продолжить?')) {
+                location.href = '/admin_panel/category/remove/' + id;
+            }
+        });
+    </script>
 {% endblock %}

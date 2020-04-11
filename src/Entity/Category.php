@@ -24,7 +24,7 @@ class Category implements EntityInterface
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="category", cascade={"persist", "remove"})
      */
     private $categories;
 
@@ -39,7 +39,7 @@ class Category implements EntityInterface
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CategoryTranslation", mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\CategoryTranslation", mappedBy="category", cascade={"persist", "remove"})
      */
     private $categoryTranslations;
 
