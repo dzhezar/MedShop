@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LanguageRepository")
  */
-class Language
+class Language implements EntityInterface
 {
     const EN_LANGUAGE_NAME = 'en';
     const RU_LANGUAGE_NAME = 'ru';

@@ -53,7 +53,7 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
             $name = $this->faker->realText(20);
             $slug = $this->slugService->slugify($name, Category::class, 'slug');
             $category->setSlug($slug);
-            $category->setImage($this->faker->imageUrl());
+            $category->setImage('https://i.picsum.photos/id/'.rand(500, 1000).'/300/300.jpg');
             $manager->persist($category);
             $manager->flush();
             foreach ($this->languagesArray as $language) {

@@ -3,7 +3,13 @@ index:
     controller: App\Controller\IndexController::index
 
 
-#admin
+#admin_panel
 admin_index:
     path: /admin_panel
     controller: App\Controller\Admin\HomeController::index
+admin_index_show:
+    path: /admin_panel/home
+    controller: App\Controller\Admin\HomeController::show
+admin_category_index:
+    path: /admin_panel/category
+    controller: App\Controller\Admin\CategoryController::index
