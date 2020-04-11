@@ -4,13 +4,18 @@
 namespace App\Service;
 
 
-
-use App\DataMapper\Category\OutputMapper as CategoryOutputMapper;
-use App\Model\CategoryModel;
+use App\DataMapper\Category\CategoryFormMapper;
+use App\DataMapper\Category\CategoryOutputMapper as CategoryOutputMapper;
+use App\DataMapper\CategoryTranslation\CategoryTranslationFormMapper;
+use App\Entity\Language;
+use App\Model\FormModel\CategoryModel;
 use App\Repository\CategoryTranslationRepository;
+use App\Service\FileManager\FileManagerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryService
 {
+    const UPLOAD_FOLDER = 'category';
     /**
      * @var CategoryTranslationRepository
      */
@@ -23,18 +28,56 @@ class CategoryService
      * @var CategoryOutputMapper
      */
     private $outputMapper;
+    /**
+     * @var FileManagerInterface
+     */
+    private $fileManager;
+    /**
+     * @var CategoryFormMapper
+     */
+    private $categoryFormMapper;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+    /**
+     * @var CategoryTranslationFormMapper
+     */
+    private $categoryTranslationFormMapper;
+    /**
+     * @var string
+     */
+    private $relative_path;
 
     /**
      * CategoryService constructor.
+     * @param string $relative_path
      * @param CategoryTranslationRepository $categoryTranslationRepository
      * @param LanguageService $languageService
      * @param CategoryOutputMapper $outputMapper
+     * @param FileManagerInterface $fileManager
+     * @param CategoryFormMapper $categoryFormMapper
+     * @param EntityManagerInterface $entityManager
+     * @param CategoryTranslationFormMapper $categoryTranslationFormMapper
      */
-    public function __construct(CategoryTranslationRepository $categoryTranslationRepository, LanguageService $languageService, CategoryOutputMapper $outputMapper)
-    {
+    public function __construct(
+        string $relative_path,
+        CategoryTranslationRepository $categoryTranslationRepository,
+        LanguageService $languageService,
+        CategoryOutputMapper $outputMapper,
+        FileManagerInterface $fileManager,
+        CategoryFormMapper $categoryFormMapper,
+        EntityManagerInterface $entityManager,
+        CategoryTranslationFormMapper $categoryTranslationFormMapper
+    ) {
         $this->categoryTranslationRepository = $categoryTranslationRepository;
         $this->languageService = $languageService;
         $this->outputMapper = $outputMapper;
+        $this->fileManager = $fileManager;
+        $this->categoryFormMapper = $categoryFormMapper;
+        $this->entityManager = $entityManager;
+        $this->categoryTranslationFormMapper = $categoryTranslationFormMapper;
+        $this->relative_path = $relative_path;
     }
 
     /**
@@ -44,12 +87,43 @@ class CategoryService
     public function getAll(string $language): array
     {
         $language = $this->languageService->getLanguage($language);
-        $categories = $this->categoryTranslationRepository->findBy(['language' => $language]);
+        $categories = $this->categoryTranslationRepository->findBy(['language' => $language], ['id' => 'DESC']);
         $result = [];
         foreach ($categories as $category) {
             $result[] = $this->outputMapper::entityToModel($category);
         }
 
         return $result;
+    }
+
+    public function create(CategoryModel $categoryModel)
+    {
+        $image = $this->fileManager->uploadFile($categoryModel->getImage(), self::UPLOAD_FOLDER, true);
+        $category = $this->categoryFormMapper->modelToEntity(
+            $categoryModel,
+            $this->relative_path . self::UPLOAD_FOLDER . '/' . $image
+        );
+        $this->entityManager->persist($category);
+        $this->entityManager->flush();
+
+        $ruCategoryTranslation = $this->categoryTranslationFormMapper->modelToEntity(
+            $categoryModel,
+            $category,
+            Language::RU_LANGUAGE_NAME
+        );
+
+        $enCategoryTranslation = $this->categoryTranslationFormMapper->modelToEntity(
+            $categoryModel,
+            $category,
+            Language::EN_LANGUAGE_NAME
+        );
+
+        $this->entityManager->persist($ruCategoryTranslation);
+        $this->entityManager->persist($enCategoryTranslation);
+
+        $category->addCategoryTranslation($ruCategoryTranslation);
+        $category->addCategoryTranslation($enCategoryTranslation);
+
+        $this->entityManager->flush();
     }
 }

@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.relative_uploads_dir: '/uploads/'
+    app.uploads_dir: '%kernel.project_dir%/public%app.relative_uploads_dir%'
 
 services:
     # default configuration for services in *this* file
@@ -22,6 +24,14 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Service\FileManager\FileManager:
+        arguments:
+            - '%app.uploads_dir%'
+
+    App\Service\CategoryService:
+        arguments:
+            - '%app.relative_uploads_dir%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

@@ -5,9 +5,9 @@ namespace App\DataMapper\Category;
 
 
 use App\Entity\CategoryTranslation;
-use App\Model\CategoryModel;
+use App\Model\OutputModel\CategoryModel;
 
-class OutputMapper
+class CategoryOutputMapper
 {
 
     /**

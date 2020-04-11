@@ -13,3 +13,6 @@ admin_index_show:
 admin_category_index:
     path: /admin_panel/category
     controller: App\Controller\Admin\CategoryController::index
+admin_category_create:
+    path: /admin_panel/category/create
+    controller: App\Controller\Admin\CategoryController::create
