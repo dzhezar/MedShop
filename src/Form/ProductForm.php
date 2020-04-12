@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -41,10 +42,12 @@ class ProductForm extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 //TODO dont show current product
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) use($options) {
                     return $er->createQueryBuilder('p')
                         ->select('p', 'productTranslations')
-                        ->leftJoin('p.productTranslations', 'productTranslations');
+                        ->leftJoin('p.productTranslations', 'productTranslations')
+                        ->where('p.id != :product_id')
+                        ->setParameter('product_id', $options['product_id']);
                 },
                 'choice_label' => function (Product $product) {
                     return $product->getProductTranslations()->first()->getTitle();
@@ -115,6 +118,7 @@ class ProductForm extends AbstractType
                 'required' => false,
                 'label' => 'Сео описание'
             ])
+            ->add('specifications', HiddenType::class)
             ->add('submit', SubmitType::class,[
                 'label' => 'Сохранить'
             ]);
@@ -126,7 +130,7 @@ class ProductForm extends AbstractType
             [
                 'data_class' => ProductModel::class,
                 'image_required' => false,
-                'product_id' => null
+                'product_id' => 0
             ]
         );
     }

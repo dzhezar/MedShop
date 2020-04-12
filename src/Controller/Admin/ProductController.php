@@ -59,7 +59,7 @@ class ProductController extends AbstractController
     public function update(Product $id, Request $request)
     {
         $model = $this->productFormMapper->entityToModel($id);
-        $form = $this->createForm(ProductForm::class, $model);
+        $form = $this->createForm(ProductForm::class, $model, ['product_id' => $id->getId()]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();

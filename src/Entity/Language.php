@@ -45,10 +45,22 @@ class Language implements EntityInterface
      */
     private $productTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationTranslation", mappedBy="languge")
+     */
+    private $specificationTranslations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValueTranslation", mappedBy="language")
+     */
+    private $specificationValueTranslations;
+
     public function __construct()
     {
         $this->categoryTranslations = new ArrayCollection();
         $this->productTranslations = new ArrayCollection();
+        $this->specificationTranslations = new ArrayCollection();
+        $this->specificationValueTranslations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +148,68 @@ class Language implements EntityInterface
             // set the owning side to null (unless already changed)
             if ($productTranslation->getLanguage() === $this) {
                 $productTranslation->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpecificationTranslation[]
+     */
+    public function getSpecificationTranslations(): Collection
+    {
+        return $this->specificationTranslations;
+    }
+
+    public function addSpecificationTranslation(SpecificationTranslation $specificationTranslation): self
+    {
+        if (!$this->specificationTranslations->contains($specificationTranslation)) {
+            $this->specificationTranslations[] = $specificationTranslation;
+            $specificationTranslation->setLanguge($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpecificationTranslation(SpecificationTranslation $specificationTranslation): self
+    {
+        if ($this->specificationTranslations->contains($specificationTranslation)) {
+            $this->specificationTranslations->removeElement($specificationTranslation);
+            // set the owning side to null (unless already changed)
+            if ($specificationTranslation->getLanguge() === $this) {
+                $specificationTranslation->setLanguge(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpecificationValueTranslation[]
+     */
+    public function getSpecificationValueTranslations(): Collection
+    {
+        return $this->specificationValueTranslations;
+    }
+
+    public function addSpecificationValueTranslation(SpecificationValueTranslation $specificationValueTranslation): self
+    {
+        if (!$this->specificationValueTranslations->contains($specificationValueTranslation)) {
+            $this->specificationValueTranslations[] = $specificationValueTranslation;
+            $specificationValueTranslation->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpecificationValueTranslation(SpecificationValueTranslation $specificationValueTranslation): self
+    {
+        if ($this->specificationValueTranslations->contains($specificationValueTranslation)) {
+            $this->specificationValueTranslations->removeElement($specificationValueTranslation);
+            // set the owning side to null (unless already changed)
+            if ($specificationValueTranslation->getLanguage() === $this) {
+                $specificationValueTranslation->setLanguage(null);
             }
         }
 

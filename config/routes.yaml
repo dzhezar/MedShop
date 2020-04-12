@@ -10,6 +10,12 @@ admin_index:
 admin_index_show:
     path: /admin_panel/home
     controller: App\Controller\Admin\HomeController::show
+####API####
+admin_api_specification_create:
+    path: /api/specification/create
+    controller: App\Controller\Api\SpecificationController::create
+    methods:
+        POST
 ####category###
 admin_category_index:
     path: /admin_panel/category

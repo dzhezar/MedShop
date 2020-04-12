@@ -54,11 +54,23 @@ class Product
      */
     private $productTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Specification", mappedBy="product")
+     */
+    private $specifications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValue", mappedBy="product")
+     */
+    private $specificationValues;
+
     public function __construct()
     {
         $this->related_products = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->productTranslations = new ArrayCollection();
+        $this->specifications = new ArrayCollection();
+        $this->specificationValues = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +205,68 @@ class Product
             // set the owning side to null (unless already changed)
             if ($productTranslation->getProduct() === $this) {
                 $productTranslation->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Specification[]
+     */
+    public function getSpecifications(): Collection
+    {
+        return $this->specifications;
+    }
+
+    public function addSpecification(Specification $specification): self
+    {
+        if (!$this->specifications->contains($specification)) {
+            $this->specifications[] = $specification;
+            $specification->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpecification(Specification $specification): self
+    {
+        if ($this->specifications->contains($specification)) {
+            $this->specifications->removeElement($specification);
+            // set the owning side to null (unless already changed)
+            if ($specification->getProduct() === $this) {
+                $specification->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpecificationValue[]
+     */
+    public function getSpecificationValues(): Collection
+    {
+        return $this->specificationValues;
+    }
+
+    public function addSpecificationValue(SpecificationValue $specificationValue): self
+    {
+        if (!$this->specificationValues->contains($specificationValue)) {
+            $this->specificationValues[] = $specificationValue;
+            $specificationValue->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpecificationValue(SpecificationValue $specificationValue): self
+    {
+        if ($this->specificationValues->contains($specificationValue)) {
+            $this->specificationValues->removeElement($specificationValue);
+            // set the owning side to null (unless already changed)
+            if ($specificationValue->getProduct() === $this) {
+                $specificationValue->setProduct(null);
             }
         }
 

@@ -62,6 +62,8 @@ class ProductModel
 
     private $seoDescription_EN;
 
+    private $specifications;
+
     /**
      * @return UploadedFile|null
      */
@@ -331,6 +333,26 @@ class ProductModel
         $this->slug = $slug;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecifications()
+    {
+        return $this->specifications;
+    }
+
+    /**
+     * @param mixed $specifications
+     * @return ProductModel
+     */
+    public function setSpecifications($specifications)
+    {
+        $this->specifications = $specifications;
+        return $this;
+    }
+
+
 
 
 
