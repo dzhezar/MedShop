@@ -40,9 +40,15 @@ class Language implements EntityInterface
      */
     private $categoryTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductTranslation", mappedBy="language")
+     */
+    private $productTranslations;
+
     public function __construct()
     {
         $this->categoryTranslations = new ArrayCollection();
+        $this->productTranslations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,6 +105,37 @@ class Language implements EntityInterface
             // set the owning side to null (unless already changed)
             if ($categoryTranslation->getLanguage() === $this) {
                 $categoryTranslation->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProductTranslation[]
+     */
+    public function getProductTranslations(): Collection
+    {
+        return $this->productTranslations;
+    }
+
+    public function addProductTranslation(ProductTranslation $productTranslation): self
+    {
+        if (!$this->productTranslations->contains($productTranslation)) {
+            $this->productTranslations[] = $productTranslation;
+            $productTranslation->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductTranslation(ProductTranslation $productTranslation): self
+    {
+        if ($this->productTranslations->contains($productTranslation)) {
+            $this->productTranslations->removeElement($productTranslation);
+            // set the owning side to null (unless already changed)
+            if ($productTranslation->getLanguage() === $this) {
+                $productTranslation->setLanguage(null);
             }
         }
 
