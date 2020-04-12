@@ -47,7 +47,7 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $categoryPrevious = null;
-        for ($i = 0; $i < 600; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $category = new Category();
 
             $name = $this->faker->realText(20);
