@@ -42,6 +42,10 @@ class CategoryFormMapper implements FormMapperInterface
                 }
             }
 
+            foreach ($categoryModel->getProducts() as $product) {
+                $category->addProduct($product);
+            }
+
 
             foreach ($category->getCategoryTranslations() as $categoryTranslation) {
                 if (

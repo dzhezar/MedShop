@@ -8,6 +8,8 @@ $(document).ready(function () {
         }
     });
 
+    $('select').select2();
+
     $('.form-group').each(function () {
         let move = true;
         $(this).find('button').each(function () {

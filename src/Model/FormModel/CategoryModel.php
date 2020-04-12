@@ -10,7 +10,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CategoryModel
 {
-    /** @var UploadedFile|null */
+    /**
+     * @var UploadedFile|null
+     * @Assert\Image()
+     *
+     */
     private $image;
 
     private $slug;
@@ -35,6 +39,7 @@ class CategoryModel
     private $description_EN;
     private $seo_title_EN;
     private $seo_description_EN;
+    private $products;
 
     /**
      * @return UploadedFile|null
@@ -233,6 +238,26 @@ class CategoryModel
         $this->seo_description_EN = $seo_description_EN;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     * @return CategoryModel
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+
 
 
 

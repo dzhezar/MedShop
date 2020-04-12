@@ -6,18 +6,19 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
-use App\Model\FormModel\CategoryModel;
+use App\Model\FormModel\ProductModel;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryForm extends AbstractType
+class ProductForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,12 +30,17 @@ class CategoryForm extends AbstractType
                 'required' => $required,
                 'label' => 'Изображение'
             ])
-            ->add('products', EntityType::class, [
-                'label' => 'Товары',
+            ->add('price', MoneyType::class, [
+                'currency' => 'USD',
+                'label' => 'Цена',
+            ])
+            ->add('relatedProducts', EntityType::class, [
+                'label' => 'Похожие товары',
                 'class' => Product::class,
                 'required'   => false,
                 'multiple' => true,
                 'expanded' => false,
+                //TODO dont show current product
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->select('p', 'productTranslations')
@@ -47,18 +53,13 @@ class CategoryForm extends AbstractType
             ->add('category', EntityType::class, [
                 'label' => 'Категория',
                 'class' => Category::class,
-                'required'   => false,
-                'empty_data' => null,
-                'placeholder' => 'Пустая категория',
-                'query_builder' => function (EntityRepository $er) use($options) {
+                'required'   => true,
+                'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->select('c', 'categoryTranslations')
-                        ->leftJoin('c.categoryTranslations', 'categoryTranslations')
-                        ->where('c.id != :category_id')
-                        ->setParameter('category_id', $options['category_id'])
-                        ->andWhere('c.category is NULL');
+                        ->leftJoin('c.categoryTranslations', 'categoryTranslations');
                 },
-                 'choice_label' =>   function (Category $category) {
+                'choice_label' => function (Category $category) {
                     return $category->getCategoryTranslations()->first()->getTitle();
                 }
             ])
@@ -69,6 +70,13 @@ class CategoryForm extends AbstractType
             ->add('descriptionRU', TextareaType::class, [
                 'required' => false,
                 'label' => 'Описание',
+                'attr' => [
+                    'class' => 'enable-ckeditor'
+                ]
+            ])
+            ->add('usageDescriptionRU', TextareaType::class, [
+                'required' => false,
+                'label' => 'Применение      ',
                 'attr' => [
                     'class' => 'enable-ckeditor'
                 ]
@@ -92,6 +100,13 @@ class CategoryForm extends AbstractType
                     'class' => 'enable-ckeditor'
                 ]
             ])
+            ->add('usageDescriptionEN', TextareaType::class, [
+                'required' => false,
+                'label' => 'Применение',
+                'attr' => [
+                    'class' => 'enable-ckeditor'
+                ]
+            ])
             ->add('seoTitleEN', TextType::class, [
                 'required' => false,
                 'label' => 'Сео тайтл'
@@ -109,9 +124,9 @@ class CategoryForm extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => CategoryModel::class,
+                'data_class' => ProductModel::class,
                 'image_required' => false,
-                'category_id' => 0
+                'product_id' => null
             ]
         );
     }
