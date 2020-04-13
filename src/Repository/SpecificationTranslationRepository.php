@@ -19,6 +19,32 @@ class SpecificationTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, SpecificationTranslation::class);
     }
 
+    public function getNameAndParentId($language_id)
+    {
+        return $this->createQueryBuilder('specification_translation')
+            ->select('specification_translation.name', 'specification.id')
+            ->leftJoin('specification_translation.specification', 'specification')
+            ->where('specification_translation.languge = :id')
+            ->setParameter('id', $language_id)
+            ->getQuery()->getResult();
+    }
+
+    /** @return SpecificationTranslation[] */
+    public function getNameAndParentIdByProductId($product_id, $language_id)
+    {
+        return $this->createQueryBuilder('specification_translation')
+            ->select('specification_translation', 'specification_values', 'specification', 'specification_value_translations')
+            ->leftJoin('specification_translation.specification', 'specification')
+            ->leftJoin('specification.specificationValues', 'specification_values')
+            ->leftJoin('specification_values.specificationValueTranslations', 'specification_value_translations')
+            ->leftJoin('specification_values.product', 'product')
+            ->where('specification_translation.languge = :id')
+            ->andWhere('product.id = :product_id')
+            ->setParameter('id', $language_id)
+            ->setParameter('product_id', $product_id)
+            ->getQuery()->getResult();
+    }
+
     // /**
     //  * @return SpecificationTranslation[] Returns an array of SpecificationTranslation objects
     //  */

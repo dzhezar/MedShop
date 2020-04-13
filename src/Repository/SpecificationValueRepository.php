@@ -19,6 +19,27 @@ class SpecificationValueRepository extends ServiceEntityRepository
         parent::__construct($registry, SpecificationValue::class);
     }
 
+    /**
+     * @param $product_id
+     * @param $language_id
+     * @return SpecificationValue[]
+     */
+    public function getNameAndParentIdByProductId($product_id, $language_id)
+    {
+        return $this->createQueryBuilder('specification_value')
+            ->select('specification_value', 'specification', 'specification_translations', 'specification_value_translations')
+            ->leftJoin('specification_value.product', 'product')
+            ->leftJoin('specification_value.specificationValueTranslations', 'specification_value_translations')
+            ->leftJoin('specification_value.specification', 'specification')
+            ->leftJoin('specification.specificationTranslations', 'specification_translations')
+            ->leftJoin('specification_translations.languge', 'languge')
+            ->where('product.id = :product_id')
+            ->andWhere('languge.id = :id')
+            ->setParameter('id', $language_id)
+            ->setParameter('product_id', $product_id)
+            ->getQuery()->getResult();
+    }
+
     // /**
     //  * @return SpecificationValue[] Returns an array of SpecificationValue objects
     //  */

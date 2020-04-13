@@ -55,11 +55,6 @@ class Product
     private $productTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Specification", mappedBy="product")
-     */
-    private $specifications;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValue", mappedBy="product")
      */
     private $specificationValues;
@@ -69,7 +64,6 @@ class Product
         $this->related_products = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->productTranslations = new ArrayCollection();
-        $this->specifications = new ArrayCollection();
         $this->specificationValues = new ArrayCollection();
     }
 
@@ -205,37 +199,6 @@ class Product
             // set the owning side to null (unless already changed)
             if ($productTranslation->getProduct() === $this) {
                 $productTranslation->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Specification[]
-     */
-    public function getSpecifications(): Collection
-    {
-        return $this->specifications;
-    }
-
-    public function addSpecification(Specification $specification): self
-    {
-        if (!$this->specifications->contains($specification)) {
-            $this->specifications[] = $specification;
-            $specification->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSpecification(Specification $specification): self
-    {
-        if ($this->specifications->contains($specification)) {
-            $this->specifications->removeElement($specification);
-            // set the owning side to null (unless already changed)
-            if ($specification->getProduct() === $this) {
-                $specification->setProduct(null);
             }
         }
 

@@ -13,6 +13,9 @@ use App\DataMapper\ProductTranslation\ProductTranslationFormMapper;
 use App\Entity\Category;
 use App\Entity\Language;
 use App\Entity\Product;
+use App\Entity\Specification;
+use App\Entity\SpecificationValue;
+use App\Entity\SpecificationValueTranslation;
 use App\Model\FormModel\CategoryModel;
 use App\Model\FormModel\ProductModel;
 use App\Repository\CategoryTranslationRepository;
@@ -150,6 +153,42 @@ class ProductService
             $image,
             $entity
         );
+
+        foreach ($product->getSpecificationValues() as $specificationValue) {
+            $product->removeSpecificationValue($specificationValue);
+            $this->entityManager->remove($specificationValue);
+        }
+
+        $this->entityManager->flush();
+
+        $specificationRepo = $this->entityManager->getRepository(Specification::class);
+
+        $specifications = json_decode($productModel->getSpecifications(), true);
+        foreach ($specifications as $specification) {
+            if(isset($specification['specif']) && isset($specification['en']) && isset($specification['ru'])) {
+                if($specificationEntity = $specificationRepo->findOneBy(['id' => $specification['specif']])) {
+                    $specificationValue = new SpecificationValue();
+                    $specificationValue->setSpecification($specificationEntity);
+                    $specificationValue->setProduct($product);
+
+                    $this->entityManager->persist($specificationValue);
+                    $this->entityManager->flush();
+
+                    $enSpecificationValue = new SpecificationValueTranslation();
+                    $enSpecificationValue->setSpecificationValue($specificationValue);
+                    $enSpecificationValue->setName($specification['en']);
+                    $enSpecificationValue->setLanguage($this->languageService->getLanguage(Language::EN_LANGUAGE_NAME));
+
+                    $ruSpecificationValue = new SpecificationValueTranslation();
+                    $ruSpecificationValue->setSpecificationValue($specificationValue);
+                    $ruSpecificationValue->setName($specification['ru']);
+                    $ruSpecificationValue->setLanguage($this->languageService->getLanguage(Language::RU_LANGUAGE_NAME));
+
+                    $this->entityManager->persist($enSpecificationValue);
+                    $this->entityManager->persist($ruSpecificationValue);
+                }
+            }
+        }
 
         $this->entityManager->flush();
 

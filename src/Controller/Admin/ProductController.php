@@ -9,6 +9,7 @@ use App\Entity\Language;
 use App\Entity\Product;
 use App\Form\ProductForm;
 use App\Service\ProductService;
+use App\Service\SpecificationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,16 +23,25 @@ class ProductController extends AbstractController
      * @var ProductFormMapper
      */
     private $productFormMapper;
+    /**
+     * @var SpecificationService
+     */
+    private $specificationService;
 
     /**
      * ProductController constructor.
      * @param ProductService $productService
      * @param ProductFormMapper $productFormMapper
+     * @param SpecificationService $specificationService
      */
-    public function __construct(ProductService $productService, ProductFormMapper $productFormMapper)
-    {
+    public function __construct(
+        ProductService $productService,
+        ProductFormMapper $productFormMapper,
+        SpecificationService $specificationService
+    ) {
         $this->productService = $productService;
         $this->productFormMapper = $productFormMapper;
+        $this->specificationService = $specificationService;
     }
 
     public function index()
@@ -43,6 +53,7 @@ class ProductController extends AbstractController
 
     public function create(Request $request)
     {
+        $specifications = $this->specificationService->getAll();
         $form = $this->createForm(ProductForm::class, null, ['image_required' => true]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,13 +62,21 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('admin_product_index');
         }
-        
 
-        return $this->render('admin/product/create.html.twig', ['form' => $form->createView()]);
+
+        return $this->render(
+            'admin/product/create.html.twig',
+            [
+                'form' => $form->createView(),
+                'specifications' => $specifications
+            ]
+        );
     }
 
     public function update(Product $id, Request $request)
     {
+        $specifications = $this->specificationService->getAll();
+        $productSpecifications = $this->specificationService->getSpecificationsForProduct($id->getId());
         $model = $this->productFormMapper->entityToModel($id);
         $form = $this->createForm(ProductForm::class, $model, ['product_id' => $id->getId()]);
         $form->handleRequest($request);
@@ -69,6 +88,13 @@ class ProductController extends AbstractController
         }
 
 
-        return $this->render('admin/product/create.html.twig', ['form' => $form->createView()]);
+        return $this->render(
+            'admin/product/update.html.twig',
+            [
+                'form' => $form->createView(),
+                'specifications' => $specifications,
+                'productSpecifications' => $productSpecifications
+            ]
+        );
     }
 }

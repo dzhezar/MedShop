@@ -25,7 +25,7 @@ class SpecificationValue
     private $specification;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValueTranslation", mappedBy="specification_value")
+     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValueTranslation", mappedBy="specification_value", cascade={"persist", "remove"})
      */
     private $specificationValueTranslations;
 
