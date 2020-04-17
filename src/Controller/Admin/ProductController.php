@@ -97,4 +97,10 @@ class ProductController extends AbstractController
             ]
         );
     }
+
+    public function remove(Product $id)
+    {
+        $this->productService->remove($id);
+        return $this->redirectToRoute('admin_product_index');
+    }
 }

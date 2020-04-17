@@ -41,7 +41,6 @@ class ProductForm extends AbstractType
                 'required'   => false,
                 'multiple' => true,
                 'expanded' => false,
-                //TODO dont show current product
                 'query_builder' => function (EntityRepository $er) use($options) {
                     return $er->createQueryBuilder('p')
                         ->select('p', 'productTranslations')

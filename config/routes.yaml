@@ -42,3 +42,16 @@ admin_product_update:
 admin_product_remove:
     path: /admin_panel/product/remove/{id}
     controller: App\Controller\Admin\ProductController::remove
+####article###
+admin_article_index:
+    path: /admin_panel/article
+    controller: App\Controller\Admin\ArticleController::index
+admin_article_create:
+    path: /admin_panel/article/create
+    controller: App\Controller\Admin\ArticleController::create
+admin_article_update:
+    path: /admin_panel/article/update/{id}
+    controller: App\Controller\Admin\ArticleController::update
+admin_article_remove:
+    path: /admin_panel/article/remove/{id}
+    controller: App\Controller\Admin\ArticleController::remove

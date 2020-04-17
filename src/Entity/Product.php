@@ -30,7 +30,7 @@ class Product
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $image;
 
@@ -50,12 +50,12 @@ class Product
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductTranslation", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductTranslation", mappedBy="product", cascade={"persist", "remove"})
      */
     private $productTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValue", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\SpecificationValue", mappedBy="product", cascade={"persist", "remove"})
      */
     private $specificationValues;
 

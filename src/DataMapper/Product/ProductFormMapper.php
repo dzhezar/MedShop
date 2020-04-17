@@ -30,32 +30,30 @@ class ProductFormMapper implements FormMapperInterface
     public function modelToEntity(
         ProductModel $productModel,
         ?string $image = null,
-        Product $category = null
+        Product $product = null
     ): Product
     {
-        if (!$category) {
-            $category = new Product();
-            $slug = $this->slugService->slugify($productModel->getTitleEN(), Category::class, 'slug');
+        if (!$product) {
+            $product = new Product();
+            $slug = $this->slugService->slugify($productModel->getTitleEN(), Product::class, 'slug');
         } else {
-            //TODO Fix slug duplicate
-            foreach ($category->getProductTranslations() as $productTranslation) {
+            foreach ($product->getProductTranslations() as $productTranslation) {
                 if (
                     $productTranslation->getLanguage()->getShortName() === Language::EN_LANGUAGE_NAME
                     && $productTranslation->getTitle() === $productModel->getTitleEN()
                 ) {
-                    $slug = $category->getSlug();
+                    $slug = $product->getSlug();
                 } else {
-                    $slug = $this->slugService->slugify($productModel->getTitleEN(), Category::class, 'slug');
-
+                    $slug = $this->slugService->slugify($productModel->getTitleEN(), Product::class, 'slug');
                 }
             }
         }
 
         foreach ($productModel->getRelatedProducts() as $relatedProduct) {
-            $category->addRelatedProduct($relatedProduct);
+            $product->addRelatedProduct($relatedProduct);
         }
 
-        return $category
+        return $product
             ->setSlug($slug)
             ->setPrice($productModel->getPrice())
             ->setCategory($productModel->getCategory())

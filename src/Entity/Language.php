@@ -55,12 +55,18 @@ class Language implements EntityInterface
      */
     private $specificationValueTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleTranslation", mappedBy="language")
+     */
+    private $articleTranslations;
+
     public function __construct()
     {
         $this->categoryTranslations = new ArrayCollection();
         $this->productTranslations = new ArrayCollection();
         $this->specificationTranslations = new ArrayCollection();
         $this->specificationValueTranslations = new ArrayCollection();
+        $this->articleTranslations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,6 +216,37 @@ class Language implements EntityInterface
             // set the owning side to null (unless already changed)
             if ($specificationValueTranslation->getLanguage() === $this) {
                 $specificationValueTranslation->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArticleTranslation[]
+     */
+    public function getArticleTranslations(): Collection
+    {
+        return $this->articleTranslations;
+    }
+
+    public function addArticleTranslation(ArticleTranslation $articleTranslation): self
+    {
+        if (!$this->articleTranslations->contains($articleTranslation)) {
+            $this->articleTranslations[] = $articleTranslation;
+            $articleTranslation->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleTranslation(ArticleTranslation $articleTranslation): self
+    {
+        if ($this->articleTranslations->contains($articleTranslation)) {
+            $this->articleTranslations->removeElement($articleTranslation);
+            // set the owning side to null (unless already changed)
+            if ($articleTranslation->getLanguage() === $this) {
+                $articleTranslation->setLanguage(null);
             }
         }
 
