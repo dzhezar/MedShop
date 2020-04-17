@@ -24,7 +24,7 @@ class Article
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ArticleTranslation", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleTranslation", mappedBy="article", cascade={"persist", "remove"})
      */
     private $articleTranslations;
 

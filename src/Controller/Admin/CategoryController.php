@@ -56,9 +56,7 @@ class CategoryController extends AbstractController
             'admin/form.html.twig',
             [
                 'form' => $form->createView(),
-                'tooltips' => [
-                    'category_form_category' => 'Внимание. Вы не увидите категорий, у которых уже установлена вложеность'
-                ]
+                'tooltips' => CategoryService::TOOLTIPS_ARRAY
             ]
         );
     }

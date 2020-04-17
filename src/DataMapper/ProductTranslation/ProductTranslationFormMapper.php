@@ -29,19 +29,19 @@ class ProductTranslationFormMapper implements FormMapperInterface
         $this->languageService = $languageService;
     }
 
-    public function modelToEntity(ProductModel $categoryModel, Product $category, $locale, ProductTranslation $categoryTranslation = null)
+    public function modelToEntity(ProductModel $productModel, $locale, ProductTranslation $productTranslation = null)
     {
-        if(!$categoryTranslation) {
-            $categoryTranslation = new ProductTranslation();
+        if(!$productTranslation) {
+            $productTranslation = new ProductTranslation();
         }
 
         $language = strtoupper($locale);
-        return $categoryTranslation
-            ->setTitle($categoryModel->{'getTitle' . $language}())
-            ->setDescription($categoryModel->{'getDescription' . $language}())
-            ->setSeoTitle($categoryModel->{'getSeoTitle' . $language}())
-            ->setSeoDescription($categoryModel->{'getSeoDescription' . $language}())
+        return $productTranslation
+            ->setTitle($productModel->{'getTitle' . $language}())
+            ->setDescription($productModel->{'getDescription' . $language}())
+            ->setSeoTitle($productModel->{'getSeoTitle' . $language}())
+            ->setSeoDescription($productModel->{'getSeoDescription' . $language}())
             ->setLanguage($this->languageService->getLanguage($locale))
-            ->setUsageDescription($categoryModel->{'getUsageDescription' . $language}());
+            ->setUsageDescription($productModel->{'getUsageDescription' . $language}());
     }
 }

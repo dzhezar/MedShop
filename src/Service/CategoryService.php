@@ -16,6 +16,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryService
 {
+    const TOOLTIPS_ARRAY = [
+        'category_form_category' => 'Внимание. Вы не увидите категорий, у которых уже установлена вложеность'
+    ];
+
     const UPLOAD_FOLDER = 'category';
     /**
      * @var CategoryTranslationRepository

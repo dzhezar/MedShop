@@ -114,14 +114,12 @@ class ProductService
 
         $ruProductTranslation = $this->productTranslationFormMapper->modelToEntity(
             $productModel,
-            $product,
             Language::RU_LANGUAGE_NAME
         );
 
 
         $enProductTranslation = $this->productTranslationFormMapper->modelToEntity(
             $productModel,
-            $product,
             Language::EN_LANGUAGE_NAME
         );
 
@@ -161,7 +159,6 @@ class ProductService
         foreach ($entity->getProductTranslations() as $categoryTranslation) {
             $this->productTranslationFormMapper->modelToEntity(
                 $productModel,
-                $product,
                 $categoryTranslation->getLanguage()->getShortName(),
                 $categoryTranslation
             );

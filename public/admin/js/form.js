@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 
     Object.keys(tooltips).forEach(function (key) {
-        $("label[for='" + key + "']").after($('<i style="padding-left: 10px" data-toggle="tooltip" title="'+tooltips[key]+'" class="far fa-question-circle"></i>'));
+        $("label[for='" + key + "']").after($('<i style="padding-left: 10px" data-toggle="tooltip" data-html="true" class="far fa-question-circle"></i>').attr('title', tooltips[key]));
     });
 
     $('[data-toggle="tooltip"]').tooltip();
