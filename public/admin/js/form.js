@@ -33,4 +33,6 @@ $(document).ready(function () {
         let textarea = $(this);
         ClassicEditor.create(textarea[0], {language: 'ru'});
     });
+
+    $('#preloader').hide();
 });
