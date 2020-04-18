@@ -54,6 +54,7 @@ class ProductFormMapper implements FormMapperInterface
         }
 
         return $product
+            ->setIsVisible($productModel->getIsVisible())
             ->setSlug($slug)
             ->setPrice($productModel->getPrice())
             ->setCategory($productModel->getCategory())
@@ -65,6 +66,7 @@ class ProductFormMapper implements FormMapperInterface
         $model = new ProductModel();
         $model
             ->setPrice($product->getPrice())
+            ->setIsVisible($product->getIsVisible())
             ->setRelatedProducts($product->getRelatedProducts())
             ->setCategory($product->getCategory())
             ->setSlug($product->getSlug());

@@ -16,6 +16,9 @@ class ProductModel
      */
     private $image;
 
+    /** @var bool|null */
+    private $isVisible;
+
     private $slug;
 
     /**
@@ -81,6 +84,26 @@ class ProductModel
         $this->image = $image;
         return $this;
     }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsVisible(): ?bool
+    {
+        return $this->isVisible;
+    }
+
+    /**
+     * @param bool|null $isVisible
+     * @return ProductModel
+     */
+    public function setIsVisible(?bool $isVisible): ProductModel
+    {
+        $this->isVisible = $isVisible;
+        return $this;
+    }
+
+
 
     /**
      * @return float|null

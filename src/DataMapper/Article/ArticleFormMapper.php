@@ -50,6 +50,7 @@ class ArticleFormMapper
         }
 
         return $article
+            ->setIsVisible($articleModel->isIsVisible())
             ->setDateCreated(new \DateTime())
             ->setSlug($slug)
             ->setImage($image);
@@ -59,6 +60,7 @@ class ArticleFormMapper
     {
         $model = new ArticleModel();
         $model
+            ->setIsVisible($article->getIsVisible())
             ->setSlug($article->getSlug());
 
         $translations = $article->getArticleTranslations();

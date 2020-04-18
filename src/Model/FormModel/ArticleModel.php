@@ -15,6 +15,9 @@ class ArticleModel
      */
     private $image;
 
+    /** @var bool|null */
+    private $is_visible;
+
     private $slug;
 
     private $title_RU;
@@ -56,6 +59,24 @@ class ArticleModel
     public function setImage(?UploadedFile $image): ArticleModel
     {
         $this->image = $image;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIsVisible(): ?bool
+    {
+        return $this->is_visible;
+    }
+
+    /**
+     * @param bool $is_visible
+     * @return ArticleModel
+     */
+    public function setIsVisible(?bool $is_visible): ArticleModel
+    {
+        $this->is_visible = $is_visible;
         return $this;
     }
 

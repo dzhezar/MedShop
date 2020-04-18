@@ -84,6 +84,7 @@ class ArticleControllerTest extends WebTestCase
             $fields = array_merge(
                 $fields,
                 [
+                    'article_form[isVisible]' => true,
                     'article_form[title' . $language . ']' => $this->faker->title,
                     'article_form[shortDescription' . $language . ']' => $this->faker->text(50),
                     'article_form[description' . $language . ']' => $this->faker->randomHtml(200),
@@ -113,6 +114,7 @@ class ArticleControllerTest extends WebTestCase
                 $fields = array_merge(
                     $fields,
                     [
+                        'article_form[isVisible]' => true,
                         'article_form[title' . $language . ']' => $this->faker->title,
                         'article_form[shortDescription' . $language . ']' => $this->faker->text(50),
                         'article_form[description' . $language . ']' => $this->faker->randomHtml(200),

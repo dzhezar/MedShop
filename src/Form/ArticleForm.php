@@ -11,6 +11,7 @@ use App\Model\FormModel\CategoryModel;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -29,6 +30,10 @@ class ArticleForm extends AbstractType
             ->add('image', FileType::class, [
                 'required' => $required,
                 'label' => 'Изображение'
+            ])
+            ->add('isVisible', CheckboxType::class, [
+                'label' => 'Отображать',
+                'required' => false
             ])
             ->add('titleRU', TextType::class, [
                 'required' => true,

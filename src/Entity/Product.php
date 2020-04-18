@@ -59,6 +59,11 @@ class Product
      */
     private $specificationValues;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_visible;
+
     public function __construct()
     {
         $this->related_products = new ArrayCollection();
@@ -232,6 +237,18 @@ class Product
                 $specificationValue->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsVisible(): ?bool
+    {
+        return $this->is_visible;
+    }
+
+    public function setIsVisible(bool $is_visible): self
+    {
+        $this->is_visible = $is_visible;
 
         return $this;
     }
