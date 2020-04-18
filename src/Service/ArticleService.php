@@ -16,11 +16,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ArticleService
 {
-    const TOOLTIPS_ARRAY = [
-        'article_form_shortDescriptionRU' => '<img src="/admin/img/tooltips/short_description.png">',
-    ];
-
     const UPLOAD_FOLDER = 'article';
+
+    public $tooltipsArray = [];
     /**
      * @var string
      */
@@ -72,6 +70,12 @@ class ArticleService
         $this->articleFormMapper = $articleFormMapper;
         $this->entityManager = $entityManager;
         $this->articleTranslationFormMapper = $articleTranslationFormMapper;
+        $this->tooltipsArray['article_form_shortDescriptionRU'] = TooltipService::createImageElement(
+            '/admin/img/tooltips/short_description.png'
+        );
+        $this->tooltipsArray['article_form_shortDescriptionEN'] = TooltipService::createImageElement(
+            '/admin/img/tooltips/short_description.png'
+        );
     }
 
     public function getAll(string $language)

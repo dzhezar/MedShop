@@ -10,6 +10,7 @@ use App\Entity\Product;
 use App\Form\ProductForm;
 use App\Service\ProductService;
 use App\Service\SpecificationService;
+use App\Service\TooltipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -87,13 +88,16 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('admin_product_index');
         }
 
+        $tooltips['product_form_image'] = TooltipService::createImageElement($id->getImage(), TooltipService::OLD_IMAGE);
+
 
         return $this->render(
             'admin/product/update.html.twig',
             [
                 'form' => $form->createView(),
                 'specifications' => $specifications,
-                'productSpecifications' => $productSpecifications
+                'productSpecifications' => $productSpecifications,
+                'tooltips' => $tooltips
             ]
         );
     }

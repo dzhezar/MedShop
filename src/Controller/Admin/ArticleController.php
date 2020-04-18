@@ -9,6 +9,7 @@ use App\Entity\Article;
 use App\Entity\Language;
 use App\Form\ArticleForm;
 use App\Service\ArticleService;
+use App\Service\TooltipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -52,7 +53,7 @@ class ArticleController extends AbstractController
             'admin/form.html.twig',
             [
                 'form' => $form->createView(),
-                'tooltips' => ArticleService::TOOLTIPS_ARRAY
+                'tooltips' => $this->articleService->tooltipsArray
             ]
         );
     }
@@ -69,11 +70,17 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('admin_article_index');
         }
 
+        $tooltips = $this->articleService->tooltipsArray;
+        $tooltips['article_form_image'] = TooltipService::createImageElement(
+            $id->getImage(),
+            TooltipService::OLD_IMAGE
+        );
+
         return $this->render(
             'admin/form.html.twig',
             [
                 'form' => $form->createView(),
-                'tooltips' => ArticleService::TOOLTIPS_ARRAY
+                'tooltips' => $tooltips
             ]
         );
     }

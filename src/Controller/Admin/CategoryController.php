@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Entity\Language;
 use App\Form\CategoryForm;
 use App\Service\CategoryService;
+use App\Service\TooltipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -73,13 +74,14 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('admin_category_index');
         }
 
+        $tooltips = CategoryService::TOOLTIPS_ARRAY;
+        $tooltips['category_form_image'] = TooltipService::createImageElement($id->getImage(), TooltipService::OLD_IMAGE);
+
         return $this->render(
             'admin/form.html.twig',
             [
                 'form' => $form->createView(),
-                'tooltips' => [
-                    'category_form_category' => 'Внимание. Вы не увидите категорий, у которых уже установлена вложеность'
-                ]
+                'tooltips' => $tooltips
             ]
         );
     }
