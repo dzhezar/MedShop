@@ -8,8 +8,17 @@
 {% block body %}
     <div class="swiper-container">
         <div class="header">
-            <div class="menu-trigger">
-                <div class="burger"></div>
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menuOpen">
+                <div class="open"></div>
+            </label>
+            <div class="menu menuEffects">
+                <div class="menuContent">
+                        <a href="#">Продукция</a>
+                        <a href="#">О Нас</a>
+                        <a href="#">Блог</a>
+                        <a href="#">Контакты</a>
+                </div>
             </div>
             <div class="logo">
                 MDIClogo

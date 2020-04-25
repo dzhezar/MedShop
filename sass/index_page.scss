@@ -9,54 +9,150 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .menu-trigger {
-      padding: 20px 10px;
-      cursor: pointer;
-      .burger {
-        width: 30px;
-        height: 3px;
-        background: #486259;
-        transform: translateX(10px);
-        &::before {
-          content: "";
-          display: block;
-          position: absolute;
-          transform: translate(-5px, -10px);
-          height: 3px;
-          width: 30px;
-          background: #486259;
-          transition: all 0.2s ease-in;
-        }
 
-        &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          height: 3px;
-          width: 30px;
-          transform: translate(-5px, 10px);
-          background: #486259;
-          transition: all 0.2s ease-in;
+    input {
+      display: none;
+    }
+
+    .open {
+      background-color: #3c3c3c;
+      width: 24px;
+      height: 4px;
+      display: block;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      &::before {
+        content: "";
+        background-color: #3c3c3c;
+        width: 24px;
+        height: 4px;
+        display: block;
+        border-radius: 2px;
+        position: relative;
+        top: -8px;
+        left: -5px;
+        transform: rotate(0deg);
+        transition: all 0.3s ease;
+      }
+
+      &::after {
+        content: "";
+        background-color: #3c3c3c;
+        width: 24px;
+        height: 4px;
+        display: block;
+        border-radius: 2px;
+        position: relative;
+        top: 4px;
+        left: -5px;
+        transform: rotate(0deg);
+        transition: all 0.3s ease;
+      }
+    }
+
+    .menuOpen {
+      display: block;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .menu {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background: linear-gradient(144.15deg, #859878 13.44%, #5C7463 75.01%, #486259 108.82%);
+
+      .menuContent {
+        position: relative;
+        text-align: center;
+        width: 75%;
+        display: flex;
+        justify-content: space-around;
+      }
+      a {
+        color: white;
+        font-size: 30px;
+        text-decoration: none;
+        transition: all .3s ease-in;
+        &:hover {
+          box-shadow: 0 2px 0 0 white;
         }
       }
     }
+
+    .menuEffects {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s, visibility 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #menuToggle:checked ~ .menuEffects {
+      opacity: 1;
+      visibility: visible;
+      .open {
+        background-color: transparent;
+      }
+    }
+
+    #menuToggle:checked ~ .menuOpen {
+      .open:before {
+        content: "";
+        background-color: white;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .open:after {
+        content: "";
+        background-color: white;
+        transform: rotate(-45deg);
+        position: relative;
+        top: 0;
+        right: 0;
+        z-index: 1;
+      }
+    }
+
+    #menuToggle:checked ~ .cart-trigger{
+      background: white;
+      img{
+        filter: brightness(0.1);
+      }
+    }
+
     .logo {
       width: 75%;
       font-weight: bold;
       font-size: 30px;
       color: #486158;
     }
+
     .cart-trigger {
       cursor: pointer;
       background: linear-gradient(90deg, #869979, #bdd2ae);
       padding: 10px;
+      z-index: 10;
+      position: relative;
+      transition: all 0.5s ease-in;
     }
+
   }
+
   .swiper-slide img {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
   }
+
   .swiper-footer {
     position: absolute;
     width: 95%;
@@ -64,11 +160,13 @@
     right: 0;
     margin: auto;
     bottom: 15px;
-    z-index: 10;
     display: flex;
     justify-content: space-between;
+
     .lang-panel {
       display: flex;
+      z-index: 10;
+
       .lang {
         position: relative;
         color: #486259;
@@ -77,6 +175,7 @@
         padding: 0 3px;
         cursor: pointer;
         font-size: 18px;
+
         &.active::before {
           transform: translateY(100%);
           border-radius: 100%;
@@ -92,8 +191,10 @@
         }
       }
     }
+
     .swiper-pagination {
       position: relative;
+      z-index: 1;
 
       .swiper-pagination-bullet {
         width: 5px;
@@ -111,6 +212,7 @@
     }
   }
 }
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
