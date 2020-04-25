@@ -10,30 +10,34 @@
     align-items: center;
     justify-content: space-between;
     .menu-trigger {
-      width: 30px;
-      height: 3px;
-      background: #486259;
-      transform: translateX(10px);
+      padding: 20px 10px;
       cursor: pointer;
-      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        transform: translate(-5px, -10px);
-        height: 3px;
+      .burger {
         width: 30px;
-        background: #486259;
-        transition: all 0.2s ease-in;
-      }
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
         height: 3px;
-        width: 30px;
-        transform: translate(-5px, 10px);
         background: #486259;
-        transition: all 0.2s ease-in;
+        transform: translateX(10px);
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          transform: translate(-5px, -10px);
+          height: 3px;
+          width: 30px;
+          background: #486259;
+          transition: all 0.2s ease-in;
+        }
+
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          height: 3px;
+          width: 30px;
+          transform: translate(-5px, 10px);
+          background: #486259;
+          transition: all 0.2s ease-in;
+        }
       }
     }
     .logo {
@@ -59,7 +63,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    bottom: 10px;
+    bottom: 15px;
     z-index: 10;
     display: flex;
     justify-content: space-between;
@@ -78,7 +82,7 @@
           border-radius: 100%;
           position: absolute;
           background: #486259;
-          bottom: 10px;
+          bottom: 5px;
           height: 8px;
           content: "";
           width: 8px;
@@ -93,7 +97,7 @@
 
       .swiper-pagination-bullet {
         width: 5px;
-        height: 15px;
+        height: 10px;
         border-radius: 40%;
         padding: 3px;
         background-color: transparent;
