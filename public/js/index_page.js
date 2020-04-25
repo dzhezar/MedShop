@@ -6,4 +6,8 @@ $(document).ready(function () {
             clickable: true
         },
     });
+
+    $('.menuOpen').on('click',function () {
+        $('body').toggleClass('hidden');
+    });
 });

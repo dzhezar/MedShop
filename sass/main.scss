@@ -10,15 +10,21 @@
   font-weight: 800;
   font-style: normal;
 }
+
 html, body {
   position: relative;
   height: 100%;
 }
+
 body {
-  background: #eee;
+  background: #fafafa;
   font-family: Gilroy, serif;
   font-size: 14px;
   color:#000;
   margin: 0;
   padding: 0;
+}
+
+body.hidden {
+  overflow: hidden;
 }
