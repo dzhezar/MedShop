@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Товары
+                                <a href="{{ path('admin_product_create') }}" class="btn btn-primary">Создать товар</a>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table card-text table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Тайтл</th>
+                                    <th>Фото</th>
+                                    <th>Цена</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <th scope="row">{{ product.id }}</th>
+                                        <td>{{ product.title }}</td>
+                                        <td><img style="width: 200px; height: 200px; object-fit: contain" src="{{ product.image }}"></td>
+                                        <td>${{ product.price }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_product_update', {id: product.id}) }}" class="btn btn-primary">Редактировать</a>
+                                        </td>
+                                        <td>
+                                            <a data-id="{{ product.id }}" style="color: white" class="btn btn-primary remove-category">Удалить</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on('click', '.remove-category', function () {
+            let id = $(this).attr('data-id');
+            if (confirm('Вы уверены что хотите удалить этот товар?')) {
+                location.href = '/admin_panel/product/remove/' + id;
+            }
+        });
+    </script>
+{% endblock %}
