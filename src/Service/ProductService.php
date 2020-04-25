@@ -209,4 +209,34 @@ class ProductService
 
         $this->entityManager->flush();
     }
+
+    /**
+     * @param Product[] $newProducts
+     * @param Product[] $oldProducts
+     */
+    public function updateMainPageCategories(array $newProducts, array $oldProducts)
+    {
+        foreach ($oldProducts as $oldProduct) {
+            $oldProduct->setIsOnMain(false);
+        }
+
+        foreach ($newProducts as $newProduct) {
+            $newProduct->setIsOnMain(true);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    public function switchVisibility(int $id, bool $checked): bool
+    {
+        /** @var Product|null $product */
+        if($product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id])) {
+            $product->setIsVisible($checked);
+            $this->entityManager->flush();
+            return true;
+        }
+
+        return false;
+
+    }
 }

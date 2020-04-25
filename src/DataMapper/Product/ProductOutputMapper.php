@@ -17,6 +17,7 @@ class ProductOutputMapper
     public static function entityToModel(ProductTranslation $entity): ProductModel
     {
         return (new ProductModel())
+            ->setIsVisible($entity->getProduct()->getIsVisible())
             ->setPrice($entity->getProduct()->getPrice())
             ->setTitle($entity->getTitle())
             ->setDescription($entity->getDescription())

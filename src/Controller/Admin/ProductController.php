@@ -8,11 +8,14 @@ use App\DataMapper\Product\ProductFormMapper;
 use App\Entity\Language;
 use App\Entity\Product;
 use App\Form\ProductForm;
+use App\Form\ProductOnMainForm;
 use App\Service\ProductService;
 use App\Service\SpecificationService;
 use App\Service\TooltipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ProductController extends AbstractController
 {
@@ -106,5 +109,44 @@ class ProductController extends AbstractController
     {
         $this->productService->remove($id);
         return $this->redirectToRoute('admin_product_index');
+    }
+
+    public function showOnMain(Request $request)
+    {
+        $products = $this->getDoctrine()->getRepository(Product::class)->findBy(['is_on_main' => true]);
+        $form = $this->createForm(ProductOnMainForm::class, ['product' => $products]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $this->productService->updateMainPageCategories($data['product'],  (array) $products);
+            return $this->redirectToRoute('admin_product_index');
+        }
+
+        return $this->render(
+            'admin/form.html.twig',
+            [
+                'form' => $form->createView(),
+                'tooltips' => [
+                    'product_on_main_form_product' => TooltipService::createImageElement(
+                        '/admin/img/tooltips/popular_products.png',
+                        'Если у товара не включено отображение, то его не будет видно на главной странице'
+                    )
+                ],
+                'dont_show_lang_block' => true
+            ]
+        );
+    }
+
+    public function switchVisibility(Request $request)
+    {
+        $id = $request->request->getInt('id');
+        $checked = $request->request->getBoolean('checked');
+
+        if(!$this->productService->switchVisibility($id, $checked)) {
+            throw new BadRequestHttpException();
+        }
+
+        return new Response();
     }
 }

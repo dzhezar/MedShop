@@ -62,6 +62,7 @@ class CategoryFormMapper implements FormMapperInterface
 
         return $category
             ->setSlug($slug)
+            ->setIsOnMain($categoryModel->getIsOnMain())
             ->setCategory($categoryModel->getCategory())
             ->setImage($image);
     }
@@ -70,6 +71,7 @@ class CategoryFormMapper implements FormMapperInterface
     {
         $model = new CategoryModel();
         $model
+            ->setIsOnMain($category->getIsOnMain())
             ->setCategory($category->getCategory())
             ->setSlug($category->getSlug());
 

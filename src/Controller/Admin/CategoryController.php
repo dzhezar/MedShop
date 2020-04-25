@@ -8,6 +8,7 @@ use App\DataMapper\Category\CategoryFormMapper;
 use App\Entity\Category;
 use App\Entity\Language;
 use App\Form\CategoryForm;
+use App\Form\CategoryOnMainForm;
 use App\Service\CategoryService;
 use App\Service\TooltipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -75,7 +76,10 @@ class CategoryController extends AbstractController
         }
 
         $tooltips = CategoryService::TOOLTIPS_ARRAY;
-        $tooltips['category_form_image'] = TooltipService::createImageElement($id->getImage(), TooltipService::OLD_IMAGE);
+        $tooltips['category_form_image'] = TooltipService::createImageElement(
+            $id->getImage(),
+            TooltipService::OLD_IMAGE
+        );
 
         return $this->render(
             'admin/form.html.twig',
@@ -90,5 +94,31 @@ class CategoryController extends AbstractController
     {
         $this->categoryService->remove($id);
         return $this->redirectToRoute('admin_category_index');
+    }
+
+    public function showOnMain(Request $request)
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findBy(['is_on_main' => true]);
+        $form = $this->createForm(CategoryOnMainForm::class, ['category' => $categories]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $this->categoryService->updateMainPageCategories($data['category'],  (array) $categories);
+            return $this->redirectToRoute('admin_category_index');
+        }
+
+        return $this->render(
+            'admin/form.html.twig',
+            [
+                'form' => $form->createView(),
+                'tooltips' => [
+                    'category_on_main_form_category' => TooltipService::createImageElement(
+                        '/admin/img/tooltips/popular_categories.png'
+                    )
+                ],
+                'dont_show_lang_block' => true
+            ]
+        );
     }
 }

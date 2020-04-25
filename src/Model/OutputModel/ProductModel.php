@@ -29,6 +29,8 @@ class ProductModel
 
     private $price;
 
+    private $isVisible;
+
     /**
      * @return int|null
      */
@@ -173,7 +175,22 @@ class ProductModel
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIsVisible()
+    {
+        return $this->isVisible;
+    }
 
-
+    /**
+     * @param mixed $isVisible
+     * @return ProductModel
+     */
+    public function setIsVisible($isVisible)
+    {
+        $this->isVisible = $isVisible;
+        return $this;
+    }
 
 }
