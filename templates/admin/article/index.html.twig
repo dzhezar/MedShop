@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Блог
+                                <a href="{{ path('admin_article_create') }}" class="btn btn-primary">Создать статью</a>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table card-text table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Тайтл</th>
+                                    <th>Фото</th>
+                                    <th>Короткое описание</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for article in articles %}
+                                    <tr>
+                                        <th scope="row">{{ article.id }}</th>
+                                        <td>{{ article.title }}</td>
+                                        <td><img style="width: 200px; height: 200px; object-fit: contain" src="{{ article.image }}"></td>
+                                        <td>{{ article.shortDescription }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_article_update', {id: article.id}) }}" class="btn btn-primary">Редактировать</a>
+                                        </td>
+                                        <td>
+                                            <a data-id="{{ article.id }}" style="color: white" class="btn btn-primary remove-article">Удалить</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on('click', '.remove-article', function () {
+            let id = $(this).attr('data-id');
+            if (confirm('Вы уверены что хотите удалить эту нововсть?')) {
+                location.href = '/admin_panel/article/remove/' + id;
+            }
+        });
+    </script>
+{% endblock %}

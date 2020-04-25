@@ -3,7 +3,55 @@ index:
     controller: App\Controller\IndexController::index
 
 
-#admin
+#admin_panel
 admin_index:
     path: /admin_panel
     controller: App\Controller\Admin\HomeController::index
+admin_index_show:
+    path: /admin_panel/home
+    controller: App\Controller\Admin\HomeController::show
+####API####
+admin_api_specification_create:
+    path: /api/specification/create
+    controller: App\Controller\Api\SpecificationController::create
+    methods:
+        POST
+####category###
+admin_category_index:
+    path: /admin_panel/category
+    controller: App\Controller\Admin\CategoryController::index
+admin_category_create:
+    path: /admin_panel/category/create
+    controller: App\Controller\Admin\CategoryController::create
+admin_category_update:
+    path: /admin_panel/category/update/{id}
+    controller: App\Controller\Admin\CategoryController::update
+admin_category_remove:
+    path: /admin_panel/category/remove/{id}
+    controller: App\Controller\Admin\CategoryController::remove
+####product###
+admin_product_index:
+    path: /admin_panel/product
+    controller: App\Controller\Admin\ProductController::index
+admin_product_create:
+    path: /admin_panel/product/create
+    controller: App\Controller\Admin\ProductController::create
+admin_product_update:
+    path: /admin_panel/product/update/{id}
+    controller: App\Controller\Admin\ProductController::update
+admin_product_remove:
+    path: /admin_panel/product/remove/{id}
+    controller: App\Controller\Admin\ProductController::remove
+####article###
+admin_article_index:
+    path: /admin_panel/article
+    controller: App\Controller\Admin\ArticleController::index
+admin_article_create:
+    path: /admin_panel/article/create
+    controller: App\Controller\Admin\ArticleController::create
+admin_article_update:
+    path: /admin_panel/article/update/{id}
+    controller: App\Controller\Admin\ArticleController::update
+admin_article_remove:
+    path: /admin_panel/article/remove/{id}
+    controller: App\Controller\Admin\ArticleController::remove
