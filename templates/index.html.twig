@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="{{ asset('stylesheets/index_page.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="swiper-container">
+        <div class="header">
+            <div class="menu-trigger"></div>
+            <div class="logo">
+                MDIClogo
+            </div>
+            <div class="cart-trigger">
+                <img src="{{ asset('img/icons/cart.png') }}">
+            </div>
+        </div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+            </div>
+            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+            </div>
+            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-footer">
+            <div class="lang-panel">
+                <div class="lang active">RU</div>
+                <div class="lang">EN</div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="{{ asset('js/index_page.js') }}"></script>
+{% endblock %}

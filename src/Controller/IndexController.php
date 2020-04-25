@@ -9,6 +9,6 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        return new Response('qq');
+        return $this->render('index.html.twig');
     }
 }
