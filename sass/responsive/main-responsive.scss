@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+  header .menu .menuContent {
+    flex-direction: column;
+    height: 50%;
+    text-align: start;
+  }
+  footer {
+    .first-col {
+      a, .social_net .title {
+        font-size: 18px;
+      }
+    }
+    .second_third-col {
+      a, div {
+        width: 100%;
+      }
+    }
+  }
+}

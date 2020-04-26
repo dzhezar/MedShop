@@ -4,29 +4,11 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="{{ asset('stylesheets/index_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/index_page-responsive.css') }}">
 {% endblock %}
 {% block body %}
     <div class="swiper-container">
-        <div class="header">
-            <input type="checkbox" id="menuToggle" autocomplete="off">
-            <label for="menuToggle" class="menuOpen">
-                <div class="open"></div>
-            </label>
-            <div class="menu menuEffects">
-                <div class="menuContent">
-                        <a href="#">Продукция</a>
-                        <a href="#">О Нас</a>
-                        <a href="#">Блог</a>
-                        <a href="#">Контакты</a>
-                </div>
-            </div>
-            <div class="logo">
-                MDIClogo
-            </div>
-            <div class="cart-trigger">
-                <img src="{{ asset('img/icons/cart.png') }}">
-            </div>
-        </div>
+        {% include 'elements/header.html.twig' %}
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
                 Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
@@ -175,6 +157,7 @@
                 <div class="title">Мази</div>
             </div>
         </div>
+        <a href="#" class="all_categories-mobile">ВСЕ КАТЕГОРИИ</a>
     </div>
     <div class="blog-wrapper">
         <div class="blog-title">Блог</div>
@@ -184,7 +167,12 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+{#                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>#}
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
@@ -193,7 +181,11 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
@@ -202,7 +194,11 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
@@ -211,7 +207,11 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
@@ -220,7 +220,11 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
@@ -229,36 +233,18 @@
                 <img class="image" src="{{ asset('img/products/83 1.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
-                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
                     <a href="#" class="more">ДАЛЬШЕ ›</a>
                 </div>
             </div>
         </div>
         <a href="#" class="to_blog">ПЕРЕЙТИ К БЛОГУ</a>
     </div>
-    <footer>
-        <div class="first-col">
-            <a href="#">octowice</a>
-            <a href="tel:11">+38 (066) 052-14-36</a>
-            <div class="social_net">
-                <div class="title">Социальные сети</div>
-                <div class="logos">
-                    <a href="#"><img src="{{ asset('img/icons/fb.png') }}"></a>
-                    <a href="#"><img src="{{ asset('img/icons/insta.png') }}"></a>
-                </div>
-            </div>
-        </div>
-        <div class="second_third-col">
-            <div>MDIClogo</div>
-            <a href="#">Продукция</a>
-            <a href="#">О нас</a>
-        </div>
-        <div class="second_third-col">
-            <div>Пациентам</div>
-            <a href="#">Блог</a>
-            <a href="#">Контакты</a>
-        </div>
-    </footer>
+    {% include 'elements/footer.html.twig' %}
 {% endblock %}
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
