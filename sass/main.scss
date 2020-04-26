@@ -28,3 +28,68 @@ body {
 body.hidden {
   overflow: hidden;
 }
+
+footer {
+  width: 85%;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: row;
+  height: 140px;
+  justify-content: space-between;
+  div{
+    width: 30%;
+  }
+  .first-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    a {
+      font-weight: bold;
+      height: 25%;
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      color: #486158;
+      text-decoration: none;
+    }
+    .social_net {
+      display: flex;
+      height: 50%;
+      justify-content: space-evenly;
+      flex-direction: column;
+      width: 100%;
+      .title {
+        width: 100%;
+        font-size: 24px;
+        text-align: justify;
+        color: #859878;
+      }
+      .logos {
+        display: flex;
+        justify-content: space-around;
+        a {
+          height: inherit;
+        }
+      }
+    }
+  }
+  .second_third-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      font-weight: bold;
+      font-size: 24px;
+      text-align: justify;
+      color: #486259;
+    }
+    a {
+      width: inherit;
+      font-weight: 500;
+      font-size: 24px;
+      text-align: justify;
+      color: #859878;
+    }
+  }
+}
