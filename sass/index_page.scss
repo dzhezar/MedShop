@@ -138,10 +138,23 @@
         font-size: 20px;
         color: #486259;
         height: 10%;
+        cursor: pointer;
+        transition: all .2s ease-in;
         .cart_img {
           transform: scale(0.8);
         }
-
+        &.active {
+          background: #859878;
+          * {
+            display: none;
+          }
+          &:after {
+            transition: all .3s ease-in;
+            color: white;
+            position: absolute;
+            content: '✓ В корзине';
+          }
+        }
       }
     }
   }
@@ -364,6 +377,8 @@
         height: 100%;
         background: linear-gradient(149.97deg, #AABD9E 24.81%, #859878 94.46%);
         opacity: 0;
+        padding: 10px;
+        transform: translate(-10px, -10px);
       }
     }
   }

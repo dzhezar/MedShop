@@ -10,14 +10,17 @@
     <div class="swiper-container">
         {% include 'elements/header.html.twig' %}
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
                 Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+                <div class="swiper-lazy-preloader"></div>
             </div>
-            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
                 Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+                <div class="swiper-lazy-preloader"></div>
             </div>
-            <div class="swiper-slide" style="background: url('/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png') center / cover no-repeat;">
+            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
                 Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
+                <div class="swiper-lazy-preloader"></div>
             </div>
         </div>
         <!-- Add Pagination -->
@@ -33,7 +36,7 @@
         <div class="popular_products-title">Популярные товары</div>
         <div class="popular_products-grid">
             <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
                 <div class="title">
                     Но-шпа ( Ношпа )
                 </div>
@@ -41,12 +44,12 @@
                     80.50 $
                 </div>
                 <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
                 </div>
             </div>
             <div class="col-3 popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
                 <div class="title">
                     Но-шпа ( Ношпа )
                 </div>
@@ -54,8 +57,60 @@
                     80.50 $
                 </div>
                 <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
+                </div>
+            </div>
+            <div class="popular_products-grid_item">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                <div class="title">
+                    Но-шпа ( Ношпа )
+                </div>
+                <div class="price">
+                    80.50 $
+                </div>
+                <div class="add_to_cart">
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
+                </div>
+            </div>
+            <div class="popular_products-grid_item">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                <div class="title">
+                    Но-шпа ( Ношпа )
+                </div>
+                <div class="price">
+                    80.50 $
+                </div>
+                <div class="add_to_cart">
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
+                </div>
+            </div>
+            <div class="popular_products-grid_item">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                <div class="title">
+                    Но-шпа ( Ношпа )
+                </div>
+                <div class="price">
+                    80.50 $
+                </div>
+                <div class="add_to_cart">
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
+                </div>
+            </div>
+            <div class="popular_products-grid_item">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                <div class="title">
+                    Но-шпа ( Ношпа )
+                </div>
+                <div class="price">
+                    80.50 $
+                </div>
+                <div class="add_to_cart">
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
                 </div>
             </div>
             <div class="popular_products-grid_item">
@@ -67,8 +122,8 @@
                     80.50 $
                 </div>
                 <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
                 </div>
             </div>
             <div class="popular_products-grid_item">
@@ -80,60 +135,8 @@
                     80.50 $
                 </div>
                 <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img" src="{{ asset('img/icons/add_to_cart.png') }}">
-                    В КОРЗИНУ
+                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                    <p>В КОРЗИНУ</p>
                 </div>
             </div>
         </div>
@@ -145,15 +148,15 @@
         </div>
         <div class="popular_categories-grid">
             <div class="popular_categories-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
                 <div class="title">Мази</div>
             </div>
             <div class="popular_categories-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
                 <div class="title">Мази</div>
             </div>
             <div class="popular_categories-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
                 <div class="title">Мази</div>
             </div>
         </div>
@@ -164,21 +167,7 @@
         <div class="blog-grid">
             <div class="blog-grid_item">
                 <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
-                <div class="info">
-                    <div class="title">Заголовок</div>
-                    <div class="text">
-                        <div>
-                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
-                        </div>
-                    </div>
-{#                    <div class="text">Новость, блог и информация Новость, блог и информация Новость, блог и информацияНовость, блог и информацияНовост блоинформация..</div>#}
-                    <a href="#" class="more">ДАЛЬШЕ ›</a>
-                </div>
-            </div>
-            <div class="blog-grid_item">
-                <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
                     <div class="text">
@@ -191,7 +180,7 @@
             </div>
             <div class="blog-grid_item">
                 <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
                     <div class="text">
@@ -204,7 +193,7 @@
             </div>
             <div class="blog-grid_item">
                 <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
                     <div class="text">
@@ -217,7 +206,7 @@
             </div>
             <div class="blog-grid_item">
                 <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
                     <div class="text">
@@ -230,7 +219,20 @@
             </div>
             <div class="blog-grid_item">
                 <div class="overlay"></div>
-                <img class="image" src="{{ asset('img/blog/83 40.png') }}">
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
                 <div class="info">
                     <div class="title">Заголовок</div>
                     <div class="text">
@@ -248,8 +250,7 @@
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    {{ parent() }}
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
     <script src="{{ asset('js/index_page.js') }}"></script>

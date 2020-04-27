@@ -5,8 +5,13 @@ $(document).ready(function () {
             el: '.swiper-pagination',
             clickable: true
         },
+        preloadImages: false,
+        // Enable lazy loading
+        lazy: {
+            loadPrevNext: true,
+        },
     });
-
+    $('.lazy').Lazy();
     $('.menuOpen').on('click',function () {
         $('body').toggleClass('hidden');
     });
