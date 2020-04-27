@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .swiper-container {
   width: 100%;
   height: 100vh;
@@ -148,7 +147,7 @@
   transition: all 0.3s ease-in;
   color: white;
   position: absolute;
-  content: "✓ В корзине";
+  content: var(--in-cart);
 }
 
 .popular_categories-wrapper {

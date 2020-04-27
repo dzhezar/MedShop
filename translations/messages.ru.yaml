@@ -1,0 +1,8 @@
+navbar:
+  product: 'Продукция'
+  about_us: 'О Нас'
+  blog: 'Блог'
+  contact: 'Контакты'
+product:
+  add_to_cart: 'В КОРЗИНУ'
+  popular_products: 'Популярные товары'

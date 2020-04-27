@@ -14,6 +14,7 @@ use App\Entity\SpecificationValue;
 use App\Entity\SpecificationValueTranslation;
 use App\Model\FormModel\CategoryModel;
 use App\Model\FormModel\ProductModel;
+use App\Repository\ProductRepository;
 use App\Repository\ProductTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,6 +54,10 @@ class ProductService
      * @var ProductTranslationFormMapper
      */
     private $productTranslationFormMapper;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
     /**
      * CategoryService constructor.
@@ -64,6 +69,7 @@ class ProductService
      * @param ProductFormMapper $productFormMapper
      * @param EntityManagerInterface $entityManager
      * @param ProductTranslationFormMapper $productTranslationFormMapper
+     * @param ProductRepository $productRepository
      */
     public function __construct(
         string $relative_path,
@@ -73,7 +79,8 @@ class ProductService
         FileManagerInterface $fileManager,
         ProductFormMapper $productFormMapper,
         EntityManagerInterface $entityManager,
-        ProductTranslationFormMapper $productTranslationFormMapper
+        ProductTranslationFormMapper $productTranslationFormMapper,
+        ProductRepository $productRepository
     ) {
         $this->relative_path = $relative_path;
         $this->productTranslationRepository = $productTranslationRepository;
@@ -83,6 +90,7 @@ class ProductService
         $this->productFormMapper = $productFormMapper;
         $this->entityManager = $entityManager;
         $this->productTranslationFormMapper = $productTranslationFormMapper;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -230,13 +238,37 @@ class ProductService
     public function switchVisibility(int $id, bool $checked): bool
     {
         /** @var Product|null $product */
-        if($product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id])) {
+        if ($product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id])) {
             $product->setIsVisible($checked);
             $this->entityManager->flush();
             return true;
         }
 
         return false;
+    }
 
+    public function getPopularProducts(string $language)
+    {
+        $productTranslations = $this->productTranslationRepository->getPopularProductsByLanguage(
+            $this->languageService->getLanguage($language)->getId()
+        );
+
+        $result = [];
+
+        foreach ($productTranslations as $productTranslation) {
+            $result[] = $this->outputMapper->entityToModel($productTranslation, true);
+        }
+
+        return $result;
+    }
+
+    public function findOneBy(array $criteria)
+    {
+        return $this->productRepository->findOneBy($criteria);
+    }
+
+    public function findVisibleProductByIdAndLanguage(int $id, string $language)
+    {
+        return $this->productTranslationRepository->findProductByIdAndLanguage($id, $this->languageService->getLanguage($language)->getId());
     }
 }

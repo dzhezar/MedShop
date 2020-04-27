@@ -1,0 +1,8 @@
+navbar:
+  product: 'Products'
+  about_us: 'About us'
+  blog: 'Blog'
+  contact: 'Contacts'
+product:
+  add_to_cart: 'ADD TO CART'
+  popular_products: 'Popular products'

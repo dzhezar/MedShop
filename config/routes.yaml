@@ -1,6 +1,15 @@
 index:
-    path: /
+    path: /{_locale}
+    defaults:
+        _locale: "%locale%"
+    requirements:
+        _locale: "%locales%"
     controller: App\Controller\IndexController::index
+
+######cart#####
+api_cart_add:
+    path: /api/cart/add
+    controller: App\Controller\Api\CartController::add
 
 
 #admin_panel

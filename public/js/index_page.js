@@ -15,4 +15,19 @@ $(document).ready(function () {
     $('.menuOpen').on('click',function () {
         $('body').toggleClass('hidden');
     });
+
+    $(document).on('click', '.add_to_cart', function () {
+        let this_elem = $(this);
+        let id = this_elem.attr('data-id');
+        $.ajax({
+            method: 'POST',
+            url: "/api/cart/add",
+            data: {
+                id: id
+            }
+        }).done(function() {
+            this_elem.addClass('active');
+            $('.cart-trigger').click();
+        });
+    })
 });

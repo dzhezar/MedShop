@@ -152,7 +152,7 @@
             transition: all .3s ease-in;
             color: white;
             position: absolute;
-            content: '✓ В корзине';
+            content: var(--in-cart);
           }
         }
       }

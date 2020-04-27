@@ -31,6 +31,8 @@ class ProductModel
 
     private $isVisible;
 
+    private $inCart;
+
     /**
      * @return int|null
      */
@@ -190,6 +192,24 @@ class ProductModel
     public function setIsVisible($isVisible)
     {
         $this->isVisible = $isVisible;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInCart()
+    {
+        return $this->inCart;
+    }
+
+    /**
+     * @param mixed $inCart
+     * @return ProductModel
+     */
+    public function setInCart($inCart)
+    {
+        $this->inCart = $inCart;
         return $this;
     }
 
