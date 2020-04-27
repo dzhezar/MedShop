@@ -1,6 +1,15 @@
 index:
-    path: /
+    path: /{_locale}
+    defaults:
+        _locale: "%locale%"
+    requirements:
+        _locale: "%locales%"
     controller: App\Controller\IndexController::index
+
+######cart#####
+api_cart_add:
+    path: /api/cart/add
+    controller: App\Controller\Api\CartController::add
 
 
 #admin_panel
@@ -29,6 +38,9 @@ admin_category_update:
 admin_category_remove:
     path: /admin_panel/category/remove/{id}
     controller: App\Controller\Admin\CategoryController::remove
+admin_category_show_on_main:
+    path: /admin_panel/category/show_on_main
+    controller: App\Controller\Admin\CategoryController::showOnMain
 ####product###
 admin_product_index:
     path: /admin_panel/product
@@ -42,6 +54,12 @@ admin_product_update:
 admin_product_remove:
     path: /admin_panel/product/remove/{id}
     controller: App\Controller\Admin\ProductController::remove
+admin_product_show_on_main:
+    path: /admin_panel/product/show_on_main
+    controller: App\Controller\Admin\ProductController::showOnMain
+admin_api_product_switch-visibility:
+    path: /api/product/switch-visibility
+    controller: App\Controller\Admin\ProductController::switchVisibility
 ####article###
 admin_article_index:
     path: /admin_panel/article
@@ -55,3 +73,16 @@ admin_article_update:
 admin_article_remove:
     path: /admin_panel/article/remove/{id}
     controller: App\Controller\Admin\ArticleController::remove
+####main_page_slider###
+admin_main_page_slider_index:
+    path: /admin_panel/main_page_slider
+    controller: App\Controller\Admin\MainPageSliderController::index
+admin_main_page_slider_create:
+    path: /admin_panel/main_page_slider/create
+    controller: App\Controller\Admin\MainPageSliderController::create
+admin_main_page_slider_update:
+    path: /admin_panel/main_page_slider/update/{id}
+    controller: App\Controller\Admin\MainPageSliderController::update
+admin_main_page_slider_remove:
+    path: /admin_panel/main_page_slider/remove/{id}
+    controller: App\Controller\Admin\MainPageSliderController::remove

@@ -152,7 +152,7 @@
             transition: all .3s ease-in;
             color: white;
             position: absolute;
-            content: attr(qq);
+            content: var(--in-cart);
           }
         }
       }

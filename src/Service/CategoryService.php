@@ -168,4 +168,21 @@ class CategoryService
         $this->entityManager->remove($id);
         $this->entityManager->flush();
     }
+
+    /**
+     * @param Category[] $newCategories
+     * @param Category[] $oldCategories
+     */
+    public function updateMainPageCategories(array $newCategories, array $oldCategories)
+    {
+        foreach ($oldCategories as $oldCategory) {
+            $oldCategory->setIsOnMain(false);
+        }
+
+        foreach ($newCategories as $newCategory) {
+            $newCategory->setIsOnMain(true);
+        }
+
+        $this->entityManager->flush();
+    }
 }

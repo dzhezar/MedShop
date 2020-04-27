@@ -19,6 +19,9 @@ class ProductModel
     /** @var bool|null */
     private $isVisible;
 
+    /** @var bool|null */
+    private $isOnMain;
+
     private $slug;
 
     /**
@@ -103,7 +106,23 @@ class ProductModel
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function getIsOnMain(): ?bool
+    {
+        return $this->isOnMain;
+    }
 
+    /**
+     * @param bool|null $isOnMain
+     * @return ProductModel
+     */
+    public function setIsOnMain(?bool $isOnMain): ProductModel
+    {
+        $this->isOnMain = $isOnMain;
+        return $this;
+    }
 
     /**
      * @return float|null
@@ -374,9 +393,5 @@ class ProductModel
         $this->specifications = $specifications;
         return $this;
     }
-
-
-
-
 
 }

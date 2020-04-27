@@ -48,6 +48,11 @@ class Category implements EntityInterface
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_on_main;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -185,6 +190,18 @@ class Category implements EntityInterface
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsOnMain(): ?bool
+    {
+        return $this->is_on_main;
+    }
+
+    public function setIsOnMain(bool $is_on_main): self
+    {
+        $this->is_on_main = $is_on_main;
 
         return $this;
     }

@@ -22,6 +22,8 @@ class CategoryModel
     /** @var Category|null */
     private $category;
 
+    private $is_on_main;
+
     private $title_RU;
 
     /**
@@ -92,6 +94,24 @@ class CategoryModel
     public function setCategory(?Category $category): CategoryModel
     {
         $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsOnMain()
+    {
+        return $this->is_on_main;
+    }
+
+    /**
+     * @param mixed $is_on_main
+     * @return CategoryModel
+     */
+    public function setIsOnMain($is_on_main)
+    {
+        $this->is_on_main = $is_on_main;
         return $this;
     }
 
@@ -256,10 +276,5 @@ class CategoryModel
         $this->products = $products;
         return $this;
     }
-
-
-
-
-
 
 }

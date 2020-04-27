@@ -26,119 +26,38 @@
         <!-- Add Pagination -->
         <div class="swiper-footer">
             <div class="lang-panel">
-                <div class="lang active">RU</div>
-                <div class="lang">EN</div>
+                <div class="lang {% if app.request.locale == 'ru' %}active{% endif %}">
+                    <a href="{{ path('index', {_locale: 'ru'}) }}">
+                        RU
+                    </a>
+                </div>
+                <div class="lang {% if app.request.locale == 'en' %}active{% endif %}">
+                    <a href="{{ path('index', {_locale: 'en'}) }}">
+                        EN
+                    </a>
+                </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
     <div class="popular_products-wrapper">
-        <div class="popular_products-title">Популярные товары</div>
+        <div class="popular_products-title">{{ 'product.popular_products'|trans }}</div>
         <div class="popular_products-grid">
-            <div class="popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
+            {% for product in products %}
+                <div class="popular_products-grid_item">
+                    <img class="image lazy" data-src="{{ product.image }}">
+                    <div class="title">
+                        {{ product.title }}
+                    </div>
+                    <div class="price">
+                        ${{ product.price }}
+                    </div>
+                    <div class="add_to_cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
+                        <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                        <p>{{ 'product.add_to_cart'|trans }}</p>
+                    </div>
                 </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="col-3 popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
-            <div class="popular_products-grid_item">
-                <img class="image" src="{{ asset('img/products/83 1.png') }}">
-                <div class="title">
-                    Но-шпа ( Ношпа )
-                </div>
-                <div class="price">
-                    80.50 $
-                </div>
-                <div class="add_to_cart">
-                    <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
-                    <p>В КОРЗИНУ</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="popular_categories-wrapper">
