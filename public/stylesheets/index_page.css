@@ -160,7 +160,7 @@
 }
 
 .popular_products-wrapper .popular_products-grid .popular_products-grid_item .add_to_cart.active * {
-  display: none;
+  display: none !important;
 }
 
 .popular_products-wrapper .popular_products-grid .popular_products-grid_item .add_to_cart.active:after {

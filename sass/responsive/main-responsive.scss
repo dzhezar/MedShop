@@ -1,12 +1,22 @@
 @media (max-width: 768px) {
-  header .menu .menuContent {
-    flex-direction: column;
-    height: 50%;
-    text-align: start;
+  header {
+    .menu .menuContent {
+      flex-direction: column;
+      height: 50%;
+      text-align: start;
+    }
+    .cart-wrapper {
+      .shadow-filter {
+        width: 20%;
+      }
+      .cart {
+        width: 80%;
+      }
+    }
   }
   footer {
     .first-col {
-      a, .social_net .title {
+      .hrefs a, .social_net .title {
         font-size: 18px;
       }
     }
@@ -18,6 +28,17 @@
   }
 }
 @media (max-width: 576px) {
+  header {
+    .cart-wrapper {
+      .shadow-filter {
+        width: 0;
+      }
+
+      .cart {
+        width: 100%;
+      }
+    }
+  }
   footer {
     flex-wrap: wrap;
     .first-col {

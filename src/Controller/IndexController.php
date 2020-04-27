@@ -34,4 +34,9 @@ class IndexController extends AbstractController
             ]
         );
     }
+
+    public function singleProduct()
+    {
+        return $this->render('single_product.html.twig');
+    }
 }

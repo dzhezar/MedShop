@@ -11,6 +11,9 @@ api_cart_add:
     path: /api/cart/add
     controller: App\Controller\Api\CartController::add
 
+single_product:
+    path: /product
+    controller: App\Controller\IndexController::singleProduct
 
 #admin_panel
 admin_index:

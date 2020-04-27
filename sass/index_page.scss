@@ -146,7 +146,7 @@
         &.active {
           background: #859878;
           * {
-            display: none;
+            display: none!important;
           }
           &:after {
             transition: all .3s ease-in;
