@@ -425,3 +425,27 @@ footer {
     }
   }
 }
+ul.breadcrumb {
+  list-style: none;
+  background-color: transparent;
+  padding-left: 0;
+  li {
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+    &+li:before {
+      padding: 8px;
+      color: black;
+      content: "•";
+    }
+    a {
+      color: #848484;
+      text-decoration: none;
+      font-weight: 500;
+      &:hover {
+        color: #363636;
+      }
+    }
+  }
+}
+

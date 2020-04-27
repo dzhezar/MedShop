@@ -152,7 +152,7 @@
             transition: all .3s ease-in;
             color: white;
             position: absolute;
-            content: '✓ В корзине';
+            content: attr(qq);
           }
         }
       }
@@ -320,7 +320,7 @@
             float: right;
             position: relative;
             top: 12%;
-            bottom: 0px;
+            bottom: 0;
             left: 100%;
             width: 30px;
             margin-left: -30px;

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('stylesheets/single_product.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/single_product-responsive.css') }}"
+{% endblock %}
+{% block body %}
+    {% include 'elements/header.html.twig' %}
+    <div class="page_top">
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Pictures</a></li>
+            <li><a href="#">Summer 15</a></li>
+            <li>Italy</li>
+        </ul>
+        <div class="product-title">Но-шпа ( Ношпа )</div>
+    </div>
+    <div class="product_wrapper">
+        <img src="{{ asset('img/products/83 1.png') }}">
+        <ul>
+            <li>100 Таблеток</li>
+            <li>60 МГ</li>
+        </ul>
+        <div class="usage">
+            <div class="title">Применение</div>
+            <div class="text">Настойку валерианы назначают при бессоннице, повышенной возбудимости нервной системы, неврозах, вегето-сосудистой дистонии, а также на ранних стадиях стенокардии, гипертонической болезни. В народной медицине считают, что валериана способствует пищеварению. Она снимает спазмы желудка и кишечника. Валериану с успехом используют при заболеваниях щитовидной железы. Настой корня назначают при приливах крови к голове, особенно у женщин в климактерическом периоде.</div>
+        </div>
+        <div class="quantity">
+            <div class="text">Количество:</div>
+            <div class="controls">
+                <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
+            </div>
+        </div>
+        <div class="final_price">
+            <div class="text">Сумма к оплате:</div>
+            <div class="price">80.50 $</div>
+        </div>
+        <div class="add_to_cart">
+            <img src="{{ asset('img/icons/cart.png') }}">
+            <div>В КОРЗИНУ</div>
+        </div>
+    </div>
+    <div class="description">
+        <div class="title">Описание</div>
+        <div class="text">Корень валерианы широко известен своими целебными свойствами. Его используют для приготовления чаев, экстрактов, настоев, а также для получения эфирного масла. Всем известно успокаивающее действие настойки валерианы, но это растение может помочь и при различных заболеваниях, часто очень серьезных. Биологическое действие валерианы обусловлено комплексом веществ, содержащихся в корневище и корнях. С лечебной целью препараты этого растения используют с I в. н. э. В настоящее время экспериментально доказано, что настойка валерианы усиливает тормозные процессы, уменьшает рефлекторную возбудимость, расслабляет спазм гладких мышц, поэтому ее применяют как успокаивающее средство, а также при бессоннице, нервном возбуждении, неврозах, эпилепсии, нервном потрясении и тяжелом переживании, при спазмах коронарных сосудов, мигрени и запорах.</div>
+    </div>
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
