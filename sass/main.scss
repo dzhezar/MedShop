@@ -205,13 +205,17 @@ footer {
     display: flex;
     flex-direction: column;
     height: 100%;
-    a {
-      font-weight: bold;
-      height: 25%;
-      display: flex;
-      align-items: center;
-      font-size: 24px;
-      color: #486158;
+    .hrefs {
+      height: 50%;
+      width: 100%;
+      a {
+        font-weight: bold;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        color: #486158;
+      }
     }
     .social_net {
       display: flex;

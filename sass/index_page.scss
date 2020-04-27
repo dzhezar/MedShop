@@ -220,6 +220,14 @@
     width: 75%;
     margin: 50px auto;
   }
+  .mobile-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: #ee82ee94;
+    display: none;
+  }
   .blog-grid {
     height: 700px;
     margin-bottom: 30px;
@@ -289,7 +297,7 @@
           & > *:first-child {
             float: right;
             width: 100%;
-            margin-left: -5px;
+            margin-left: -9px;
           }
           &:after {
             content: "…";
@@ -301,8 +309,8 @@
             top: 12%;
             bottom: 0px;
             left: 100%;
-            width: 25px;
-            margin-left: -25px;
+            width: 30px;
+            margin-left: -30px;
             padding-right: 5px;
             text-align: justify;
             background-size: 100% 100%;
