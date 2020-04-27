@@ -112,10 +112,10 @@
     width: 95%;
 
     .popular_categories-grid {
-      .popular_categories-grid_item{
-        max-width: 95%;
-        flex: 0 0 95%;
-        margin: auto;
+      a {
+          max-width: 95%;
+          flex: 0 0 95%;
+          margin: auto;
       }
     }
   }
