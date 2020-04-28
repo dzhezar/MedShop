@@ -7,9 +7,22 @@ index:
     controller: App\Controller\IndexController::index
 
 ######cart#####
+api_cart_all:
+    methods: POST
+    path: /api/cart/all
+    controller: App\Controller\Api\CartController::all
 api_cart_add:
+    methods: POST
     path: /api/cart/add
     controller: App\Controller\Api\CartController::add
+api_cart_minus:
+    methods: POST
+    path: /api/cart/minus
+    controller: App\Controller\Api\CartController::minus
+api_cart_remove:
+    methods: POST
+    path: /api/cart/remove
+    controller: App\Controller\Api\CartController::remove
 
 single_product:
     path: /product

@@ -41,12 +41,22 @@ class SessionCartService
 
     public function minus($id)
     {
+        if($this->storage->offsetExists($id)) {
+            $amount = $this->storage->get($id);
+            if($amount-1 <= 0) {
+                $this->storage->remove($id);
+            } else {
+                $this->storage->set($id, $amount-1);
+            }
 
+            $this->save();
+        }
     }
 
     public function remove($id)
     {
-
+        $this->storage->remove($id);
+        $this->save();
     }
 
     public function save()
@@ -57,5 +67,15 @@ class SessionCartService
     public function ifProductAddedToCart(int $id)
     {
         return $this->storage->offsetExists($id);
+    }
+
+    public function getProductAmount(int $id)
+    {
+        return $this->storage->get($id);
+    }
+
+    public function all()
+    {
+        return $this->storage->toArray();
     }
 }

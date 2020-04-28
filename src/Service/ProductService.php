@@ -103,7 +103,7 @@ class ProductService
         $products = $this->productTranslationRepository->findBy(['language' => $language], ['id' => 'DESC']);
         $result = [];
         foreach ($products as $product) {
-            $result[] = $this->outputMapper::entityToModel($product);
+            $result[] = $this->outputMapper->entityToModel($product, true);
         }
 
         return $result;
@@ -270,5 +270,17 @@ class ProductService
     public function findVisibleProductByIdAndLanguage(int $id, string $language)
     {
         return $this->productTranslationRepository->findProductByIdAndLanguage($id, $this->languageService->getLanguage($language)->getId());
+    }
+
+    public function getBySessionIds(array $ids, string $language)
+    {
+        $language = $this->languageService->getLanguage($language);
+        $products = $this->productTranslationRepository->findByProductIds($language->getId(), $ids);
+        $result = [];
+        foreach ($products as $product) {
+            $result[] = $this->outputMapper->entityToModel($product, true);
+        }
+
+        return $result;
     }
 }

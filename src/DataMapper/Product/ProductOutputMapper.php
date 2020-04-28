@@ -26,14 +26,18 @@ class ProductOutputMapper
 
     /**
      * @param ProductTranslation $entity
+     * @param bool $with_session
      * @return ProductModel
      */
     public function entityToModel(ProductTranslation $entity, $with_session = false): ProductModel
     {
         $inCart = false;
+        $amount = 0;
         if($with_session) {
             $inCart = $this->sessionCartService->ifProductAddedToCart($entity->getProduct()->getId());
+            $amount = $this->sessionCartService->getProductAmount($entity->getProduct()->getId());
         }
+
         return (new ProductModel())
             ->setIsVisible($entity->getProduct()->getIsVisible())
             ->setPrice($entity->getProduct()->getPrice())
@@ -43,6 +47,7 @@ class ProductOutputMapper
             ->setSeoDescription($entity->getSeoDescription())
             ->setImage($entity->getProduct()->getImage())
             ->setInCart($inCart)
+            ->setCartAmount($amount)
             ->setId($entity->getProduct()->getId());
     }
 }
