@@ -37,7 +37,7 @@ $(document).ready(function () {
                 </div>`);
                 $('.cart_list').append(item);
             });
-            $('.total').children('span').text(`$${cart.total}`);
+            $('.total').children('span').text(`$${cart.total.toFixed(2)}`);
             $('.lds-dual-ring').hide();
         });
     }
