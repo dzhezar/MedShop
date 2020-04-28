@@ -1,0 +1,116 @@
+@media (max-width: 768px) {
+  .product_wrapper img {
+    order: 1;
+    height: 50%;
+    width: 50%;
+  }
+  .product_wrapper .usage {
+    order: 2;
+    height: 50%;
+    width: 50%;
+  }
+  .product_wrapper .usage .text {
+    width: 85vw;
+  }
+  .product_wrapper ul {
+    order: 3;
+    width: 45%;
+    margin-left: auto;
+    height: 10%;
+  }
+  .product_wrapper .quantity {
+    order: 4;
+    width: 45%;
+    margin-left: auto;
+    height: 15%;
+  }
+  .product_wrapper .final_price {
+    order: 5;
+    flex-direction: row;
+    height: 15%;
+    width: 45%;
+    margin-left: auto;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .product_wrapper .final_price .text {
+    font-size: 18px;
+  }
+  .product_wrapper .final_price .price {
+    font-size: 36px;
+  }
+  .product_wrapper .add_to_cart {
+    order: 6;
+    width: 45%;
+    margin-left: auto;
+    height: 10%;
+  }
+}
+@media (max-width: 576px) {
+  .product_wrapper {
+    width: 95%;
+    flex-direction: row;
+    height: unset;
+  }
+  .product_wrapper img {
+    width: 100%;
+  }
+  .product_wrapper ul {
+    order: 2;
+    width: 50%;
+    height: 10%;
+    margin: 10px 0;
+    align-self: flex-end;
+  }
+  .product_wrapper ul li {
+    font-size: 14px;
+  }
+  .product_wrapper .final_price {
+    order: 3;
+    width: 50%;
+    height: 10%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .product_wrapper .final_price .text {
+    display: none;
+  }
+  .product_wrapper .final_price .price {
+    font-size: 24px;
+  }
+  .product_wrapper .quantity {
+    order: 4;
+    height: 40px;
+    margin: 10px 0;
+  }
+  .product_wrapper .quantity .text {
+    display: none;
+  }
+  .product_wrapper .quantity .controls {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .product_wrapper .add_to_cart {
+    order: 5;
+    width: 50%;
+    margin: 10px 0;
+    flex-direction: row-reverse;
+  }
+  .product_wrapper .usage {
+    order: 6;
+    width: 100%;
+  }
+  .product_wrapper .usage .text {
+    width: 100%;
+  }
+
+  .description {
+    width: 95%;
+  }
+  .description .text {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=single_product-responsive.css.map */
