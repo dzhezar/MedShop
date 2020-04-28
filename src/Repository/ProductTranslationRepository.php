@@ -44,4 +44,17 @@ class ProductTranslationRepository extends ServiceEntityRepository
             ->setParameter('lang_id', $languageId)
             ->getQuery()->getResult();
     }
+
+    public function findByProductIds(int $languageId, array $ids)
+    {
+        return $this->createQueryBuilder('product_translation')
+            ->addSelect('product')
+            ->leftJoin('product_translation.product', 'product')
+            ->leftJoin('product_translation.language', 'language')
+            ->where('product.id IN (:ids)')
+            ->andWhere('language.id = :lang_id')
+            ->setParameter('ids', $ids)
+            ->setParameter('lang_id', $languageId)
+            ->getQuery()->getResult();
+    }
 }

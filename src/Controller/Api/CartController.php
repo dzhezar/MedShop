@@ -34,6 +34,11 @@ class CartController extends AbstractController
         $this->cartService = $cartService;
     }
 
+    public function all(Request $request)
+    {
+        return $this->json($this->cartService->getAll($request->request->get('language')));
+    }
+
     public function add(Request $request)
     {
         if(!$this->validationService->validate($request->request->all(), AddToCartValidationStrategy::TYPE_NAME)) {
@@ -41,6 +46,28 @@ class CartController extends AbstractController
         }
 
         $this->cartService->add($request->request->get('id'));
+
+        return new Response();
+    }
+
+    public function minus(Request $request)
+    {
+        if(!$this->validationService->validate($request->request->all(), AddToCartValidationStrategy::TYPE_NAME)) {
+            return new BadRequestHttpException();
+        }
+
+        $this->cartService->minus($request->request->get('id'));
+
+        return new Response();
+    }
+
+    public function remove(Request $request)
+    {
+        if(!$this->validationService->validate($request->request->all(), AddToCartValidationStrategy::TYPE_NAME)) {
+            return new BadRequestHttpException();
+        }
+
+        $this->cartService->remove($request->request->get('id'));
 
         return new Response();
     }

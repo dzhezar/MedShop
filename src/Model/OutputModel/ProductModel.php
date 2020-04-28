@@ -33,6 +33,8 @@ class ProductModel
 
     private $inCart;
 
+    private $cartAmount;
+
     /**
      * @return int|null
      */
@@ -212,5 +214,25 @@ class ProductModel
         $this->inCart = $inCart;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCartAmount()
+    {
+        return $this->cartAmount;
+    }
+
+    /**
+     * @param mixed $cartAmount
+     * @return ProductModel
+     */
+    public function setCartAmount($cartAmount)
+    {
+        $this->cartAmount = $cartAmount;
+        return $this;
+    }
+
+
 
 }
