@@ -25,7 +25,7 @@ $(document).ready(function () {
                 let item = $(`<div class="item">
                     <img src="${product.image}">
                     <div class="info">
-                        <div class="name">${product.title}</div>
+                        <a href="#" class="name">${product.title}</a>
                         <div class="price">
                             <div class="quantity" data-id="${product.id}">
                                 <span class="minus">-</span><span class="number">${product.cartAmount}</span><span class="plus">+</span>
