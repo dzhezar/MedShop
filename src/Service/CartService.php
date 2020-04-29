@@ -46,7 +46,7 @@ class CartService
 
     public function minus(int $id)
     {
-        if ($product = $this->productService->findOneBy(['id' => $id])) {
+        if ($product = $this->productService->findOneBy(['id' => $id, 'is_visible' => true])) {
             $this->sessionCartService->minus($id);
         }
     }

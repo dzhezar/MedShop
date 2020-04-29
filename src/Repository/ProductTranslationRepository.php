@@ -52,6 +52,7 @@ class ProductTranslationRepository extends ServiceEntityRepository
             ->leftJoin('product_translation.product', 'product')
             ->leftJoin('product_translation.language', 'language')
             ->where('product.id IN (:ids)')
+            ->andWhere('product.is_visible = true')
             ->andWhere('language.id = :lang_id')
             ->setParameter('ids', $ids)
             ->setParameter('lang_id', $languageId)
