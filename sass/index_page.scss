@@ -108,23 +108,30 @@
       height: 450px;
       display: flex;
       flex-direction: column;
-      div {
+      div{
         display: flex;
         align-items: center;
       }
-      .image {
-        height: 70%;
-        object-fit: contain;
-      }
-      .title {
-        font-size: 24px;
-        height: 10%;
-      }
-      .price {
-        font-size: 30px;
-        text-align: center;
-        height: 10%;
-        justify-content: center;
+      a {
+        display: flex;
+        height: calc(100% - 44px);
+        flex-direction: column;
+        .image {
+          height: 75%;
+          object-fit: contain;
+        }
+
+        .title {
+          font-size: 24px;
+          height: 10%;
+        }
+
+        .price {
+          font-size: 30px;
+          text-align: center;
+          height: 15%;
+          justify-content: center;
+        }
       }
       .add_to_cart {
         width: 70%;
@@ -248,7 +255,7 @@
     display: none;
   }
   .blog-grid {
-    height: 700px;
+    height: 720px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -262,6 +269,9 @@
       flex-direction: column;
       justify-content: space-between;
       transition: all .2s ease-in;
+      &:nth-child(odd) {
+        margin-bottom: 20px;
+      }
       &:nth-child(-n + 2) {
         width: 55%;
         flex-direction: row;

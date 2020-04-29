@@ -69,7 +69,7 @@
       width: 90%;
     }
     .blog-grid {
-      height: 500px;
+      height: 520px;
       img {
         object-position: top;
       }
@@ -146,6 +146,7 @@
         .overlay {
           opacity: 1;
           background: radial-gradient(at top left,#8598788f 19%,transparent 39%);
+          transform: translate(10px, -10px);
         }
         &:nth-child(-n+2){
           width: 100%;

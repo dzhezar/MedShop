@@ -45,13 +45,15 @@
         <div class="popular_products-grid">
             {% for product in products %}
                 <div class="popular_products-grid_item">
-                    <img class="image lazy" data-src="{{ product.image }}">
-                    <div class="title">
-                        {{ product.title }}
-                    </div>
-                    <div class="price">
-                        ${{ product.price }}
-                    </div>
+                    <a href="#">
+                        <img class="image lazy" data-src="{{ product.image }}">
+                        <div class="title">
+                            {{ product.title }}
+                        </div>
+                        <div class="price">
+                            ${{ product.price }}
+                        </div>
+                    </a>
                     <div class="add_to_cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
                         <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
                         <p>{{ 'product.add_to_cart'|trans }}</p>
