@@ -86,7 +86,7 @@
   font-weight: bold;
   font-size: 48px;
   color: #486259;
-  width: 75%;
+  width: 90%;
   margin: 50px auto;
 }
 .popular_products-wrapper .popular_products-grid {
@@ -158,7 +158,7 @@
   font-weight: bold;
   font-size: 48px;
   color: #486259;
-  width: 75%;
+  width: 90%;
   margin: 50px auto;
   display: flex;
   justify-content: space-between;
@@ -179,24 +179,27 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.popular_categories-wrapper .popular_categories-grid .popular_categories-grid_item {
-  height: 400px;
+.popular_categories-wrapper .popular_categories-grid a {
   width: 30%;
-  flex: 0 0 30%;
+}
+.popular_categories-wrapper .popular_categories-grid a .popular_categories-grid_item {
+  height: 400px;
+  width: 100%;
   padding: 10px;
   transition: all 0.3s ease-in;
 }
-.popular_categories-wrapper .popular_categories-grid .popular_categories-grid_item .image {
+.popular_categories-wrapper .popular_categories-grid a .popular_categories-grid_item .image {
   height: 85%;
   object-fit: contain;
-  width: 100%;
+  width: 95%;
+  margin: 10px;
 }
-.popular_categories-wrapper .popular_categories-grid .popular_categories-grid_item .title {
-  height: 15%;
+.popular_categories-wrapper .popular_categories-grid a .popular_categories-grid_item .title {
+  height: calc(15% - 20px);
   font-weight: 500;
   font-size: 24px;
 }
-.popular_categories-wrapper .popular_categories-grid .popular_categories-grid_item:hover {
+.popular_categories-wrapper .popular_categories-grid a .popular_categories-grid_item:hover {
   box-shadow: inset 0 0 0 2px #a2b496;
   border-radius: 10px;
 }
@@ -221,7 +224,7 @@
   font-weight: bold;
   font-size: 48px;
   color: #486259;
-  width: 75%;
+  width: 90%;
   margin: 50px auto;
 }
 .blog-wrapper .mobile-overlay {
