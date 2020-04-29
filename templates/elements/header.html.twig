@@ -15,6 +15,11 @@
     <div class="logo">
         MDIClogo
     </div>
+    {% set ru_params = app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) %}
+    {% set en_params = app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) %}
+
+    <a href="{{ path(app.request.attributes.get('_route'), en_params) }}">en</a>
+    <a href="{{ path(app.request.attributes.get('_route'), ru_params) }}">ru</a>
     <div class="cart-trigger">
         <img src="{{ asset('img/icons/cart.png') }}">
     </div>
@@ -22,66 +27,15 @@
         <div class="shadow-filter"></div>
         <div class="cart">
             <div class="lds-dual-ring"></div>
-            <div class="title">Мои покупки</div>
+            <div class="title">{{ 'cart.my_cart'|trans }}</div>
             <div class="cart_list">
-                <div class="item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <a href="#" class="name">Но-шпа ( Ношпа )</a>
-                        <div class="price">
-                            <div class="quantity">
-                                <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
-                            </div>
-                            <div class="final_price">80.50 $</div>
-                        </div>
-                        <div class="delete">✕</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="name">Но-шпа ( Ношпа )</div>
-                        <div class="price">
-                            <div class="quantity">
-                                <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
-                            </div>
-                            <div class="final_price">80.50 $</div>
-                        </div>
-                        <div class="delete">✕</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="name">Но-шпа ( Ношпа )</div>
-                        <div class="price">
-                            <div class="quantity">
-                                <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
-                            </div>
-                            <div class="final_price">80.50 $</div>
-                        </div>
-                        <div class="delete">✕</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="name">Но-шпа ( Ношпа )</div>
-                        <div class="price">
-                            <div class="quantity">
-                                <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
-                            </div>
-                            <div class="final_price">80.50 $</div>
-                        </div>
-                        <div class="delete">✕</div>
-                    </div>
-                </div>
+
             </div>
             <div class="total">
-                Всего к оплате:<span>161.00 $</span>
+                {{ 'cart.total'|trans }}:<span></span>
             </div>
-            <a href="#" class="to_cart">ОФОРМИТЬ ЗАКАЗ</a>
-            <a href="#" class="back_to_shopping">← Продолжить покупки</a>
+            <a href="#" class="to_cart">{{ 'cart.make_order'|trans }}</a>
+            <a href="#" class="back_to_shopping">← {{ 'cart.continue'|trans }}</a>
         </div>
     </div>
 </header>

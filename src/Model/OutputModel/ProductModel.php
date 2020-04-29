@@ -18,14 +18,14 @@ class ProductModel
     /** @var string|null */
     private $description;
 
+    private $usage;
+
     /** @var string|null */
     private $seo_title;
 
     /** @var string|null */
     private $seo_description;
 
-    /** @var string|null */
-    private $sub_category;
 
     private $price;
 
@@ -34,6 +34,14 @@ class ProductModel
     private $inCart;
 
     private $cartAmount;
+
+    private $slug;
+
+    private $category;
+
+    private $sub_category;
+
+    private $related_products;
 
     /**
      * @return int|null
@@ -144,24 +152,6 @@ class ProductModel
     }
 
     /**
-     * @return string|null
-     */
-    public function getSubCategory(): ?string
-    {
-        return $this->sub_category;
-    }
-
-    /**
-     * @param string|null $sub_category
-     * @return ProductModel
-     */
-    public function setSubCategory(?string $sub_category): ProductModel
-    {
-        $this->sub_category = $sub_category;
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getPrice()
@@ -230,6 +220,96 @@ class ProductModel
     public function setCartAmount($cartAmount)
     {
         $this->cartAmount = $cartAmount;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     * @return ProductModel
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     * @return ProductModel
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubCategory()
+    {
+        return $this->sub_category;
+    }
+
+    /**
+     * @param mixed $sub_category
+     * @return ProductModel
+     */
+    public function setSubCategory($sub_category)
+    {
+        $this->sub_category = $sub_category;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRelatedProducts()
+    {
+        return $this->related_products;
+    }
+
+    /**
+     * @param mixed $related_products
+     * @return ProductModel
+     */
+    public function setRelatedProducts($related_products)
+    {
+        $this->related_products = $related_products;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsage()
+    {
+        return $this->usage;
+    }
+
+    /**
+     * @param mixed $usage
+     * @return ProductModel
+     */
+    public function setUsage($usage)
+    {
+        $this->usage = $usage;
         return $this;
     }
 

@@ -3,6 +3,17 @@ navbar:
   about_us: 'О Нас'
   blog: 'Блог'
   contact: 'Контакты'
-product:
+cart:
+  my_cart: 'Мои покупки'
+  total: 'Всего к оплате'
+  make_order: 'ОФОРМИТЬ ЗАКАЗ'
+  continue: 'Продолжить покупки'
+home:
   add_to_cart: 'В КОРЗИНУ'
   popular_products: 'Популярные товары'
+product:
+  home: 'Главная'
+  usage: 'Применение'
+  description: 'Описание'
+  amount: 'Количество'
+  total: 'Сумма к оплате'

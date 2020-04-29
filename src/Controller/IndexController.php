@@ -35,8 +35,8 @@ class IndexController extends AbstractController
         );
     }
 
-    public function singleProduct()
+    public function index_default()
     {
-        return $this->render('single_product.html.twig');
+        return $this->redirectToRoute('index');
     }
 }

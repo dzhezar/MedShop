@@ -45,6 +45,31 @@ class ProductTranslationRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
     }
 
+    public function findProductBySlugAndLanguage(string $slug, int $languageId)
+    {
+        return $this->createQueryBuilder('product_translation')
+            ->addSelect(
+                'product',
+                'category',
+                'category_translations',
+                'subcategory',
+                'subcategory_translations',
+            )
+            ->leftJoin('product_translation.product', 'product')
+            ->leftJoin('product.category', 'category')
+            ->leftJoin('category.categoryTranslations', 'category_translations')
+            ->leftJoin('category.category', 'subcategory')
+            ->leftJoin('subcategory.categoryTranslations', 'subcategory_translations')
+            ->leftJoin('product_translation.language', 'language')
+            ->where('product.slug = :slug')
+            ->andWhere('language.id = :lang_id')
+            ->andWhere('category_translations.language = :lang_id')
+            ->andWhere('subcategory_translations.language = :lang_id')
+            ->setParameter('slug', $slug)
+            ->setParameter('lang_id', $languageId)
+            ->getQuery()->getOneOrNullResult();
+    }
+
     public function findByProductIds(int $languageId, array $ids)
     {
         return $this->createQueryBuilder('product_translation')

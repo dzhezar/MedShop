@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('stylesheets/single_product.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/single_product-responsive.css') }}"
+{% endblock %}
+{% block body %}
+    {% include 'elements/header.html.twig' %}
+    <div class="page_top">
+        <ul class="breadcrumb">
+            <li><a href="#">{{ 'product.home'|trans }}</a></li>
+            {% if product.subCategory is not empty %}
+            <li><a href="#">{{ product.subCategory.title }}</a></li>
+            {% endif %}
+            <li><a href="#">{{ product.category.title }}</a></li>
+            <li>{{ product.title }}</li>
+        </ul>
+        <div class="product-title">{{ product.title }}</div>
+    </div>
+    <div class="product_wrapper">
+        <img src="{{ product.image }}">
+        <ul>
+{#            <li>100 Таблеток</li>#}
+{#            <li>60 МГ</li>#}
+        </ul>
+        <div class="usage">
+            <div class="title">{{ 'product.usage'|trans }}</div>
+            <div class="text">{{ product.usage|raw }}</div>
+        </div>
+        <div class="quantity">
+            <div class="text">{{ 'product.amount'|trans }}:</div>
+            <div class="controls" data-id="{{ product.id }}">
+                <span class="minus">-</span><span class="number product-amount">{{ product.cartAmount }}</span><span class="plus">+</span>
+            </div>
+        </div>
+        <div class="final_price">
+            <div class="text">{{ 'product.total'|trans }}:</div>
+            <div class="price">${{ product.price }}</div>
+        </div>
+        <div class="add_to_cart {% if product.inCart == true %}active{% endif %}">
+            <img src="{{ asset('img/icons/cart.png') }}">
+            <div>{{ 'home.add_to_cart'|trans }}</div>
+        </div>
+    </div>
+    <div class="description">
+        <div class="title">{{ 'product.description'|trans }}</div>
+        <div class="text">{{ product.description|raw }}</div>
+    </div>
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}

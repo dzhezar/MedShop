@@ -9,6 +9,7 @@ use App\DataMapper\Product\ProductOutputMapper;
 use App\DataMapper\ProductTranslation\ProductTranslationFormMapper;
 use App\Entity\Language;
 use App\Entity\Product;
+use App\Entity\ProductTranslation;
 use App\Entity\Specification;
 use App\Entity\SpecificationValue;
 use App\Entity\SpecificationValueTranslation;
@@ -269,7 +270,12 @@ class ProductService
 
     public function findVisibleProductByIdAndLanguage(int $id, string $language)
     {
-        return $this->productTranslationRepository->findProductByIdAndLanguage($id, $this->languageService->getLanguage($language)->getId());
+        return $this->productTranslationRepository->findProductByIdAndLanguage(
+            $id,
+            $this->languageService->getLanguage(
+                $language
+            )->getId()
+        );
     }
 
     public function getBySessionIds(array $ids, string $language)
@@ -282,5 +288,26 @@ class ProductService
         }
 
         return $result;
+    }
+
+    public function getProductBySlugAndLanguage(string $slug, string $language)
+    {
+        $language = $this->languageService->getLanguage($language)->getId();
+        /** @var ProductTranslation $product */
+        if ($product = $this->productTranslationRepository->findProductBySlugAndLanguage(
+            $slug,
+            $language
+        )) {
+            $rel_product = $this->productRepository->findRelatedProductsByLanguageAndId($product->getId(), $language);
+            if($rel_product) {
+                foreach ($rel_product->getRelatedProducts() as $item) {
+                    $product->getProduct()->addRelatedProduct($item);
+                }
+            }
+
+            return $this->outputMapper->entityToModel($product, true, true, true);
+        }
+
+        return false;
     }
 }

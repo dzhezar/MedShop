@@ -19,32 +19,16 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    // /**
-    //  * @return Product[] Returns an array of Product objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findRelatedProductsByLanguageAndId(int $id, int $languageId)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('product')
+            ->addSelect('related_products', 'related_products_translations')
+            ->leftJoin('product.related_products', 'related_products')
+            ->leftJoin('related_products.productTranslations', 'related_products_translations')
+            ->where('product.id = :id')
+            ->andWhere('related_products_translations.language = :lang_id')
+            ->setParameter('id', $id)
+            ->setParameter('lang_id', $languageId)
+            ->getQuery()->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Product
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

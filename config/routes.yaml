@@ -1,10 +1,21 @@
+index_default:
+    path: /
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\IndexController::index_default
+
 index:
     path: /{_locale}
-    defaults:
-        _locale: "%locale%"
     requirements:
         _locale: "%locales%"
     controller: App\Controller\IndexController::index
+
+single_product:
+    path:
+        /{_locale}/product/{slug}
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\ProductController::single
 
 ######cart#####
 api_cart_all:
@@ -23,10 +34,6 @@ api_cart_remove:
     methods: POST
     path: /api/cart/remove
     controller: App\Controller\Api\CartController::remove
-
-single_product:
-    path: /product
-    controller: App\Controller\IndexController::singleProduct
 
 #admin_panel
 admin_index:
