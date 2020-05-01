@@ -64,7 +64,6 @@ class ProductTranslationRepository extends ServiceEntityRepository
             ->where('product.slug = :slug')
             ->andWhere('language.id = :lang_id')
             ->andWhere('category_translations.language = :lang_id')
-            ->andWhere('subcategory_translations.language = :lang_id')
             ->setParameter('slug', $slug)
             ->setParameter('lang_id', $languageId)
             ->getQuery()->getOneOrNullResult();

@@ -5,6 +5,7 @@ namespace App\DataMapper\Product;
 
 
 use App\DataMapper\Category\CategoryOutputMapper;
+use App\Entity\Language;
 use App\Entity\ProductTranslation;
 use App\Model\OutputModel\ProductModel;
 use App\Service\SessionCartService;
@@ -53,7 +54,11 @@ class ProductOutputMapper
                 $entity->getProduct()->getCategory()->getCategoryTranslations()->first()
             );
             if ($subCategory = $entity->getProduct()->getCategory()->getCategory()) {
-                $subCategory = CategoryOutputMapper::entityToModel($subCategory->getCategoryTranslations()->first());
+                foreach ($subCategory->getCategoryTranslations() as $categoryTranslation) {
+                    if($categoryTranslation->getLanguage()->getId() === $entity->getLanguage()->getId()) {
+                        $subCategory = CategoryOutputMapper::entityToModel($categoryTranslation);
+                    }
+                }
             }
         }
 
