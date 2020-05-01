@@ -19,32 +19,26 @@ class CategoryTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, CategoryTranslation::class);
     }
 
-    // /**
-    //  * @return CategoryTranslation[] Returns an array of CategoryTranslation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getCategoryBySlugAndLanguage(string $slug, int $languageId, string $subCategorySlug = null)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('category_translation')
+            ->addSelect('category', 'sub_category', 'sub_category_translations', 'sub_category_translations_language')
+            ->leftJoin('category_translation.category', 'category')
+            ->leftJoin('category.category', 'sub_category')
+            ->leftJoin('category.categoryTranslations', 'sub_category_translations')
+            ->leftJoin('sub_category_translations.language', 'sub_category_translations_language')
+            ->where('category.slug = :slug')
+            ->andWhere('category_translation.language = :languageId')
+            ->setParameter('slug', $slug)
+            ->setParameter('languageId', $languageId);
 
-    /*
-    public function findOneBySomeField($value): ?CategoryTranslation
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($subCategorySlug) {
+            $query
+                ->andWhere('sub_category.slug =:subCategorySlug')
+                ->andWhere('sub_category_translations_language = :languageId')
+                ->setParameter('subCategorySlug', $subCategorySlug);
+        }
+
+        return $query->getQuery()->getOneOrNullResult();
     }
-    */
 }
