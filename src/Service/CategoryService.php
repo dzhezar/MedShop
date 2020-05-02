@@ -13,6 +13,7 @@ use App\Entity\Language;
 use App\Model\FormModel\CategoryModel;
 use App\Repository\CategoryTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
+use App\Strategy\Breadcurmbs\CategoryBreadCrumbStrategy;
 use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryService
@@ -54,6 +55,14 @@ class CategoryService
      * @var string
      */
     private $relative_path;
+    /**
+     * @var BreadcrumbsService
+     */
+    private $breadcrumbsService;
+    /**
+     * @var ProductService
+     */
+    private $productService;
 
     /**
      * CategoryService constructor.
@@ -65,6 +74,8 @@ class CategoryService
      * @param CategoryFormMapper $categoryFormMapper
      * @param EntityManagerInterface $entityManager
      * @param CategoryTranslationFormMapper $categoryTranslationFormMapper
+     * @param BreadcrumbsService $breadcrumbsService
+     * @param ProductService $productService
      */
     public function __construct(
         string $relative_path,
@@ -74,7 +85,9 @@ class CategoryService
         FileManagerInterface $fileManager,
         CategoryFormMapper $categoryFormMapper,
         EntityManagerInterface $entityManager,
-        CategoryTranslationFormMapper $categoryTranslationFormMapper
+        CategoryTranslationFormMapper $categoryTranslationFormMapper,
+        BreadcrumbsService $breadcrumbsService,
+        ProductService $productService
     ) {
         $this->categoryTranslationRepository = $categoryTranslationRepository;
         $this->languageService = $languageService;
@@ -84,6 +97,8 @@ class CategoryService
         $this->entityManager = $entityManager;
         $this->categoryTranslationFormMapper = $categoryTranslationFormMapper;
         $this->relative_path = $relative_path;
+        $this->breadcrumbsService = $breadcrumbsService;
+        $this->productService = $productService;
     }
 
     /**
@@ -187,8 +202,13 @@ class CategoryService
         $this->entityManager->flush();
     }
 
-    public function getCategoryBySlugAndLanguage($slug, string $language, $subCategorySlug = null)
-    {
+    public function getCategoryBySlugAndLanguage(
+        $slug,
+        string $language,
+        $subCategorySlug = null,
+        $with_breadcrumbs = false,
+        $with_product = false
+    ) {
         /** @var CategoryTranslation $categoryTranslation */
         if ($categoryTranslation = $this->categoryTranslationRepository->getCategoryBySlugAndLanguage(
             $slug,
@@ -197,12 +217,35 @@ class CategoryService
         )) {
             $category = $categoryTranslation->getCategory();
             if ((!empty($subCategorySlug) && $category->getCategory()->getSlug() !== $subCategorySlug)
-                || empty($subCategorySlug) && !empty($category->getCategory()
+                || empty($subCategorySlug) && !empty(
+                $category->getCategory()
                 )) {
                 return false;
             }
 
-            return $this->outputMapper::entityToModel($categoryTranslation);
+            $category = $this->outputMapper::entityToModel($categoryTranslation, true);
+
+
+            if ($with_breadcrumbs) {
+                $breadCrubms = $this->breadcrumbsService->generateBreadcrumbs(
+                    $categoryTranslation,
+                    CategoryBreadCrumbStrategy::TYPE_NAME
+                );
+
+                $products = [];
+                if($with_product) {
+                    $products = $this->productService->getProductByCategory($categoryTranslation);
+                }
+
+                return [
+                    'breadcrumbs' => $breadCrubms,
+                    'category' => $category,
+                    'products' => $products,
+                    'categories' => $category->getChildCategories()
+                ];
+            }
+
+            return $this->outputMapper::entityToModel($categoryTranslation, true);
         }
 
 
@@ -218,6 +261,18 @@ class CategoryService
 
         foreach ($categories as $category) {
             $result[] = $this->outputMapper::entityToModel($category);
+        }
+
+        return $result;
+    }
+
+    public function getAllWithSubcategories(string $locale)
+    {
+        $language = $this->languageService->getLanguage($locale);
+        $categories = $this->categoryTranslationRepository->getAllWithSubCategories($language->getId());
+        $result = [];
+        foreach ($categories as $category) {
+            $result[] = $this->outputMapper::entityToModel($category, true);
         }
 
         return $result;

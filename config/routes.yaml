@@ -31,7 +31,9 @@ single_product:
 
 main_categories:
     path:
-        /categories
+        /{_locale}/categories
+    requirements:
+        _locale: "%locales%"
     controller: App\Controller\CategoryController::mainCategories
 
 subcategories:

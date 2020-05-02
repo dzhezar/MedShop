@@ -19,6 +19,21 @@ class ProductTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, ProductTranslation::class);
     }
 
+    public function getProductsByCategoryIdAndLanguage(int $categoryId, int $languageId)
+    {
+        return $this->createQueryBuilder('product_translation')
+            ->addSelect('product')
+            ->leftJoin('product_translation.product', 'product')
+            ->leftJoin('product.category', 'category')
+            ->leftJoin('product_translation.language', 'language')
+            ->andWhere('product.is_visible = true')
+            ->andWhere('language.id = :lang_id')
+            ->andWhere('category.id = :category_id')
+            ->setParameter('category_id', $categoryId)
+            ->setParameter('lang_id', $languageId)
+            ->getQuery()->getResult();
+    }
+
     public function getPopularProductsByLanguage(int $languageId)
     {
         return $this->createQueryBuilder('product_translation')
