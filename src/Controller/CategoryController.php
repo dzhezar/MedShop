@@ -76,9 +76,4 @@ class CategoryController extends AbstractController
 
         return $this->render('categories/catalog.html.twig', $result);
     }
-
-    public function subCategories()
-    {
-        return $this->render('categories/sub.html.twig');
-    }
 }
