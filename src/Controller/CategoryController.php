@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/single.html.twig', ['product' => $category]);
+        return $this->render('categories/main.html.twig', ['products' => [], 'categories' => []]);
     }
 
     public function singleCategoryWithSubCategory(Request $request, $subcategoryslug, $slug)
@@ -58,7 +58,8 @@ class CategoryController extends AbstractController
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/single.html.twig', ['product' => $product]);
+        dd($category);
+
     }
 
     public function subCategories()

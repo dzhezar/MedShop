@@ -209,4 +209,18 @@ class CategoryService
         return false;
     }
 
+    public function getPopularCategories(string $locale)
+    {
+        $language = $this->languageService->getLanguage($locale);
+        /** @var CategoryTranslation[] $categories */
+        $categories = $this->categoryTranslationRepository->getPopularCategories($language->getId());
+        $result = [];
+
+        foreach ($categories as $category) {
+            $result[] = $this->outputMapper::entityToModel($category);
+        }
+
+        return $result;
+    }
+
 }

@@ -1,4 +1,5 @@
 <div class="page_top">
+    {% if breadcrumbs is defined %}
     <ul class="breadcrumb">
         {% if breadcrumbs is defined %}
             {% for breadcrumb in breadcrumbs %}
@@ -6,5 +7,6 @@
             {% endfor %}
         {% endif %}
     </ul>
-    <div class="product-title">QQQQQQ</div>
+        <div class="product-title">{{ breadcrumbs|last.name }}</div>
+    {% endif %}
 </div>

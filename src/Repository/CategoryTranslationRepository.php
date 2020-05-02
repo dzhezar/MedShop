@@ -19,6 +19,16 @@ class CategoryTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, CategoryTranslation::class);
     }
 
+    public function getPopularCategories(int $langId)
+    {
+        return $this->createQueryBuilder('category_translation')
+            ->leftJoin('category_translation.category', 'category')
+            ->where('category.is_on_main = true')
+            ->andWhere('category_translation.language = :langId')
+            ->setParameter('langId', $langId)
+            ->getQuery()->getResult();
+    }
+
     public function getCategoryBySlugAndLanguage(string $slug, int $languageId, string $subCategorySlug = null)
     {
         $query = $this->createQueryBuilder('category_translation')
