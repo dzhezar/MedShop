@@ -10,6 +10,18 @@ index:
         _locale: "%locales%"
     controller: App\Controller\IndexController::index
 
+single_category:
+    path: /{_locale}/category/{slug}
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\CategoryController::singleCategory
+
+single_category_with_subcategory:
+    path: /{_locale}/category/{subcategoryslug}/{slug}
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\CategoryController::singleCategoryWithSubCategory
+
 single_product:
     path:
         /{_locale}/product/{slug}
@@ -20,7 +32,7 @@ single_product:
 main_categories:
     path:
         /categories
-    controller: App\Controller\CategoryController::index
+    controller: App\Controller\CategoryController::mainCategories
 
 ######cart#####
 api_cart_all:

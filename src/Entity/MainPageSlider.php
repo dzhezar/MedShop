@@ -24,7 +24,7 @@ class MainPageSlider
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MainPageSliderTranslation", mappedBy="main_page_slider")
+     * @ORM\OneToMany(targetEntity="App\Entity\MainPageSliderTranslation", mappedBy="main_page_slider", cascade={"persist", "remove"})
      */
     private $mainPageSliderTranslations;
 

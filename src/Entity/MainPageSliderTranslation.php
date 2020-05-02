@@ -27,6 +27,12 @@ class MainPageSliderTranslation
      */
     private $text;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Language", inversedBy="mainPageSliderTranslations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $language;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class MainPageSliderTranslation
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): self
+    {
+        $this->language = $language;
 
         return $this;
     }

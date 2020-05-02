@@ -10,18 +10,12 @@
     <div class="swiper-container">
         {% include 'elements/header.html.twig' %}
         <div class="swiper-wrapper">
-            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
-                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
-                <div class="swiper-lazy-preloader"></div>
-            </div>
-            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
-                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
-                <div class="swiper-lazy-preloader"></div>
-            </div>
-            <div class="swiper-slide swiper-lazy" data-background="/img/carousel/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png" style="background: center / cover no-repeat;">
-                Мы - онлайн аптека Продукция и Блог товаров для надежной защиты вашего здоровья
-                <div class="swiper-lazy-preloader"></div>
-            </div>
+            {% for slide in slides %}
+                <div class="swiper-slide swiper-lazy" data-background="{{ slide.image }}" style="background: center / cover no-repeat;">
+                    {{ slide.text|raw }}
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+            {% endfor %}
         </div>
         <!-- Add Pagination -->
         <div class="swiper-footer">

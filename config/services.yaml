@@ -38,6 +38,10 @@ services:
         arguments:
             - '%app.relative_uploads_dir%'
 
+    App\Service\MainPageSliderService:
+        arguments:
+            - '%app.relative_uploads_dir%'
+
     App\Service\ValidationService:
         arguments:
             - !tagged_iterator app.validation
