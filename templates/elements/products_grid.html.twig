@@ -1,0 +1,19 @@
+<div class="products-grid">
+    {% for product in products %}
+        <div class="products-grid_item">
+            <a href="{{ path('single_product', {'slug': product.slug}) }}">
+                <img class="image lazy" data-src="{{ product.image }}">
+                <div class="title">
+                    {{ product.title }}
+                </div>
+                <div class="price">
+                    ${{ product.price }}
+                </div>
+            </a>
+            <div class="add_to_cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
+                <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                <p>{{ 'home.add_to_cart'|trans }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,39 @@
+@media (max-width: 1250px) {
+  .products-grid .products-grid_item {
+    max-width: 30%;
+    flex: 0 0 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    .products-grid_item {
+      height: 400px;
+      max-width: 29%;
+      flex: 0 0 29%;
+
+      .title {
+        font-size: 20px;
+      }
+
+      .price {
+        font-size: 25px;
+      }
+
+      .add_to_cart {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    .products-grid_item {
+      max-width: 95%;
+      flex: 0 0 95%;
+      margin: auto;
+      padding: 10px 2%;
+    }
+  }
+}

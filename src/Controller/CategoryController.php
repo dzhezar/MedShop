@@ -19,9 +19,18 @@ class CategoryController extends AbstractController
      */
     private $categoryService;
 
-    public function __construct(CategoryService $categoryService)
+    private $productService;
+
+    public function __construct(CategoryService $categoryService, ProductService $productService)
     {
         $this->categoryService = $categoryService;
+        $this->productService = $productService;
+    }
+
+    public function categoryCatalog(Request $request)
+    {
+        $products = $this->productService->getPopularProducts($request->getLocale());
+        return $this->render('categories/catalog.html.twig',['products' => $products]);
     }
 
     public function mainCategories()
@@ -38,7 +47,7 @@ class CategoryController extends AbstractController
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/singe.html.twig', ['product' => $category]);
+        return $this->render('product/single.html.twig', ['product' => $category]);
     }
 
     public function singleCategoryWithSubCategory(Request $request, $subcategoryslug, $slug)
@@ -49,6 +58,11 @@ class CategoryController extends AbstractController
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/singe.html.twig', ['product' => $product]);
+        return $this->render('product/single.html.twig', ['product' => $product]);
+    }
+
+    public function subCategories()
+    {
+        return $this->render('categories/sub.html.twig');
     }
 }

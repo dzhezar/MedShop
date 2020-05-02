@@ -19,5 +19,4 @@ $(document).ready(function () {
         swiper.allowTouchMove = true;
         swiper.update();
     })
-    $('.lazy').Lazy();
 });

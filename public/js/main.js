@@ -30,6 +30,8 @@ $(document).ready(function () {
         return false;
     });
 
+    $('.lazy').Lazy();
+
     $('.plus, .minus').on('mousedown', function () {
         $(this).addClass('clicked');
         $(this).on('mouseup', function () {

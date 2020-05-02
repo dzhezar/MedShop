@@ -4,18 +4,6 @@ header {
   margin-left: auto;
 }
 
-.page_top {
-  width: 75%;
-  margin: 50px auto;
-}
-
-.page_top .product-title {
-  font-weight: bold;
-  font-size: 48px;
-  color: #486158;
-  text-align: justify;
-}
-
 .product_wrapper {
   height: 500px;
   width: 85%;
