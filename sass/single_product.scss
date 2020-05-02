@@ -9,6 +9,7 @@ header {
     font-weight: bold;
     font-size: 48px;
     color: #486158;
+    text-align: justify;
   }
 }
 .product_wrapper {
@@ -42,11 +43,12 @@ header {
   .usage {
     width: 30%;
     text-align: justify;
-    height: 90%;
+    height: 100%;
     .title {
       font-size: 24px;
       color: #859878;
       padding: 10px 0;
+      font-weight: bold;
     }
     .text {
       font-size: 18px;

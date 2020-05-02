@@ -16,6 +16,7 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <a href="#" id="scroll"><span></span></a>
         {% block javascripts %}
             <script>
                 let language = '{{ app.request.locale }}';

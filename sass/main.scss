@@ -47,6 +47,39 @@ header {
     display: none;
   }
 
+  .lang-panel {
+    display: flex;
+    z-index: -1;
+
+    .lang {
+      position: relative;
+      color: #486259;
+      font-weight: bold;
+      margin: 0 8px;
+      padding: 0 3px;
+      cursor: pointer;
+      text-transform: uppercase;
+      -webkit-text-stroke: 1px white;
+      text-stroke: 1px white;
+      font-size: 24px;
+
+      &.active::before {
+        transform: translateY(100%);
+        border-radius: 100%;
+        position: absolute;
+        background: white;
+        border: 1px solid #486259;
+        bottom: 0;
+        height: 8px;
+        content: "";
+        width: 8px;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
+
   .open {
     background-color: #3c3c3c;
     width: 24px;
@@ -166,13 +199,6 @@ header {
     }
   }
 
-  #menuToggle:checked ~ .cart-trigger{
-    background: white;
-    img{
-      filter: brightness(0.1);
-    }
-  }
-
   .logo {
     width: 75%;
     font-weight: bold;
@@ -184,10 +210,12 @@ header {
     cursor: pointer;
     background: linear-gradient(90deg, #869979, #bdd2ae);
     padding: 10px;
-    z-index: 10;
+    z-index: -1;
     position: relative;
-    transition: all 0.5s ease-in;
-    -moz-transition: all 0.5s ease-in;
+    &, * {
+      transition: all 0.5s ease-in;
+      -moz-transition: all 0.5s ease-in;
+    }
     &:hover {
       background: white;
       img {
@@ -435,8 +463,9 @@ ul.breadcrumb {
   padding-left: 0;
   li {
     display: inline;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
+    color: #848484;
     &+li:before {
       padding: 8px;
       color: black;
@@ -452,4 +481,31 @@ ul.breadcrumb {
     }
   }
 }
+
+#scroll {
+  position:fixed;
+  right:0;
+  bottom:10px;
+  cursor:pointer;
+  width:60px;
+  height:50px;
+  background-color:#486158;
+  display:none;
+  justify-content: center;
+  align-items: center;
+  -webkit-border-radius:60px 0 0 60px;
+  -moz-border-radius:60px 0 0 60px;
+  border-radius:60px 0 0 60px;
+  span {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    width: 10px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    height: 10px;
+  }
+}
+
 

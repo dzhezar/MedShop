@@ -24,25 +24,26 @@ class CategoryController extends AbstractController
         $this->categoryService = $categoryService;
     }
 
+    public function mainCategories()
+    {
+        return $this->render('categories/main.html.twig');
+    }
+
     public function singleCategory(Request $request, $slug)
     {
         /** @var CategoryModel $category */
         $category = $this->categoryService->getCategoryBySlugAndLanguage($slug, $request->getLocale());
 
-        dd($category);
-
         if(!$category) {
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/singe.html.twig', ['product' => $product]);
+        return $this->render('product/singe.html.twig', ['product' => $category]);
     }
 
     public function singleCategoryWithSubCategory(Request $request, $subcategoryslug, $slug)
     {
         $category = $this->categoryService->getCategoryBySlugAndLanguage($slug, $request->getLocale(), $subcategoryslug);
-
-        dd($category);
 
         if(!$category) {
             return $this->createNotFoundException();

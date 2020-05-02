@@ -29,6 +29,11 @@ single_product:
         _locale: "%locales%"
     controller: App\Controller\ProductController::single
 
+main_categories:
+    path:
+        /categories
+    controller: App\Controller\CategoryController::mainCategories
+
 ######cart#####
 api_cart_all:
     methods: POST
