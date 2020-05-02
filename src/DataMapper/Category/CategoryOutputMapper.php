@@ -13,10 +13,22 @@ class CategoryOutputMapper
 
     /**
      * @param CategoryTranslation $entity
+     * @param bool $include_subcategory
      * @return CategoryModel
      */
-    public static function entityToModel(CategoryTranslation $entity): CategoryModel
+    public static function entityToModel(CategoryTranslation $entity, $include_child_categories = false): CategoryModel
     {
+        $langId = $entity->getLanguage()->getId();
+        $childCategories = [];
+        if($include_child_categories) {
+            foreach ($entity->getCategory()->getCategories() as $category) {
+                foreach ($category->getCategoryTranslations() as $categoryTranslation) {
+                    if($categoryTranslation->getLanguage()->getId() === $langId) {
+                        $childCategories[] = self::entityToModel($categoryTranslation);
+                    }
+                }
+            }
+        }
         return (new CategoryModel())
             ->setTitle($entity->getTitle())
             ->setDescription($entity->getDescription())
@@ -32,6 +44,7 @@ class CategoryOutputMapper
                     $entity->getLanguage()->getShortName()
                 )
             )
+            ->setChildCategories($childCategories)
             ->setId($entity->getCategory()->getId());
     }
 

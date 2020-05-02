@@ -5,7 +5,7 @@ namespace App\Controller;
 
 
 use App\Model\OutputModel\CategoryModel;
-use App\Model\OutputModel\ProductModel;
+use App\Service\BreadcrumbsService;
 use App\Service\CategoryService;
 use App\Service\ProductService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,46 +20,61 @@ class CategoryController extends AbstractController
     private $categoryService;
 
     private $productService;
+    /**
+     * @var BreadcrumbsService
+     */
+    private $breadcrumbsService;
 
-    public function __construct(CategoryService $categoryService, ProductService $productService)
-    {
+    public function __construct(
+        CategoryService $categoryService,
+        ProductService $productService,
+        BreadcrumbsService $breadcrumbsService
+    ) {
         $this->categoryService = $categoryService;
         $this->productService = $productService;
+        $this->breadcrumbsService = $breadcrumbsService;
     }
 
     public function categoryCatalog(Request $request)
     {
         $products = $this->productService->getPopularProducts($request->getLocale());
-        return $this->render('categories/catalog.html.twig',['products' => $products]);
+        return $this->render('categories/catalog.html.twig', ['products' => $products]);
     }
 
-    public function mainCategories()
+    public function mainCategories(Request $request)
     {
-        return $this->render('categories/main.html.twig');
+        $categories = $this->categoryService->getAllWithSubcategories($request->getLocale());
+        return $this->render('categories/main.html.twig', ['categories' => $categories]);
     }
 
     public function singleCategory(Request $request, $slug)
     {
         /** @var CategoryModel $category */
-        $category = $this->categoryService->getCategoryBySlugAndLanguage($slug, $request->getLocale());
+        $result = $this->categoryService->getCategoryBySlugAndLanguage($slug, $request->getLocale(), null, true);
 
-        if(!$category) {
+        if (!$result) {
             return $this->createNotFoundException();
         }
 
-        return $this->render('categories/main.html.twig', ['products' => [], 'categories' => []]);
+
+        return $this->render('categories/sub.html.twig', $result);
     }
 
     public function singleCategoryWithSubCategory(Request $request, $subcategoryslug, $slug)
     {
-        $category = $this->categoryService->getCategoryBySlugAndLanguage($slug, $request->getLocale(), $subcategoryslug);
+        $result = $this->categoryService->getCategoryBySlugAndLanguage(
+            $slug,
+            $request->getLocale(),
+            $subcategoryslug,
+            true,
+            true
+        );
 
-        if(!$category) {
+        if (!$result) {
             return $this->createNotFoundException();
         }
 
-        dd($category);
-
+        return $this->render('categories/catalog.html.twig', $result);
     }
 
     public function subCategories()

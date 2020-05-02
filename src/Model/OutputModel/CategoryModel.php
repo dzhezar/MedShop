@@ -31,6 +31,8 @@ class CategoryModel
 
     private $sub_category_link;
 
+    private $child_categories;
+
     /**
      * @return int|null
      */
@@ -190,6 +192,24 @@ class CategoryModel
     public function setSubCategoryLink($sub_category_link)
     {
         $this->sub_category_link = $sub_category_link;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildCategories()
+    {
+        return $this->child_categories;
+    }
+
+    /**
+     * @param mixed $child_categories
+     * @return CategoryModel
+     */
+    public function setChildCategories($child_categories)
+    {
+        $this->child_categories = $child_categories;
         return $this;
     }
 

@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DataMapper\Product\ProductFormMapper;
 use App\DataMapper\Product\ProductOutputMapper;
 use App\DataMapper\ProductTranslation\ProductTranslationFormMapper;
+use App\Entity\CategoryTranslation;
 use App\Entity\Language;
 use App\Entity\Product;
 use App\Entity\ProductTranslation;
@@ -299,7 +300,7 @@ class ProductService
             $language
         )) {
             $rel_product = $this->productRepository->findRelatedProductsByLanguageAndId($product->getId(), $language);
-            if($rel_product) {
+            if ($rel_product) {
                 foreach ($rel_product->getRelatedProducts() as $item) {
                     $product->getProduct()->addRelatedProduct($item);
                 }
@@ -309,5 +310,22 @@ class ProductService
         }
 
         return false;
+    }
+
+    public function getProductByCategory(CategoryTranslation $categoryTranslation)
+    {
+        /** @var ProductTranslation[] $products */
+        $products = $this->productTranslationRepository->getProductsByCategoryIdAndLanguage(
+            $categoryTranslation->getCategory()->getId(),
+            $categoryTranslation->getLanguage()->getId()
+        );
+
+        $result = [];
+
+        foreach ($products as $product) {
+            $result[] = $this->outputMapper->entityToModel($product, true);
+        }
+
+        return $result;
     }
 }
