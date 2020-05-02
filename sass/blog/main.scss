@@ -1,0 +1,21 @@
+header {
+  position: relative;
+  margin-left: auto;
+}
+.blog-wrapper {
+  width: 85%;
+  margin: 0 auto 100px;
+}
+
+@media (max-width: 768px) {
+  .blog-wrapper {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-wrapper {
+    width: 95%;
+    margin: 0 auto 50px;
+  }
+}

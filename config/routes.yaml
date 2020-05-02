@@ -44,6 +44,11 @@ category_catalog:
         /category/catalog
     controller: App\Controller\CategoryController::categoryCatalog
 
+blog_index:
+    path:
+        /blog
+    controller: App\Controller\BlogController::index
+    
 ######cart#####
 api_cart_all:
     methods: POST
