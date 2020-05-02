@@ -5,14 +5,14 @@
     </label>
     <div class="menu menuEffects">
         <div class="menuContent">
-            <a class="menu-item" href="#">{{ 'navbar.product'|trans }}</a>
+            <a class="menu-item" href="{{ path('main_categories') }}">{{ 'navbar.product'|trans }}</a>
             <a class="menu-item" href="#">{{ 'navbar.about_us'|trans }}</a>
             <a class="menu-item" href="#">{{ 'navbar.blog'|trans }}</a>
             <a class="menu-item" href="#">{{ 'navbar.contact'|trans }}</a>
         </div>
         <a class="header_tel" href="tel:11">+38 (066) 052-14-36</a>
     </div>
-    <div class="logo">
+    <div class="logo" onclick="location.href='{{ path('index') }}'">
         MDIClogo
     </div>
     {% set ru_params = app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) %}
