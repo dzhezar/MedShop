@@ -60,6 +60,11 @@ class Language implements EntityInterface
      */
     private $articleTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MainPageSliderTranslation", mappedBy="language")
+     */
+    private $mainPageSliderTranslations;
+
     public function __construct()
     {
         $this->categoryTranslations = new ArrayCollection();
@@ -67,6 +72,7 @@ class Language implements EntityInterface
         $this->specificationTranslations = new ArrayCollection();
         $this->specificationValueTranslations = new ArrayCollection();
         $this->articleTranslations = new ArrayCollection();
+        $this->mainPageSliderTranslations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +253,37 @@ class Language implements EntityInterface
             // set the owning side to null (unless already changed)
             if ($articleTranslation->getLanguage() === $this) {
                 $articleTranslation->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MainPageSliderTranslation[]
+     */
+    public function getMainPageSliderTranslations(): Collection
+    {
+        return $this->mainPageSliderTranslations;
+    }
+
+    public function addMainPageSliderTranslation(MainPageSliderTranslation $mainPageSliderTranslation): self
+    {
+        if (!$this->mainPageSliderTranslations->contains($mainPageSliderTranslation)) {
+            $this->mainPageSliderTranslations[] = $mainPageSliderTranslation;
+            $mainPageSliderTranslation->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMainPageSliderTranslation(MainPageSliderTranslation $mainPageSliderTranslation): self
+    {
+        if ($this->mainPageSliderTranslations->contains($mainPageSliderTranslation)) {
+            $this->mainPageSliderTranslations->removeElement($mainPageSliderTranslation);
+            // set the owning side to null (unless already changed)
+            if ($mainPageSliderTranslation->getLanguage() === $this) {
+                $mainPageSliderTranslation->setLanguage(null);
             }
         }
 
