@@ -1,3 +1,9 @@
+@media (max-width: 1250px) {
+  .popular_products-wrapper .popular_products-grid .popular_products-grid_item {
+    max-width: 30%;
+    flex: 0 0 30%;
+  }
+}
 @media (max-width: 1000px) and (min-width: 769px){
   .blog-wrapper .blog-grid .blog-grid_item {
     .image {
@@ -116,6 +122,9 @@
           max-width: 95%;
           flex: 0 0 95%;
           margin: auto;
+        .popular_categories-grid_item {
+          padding: 0;
+        }
       }
     }
   }
@@ -146,7 +155,6 @@
         .overlay {
           opacity: 1;
           background: radial-gradient(at top left,#8598788f 19%,transparent 39%);
-          transform: translate(10px, -10px);
         }
         &:nth-child(-n+2){
           width: 100%;

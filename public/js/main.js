@@ -16,6 +16,20 @@ $(document).ready(function () {
             $('body').toggleClass('hidden');
         }
     })
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('#scroll').fadeIn();
+            $('#scroll').css('display','flex');
+        } else {
+            $('#scroll').fadeOut();
+        }
+    });
+    $('#scroll').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+
     $('.plus, .minus').on('mousedown', function () {
         $(this).addClass('clicked');
         $(this).on('mouseup', function () {

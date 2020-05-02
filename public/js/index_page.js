@@ -20,7 +20,4 @@ $(document).ready(function () {
         swiper.update();
     })
     $('.lazy').Lazy();
-    $('.menuOpen').on('click',function () {
-        $('body').toggleClass('hidden');
-    });
 });

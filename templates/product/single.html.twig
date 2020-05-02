@@ -19,10 +19,6 @@
     </div>
     <div class="product_wrapper">
         <img src="{{ product.image }}">
-        <ul>
-{#            <li>100 Таблеток</li>#}
-{#            <li>60 МГ</li>#}
-        </ul>
         <div class="usage">
             <div class="title">{{ 'product.usage'|trans }}</div>
             <div class="text">{{ product.usage|raw }}</div>
@@ -30,7 +26,7 @@
         <div class="quantity">
             <div class="text">{{ 'product.amount'|trans }}:</div>
             <div class="controls" data-id="{{ product.id }}">
-                <span class="minus">-</span><span class="number product-amount">{{ product.cartAmount }}</span><span class="plus">+</span>
+                <span class="minus">-</span><span class="number product-amount">{{ product.cartAmount ?? 1 }}</span><span class="plus">+</span>
             </div>
         </div>
         <div class="final_price">

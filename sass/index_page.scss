@@ -18,35 +18,6 @@
     display: flex;
     justify-content: space-between;
 
-    .lang-panel {
-      display: flex;
-      z-index: 10;
-
-      .lang {
-        position: relative;
-        color: #486259;
-        font-weight: bold;
-        margin: 0 8px;
-        padding: 0 3px;
-        cursor: pointer;
-        font-size: 18px;
-
-        &.active::before {
-          transform: translateY(100%);
-          border-radius: 100%;
-          position: absolute;
-          background: #486259;
-          bottom: 5px;
-          height: 8px;
-          content: "";
-          width: 8px;
-          left: 0;
-          right: 0;
-          margin: auto;
-        }
-      }
-    }
-
     .swiper-pagination {
       position: relative;
       z-index: 1;
@@ -108,6 +79,9 @@
       height: 450px;
       display: flex;
       flex-direction: column;
+      padding: 10px;
+      border-radius: 20px;
+      transition: all .3s ease-in;
       div{
         display: flex;
         align-items: center;
@@ -122,14 +96,14 @@
         }
 
         .title {
-          font-size: 24px;
-          height: 10%;
+          font-size: 18px;
+          height: 15%;
         }
 
         .price {
-          font-size: 30px;
+          font-size: 24px;
           text-align: center;
-          height: 15%;
+          height: 10%;
           justify-content: center;
         }
       }
@@ -144,7 +118,7 @@
         font-weight: bold;
         font-size: 20px;
         color: #486259;
-        height: 10%;
+        height: 40px;
         cursor: pointer;
         transition: all .2s ease-in;
         .cart_img {
@@ -162,6 +136,13 @@
             content: var(--in-cart);
           }
         }
+        &:hover {
+          color: white;
+          background: #859878;
+        }
+      }
+      &:hover {
+        box-shadow: inset 0 0 0 2px #a2b496;
       }
     }
   }
@@ -393,8 +374,7 @@
         height: 100%;
         background: linear-gradient(149.97deg, #AABD9E 24.81%, #859878 94.46%);
         opacity: 0;
-        padding: 10px;
-        transform: translate(-10px, -10px);
+        top: 0; bottom: 0; left: 0; right: 0;
       }
     }
   }

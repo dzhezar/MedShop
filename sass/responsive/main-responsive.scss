@@ -38,6 +38,15 @@
         width: 100%;
       }
     }
+    .logo {
+      font-size: 22px;
+    }
+    .lang-panel {
+      .lang {
+        font-size: 18px;
+        margin: 0 4px;
+      }
+    }
   }
   footer {
     flex-wrap: wrap;
