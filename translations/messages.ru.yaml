@@ -12,7 +12,7 @@ home:
   add_to_cart: 'В КОРЗИНУ'
   popular_products: 'Популярные товары'
   popular_categories: 'Популярные категории'
-    all_categories: 'ВСЕ КАТЕГОРИИ'
+  all_categories: 'ВСЕ КАТЕГОРИИ'
 product:
   home: 'Главная'
   usage: 'Применение'
