@@ -1,7 +1,4 @@
 @media (max-width: 768px) {
-  .page_top .product-title {
-    font-size: 36px;
-  }
   .product_wrapper {
     img {
       order: 1;
@@ -52,9 +49,6 @@
   }
 }
 @media (max-width: 576px) {
-  .page_top .product-title {
-    font-size: 24px;
-  }
   .product_wrapper {
     width: 95%;
     flex-direction: row;

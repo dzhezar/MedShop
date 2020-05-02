@@ -1,0 +1,14 @@
+header {
+  position: relative;
+  margin-left: auto;
+}
+
+.products-grid {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    margin-bottom: 50px;
+  }
+}

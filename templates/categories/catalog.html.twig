@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('stylesheets/category/catalog.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}">
+{% endblock %}
+{% block body %}
+    {% include 'elements/header.html.twig' %}
+    {% include 'elements/page_title_with_breadcrumbs.html.twig' %}
+    {% include 'elements/products_grid.html.twig' %}
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}

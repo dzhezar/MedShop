@@ -5,10 +5,11 @@ namespace App\DataMapper\Product;
 
 
 use App\DataMapper\Category\CategoryOutputMapper;
-use App\Entity\Language;
 use App\Entity\ProductTranslation;
 use App\Model\OutputModel\ProductModel;
+use App\Service\BreadcrumbsService;
 use App\Service\SessionCartService;
+use App\Strategy\Breadcurmbs\ProductBreadcrumbsStrategy;
 
 class ProductOutputMapper
 {
@@ -16,15 +17,20 @@ class ProductOutputMapper
      * @var SessionCartService
      */
     private $sessionCartService;
+    /**
+     * @var BreadcrumbsService
+     */
+    private $breadcrumbsService;
 
     /**
      * ProductOutputMapper constructor.
      * @param SessionCartService $sessionCartService
-     * @param CategoryOutputMapper $categoryOutputMapper
+     * @param BreadcrumbsService $breadcrumbsService
      */
-    public function __construct(SessionCartService $sessionCartService)
+    public function __construct(SessionCartService $sessionCartService, BreadcrumbsService $breadcrumbsService)
     {
         $this->sessionCartService = $sessionCartService;
+        $this->breadcrumbsService = $breadcrumbsService;
     }
 
     /**
@@ -32,14 +38,16 @@ class ProductOutputMapper
      * @param bool $with_session
      * @param bool $categories
      * @param bool $related
-     * @return ProductModel
+     * @param bool $with_breadcrumbs
+     * @return array
      */
     public function entityToModel(
         ProductTranslation $entity,
         $with_session = false,
         $categories = false,
-        $related = false
-    ): ProductModel {
+        $related = false,
+        $with_breadcrumbs = false
+    ) {
         $inCart = false;
         $amount = 0;
         if ($with_session) {
@@ -55,7 +63,7 @@ class ProductOutputMapper
             );
             if ($subCategory = $entity->getProduct()->getCategory()->getCategory()) {
                 foreach ($subCategory->getCategoryTranslations() as $categoryTranslation) {
-                    if($categoryTranslation->getLanguage()->getId() === $entity->getLanguage()->getId()) {
+                    if ($categoryTranslation->getLanguage()->getId() === $entity->getLanguage()->getId()) {
                         $subCategory = CategoryOutputMapper::entityToModel($categoryTranslation);
                     }
                 }
@@ -63,13 +71,13 @@ class ProductOutputMapper
         }
 
         $related_products = [];
-        if($related) {
+        if ($related) {
             foreach ($entity->getProduct()->getRelatedProducts() as $relatedProduct) {
                 $related_products[] = $this->entityToModel($relatedProduct->getProductTranslations()->first());
             }
         }
 
-        return (new ProductModel())
+        $product = (new ProductModel())
             ->setIsVisible($entity->getProduct()->getIsVisible())
             ->setPrice($entity->getProduct()->getPrice())
             ->setTitle($entity->getTitle())
@@ -85,5 +93,18 @@ class ProductOutputMapper
             ->setRelatedProducts($related_products)
             ->setSlug($entity->getProduct()->getSlug())
             ->setId($entity->getProduct()->getId());
+
+        if ($with_breadcrumbs) {
+            $breadCrumbs = $this->breadcrumbsService->generateBreadcrumbs(
+                $entity,
+                ProductBreadcrumbsStrategy::TYPE_NAME
+            );
+            return [
+                'product' => $product,
+                'breadcrumbs' => $breadCrumbs
+            ];
+        }
+
+        return $product;
     }
 }

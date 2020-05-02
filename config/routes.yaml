@@ -34,6 +34,16 @@ main_categories:
         /categories
     controller: App\Controller\CategoryController::mainCategories
 
+subcategories:
+    path:
+        /subcategories
+    controller: App\Controller\CategoryController::subCategories
+
+category_catalog:
+    path:
+        /category/catalog
+    controller: App\Controller\CategoryController::categoryCatalog
+
 ######cart#####
 api_cart_all:
     methods: POST

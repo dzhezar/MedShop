@@ -13,6 +13,9 @@ services:
         App\Strategy\Validation\ValidationStrategyInterface:
             tags: ['app.validation']
 
+        App\Strategy\Breadcurmbs\BreadcrumbsStrategyInterface:
+            tags: ['app.breadcrumb']
+
     App\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -45,3 +48,8 @@ services:
     App\Service\ValidationService:
         arguments:
             - !tagged_iterator app.validation
+
+    App\Service\BreadcrumbsService:
+        arguments:
+            - !tagged_iterator app.breadcrumb
+

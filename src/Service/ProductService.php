@@ -305,7 +305,7 @@ class ProductService
                 }
             }
 
-            return $this->outputMapper->entityToModel($product, true, true, true);
+            return $this->outputMapper->entityToModel($product, true, true, true, true);
         }
 
         return false;

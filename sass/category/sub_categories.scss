@@ -1,0 +1,14 @@
+header {
+  position: relative;
+  margin-left: auto;
+}
+
+.categories-grid {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .categories-grid {
+    margin-bottom: 50px;
+  }
+}

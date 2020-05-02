@@ -28,12 +28,12 @@ class ProductController extends AbstractController
     public function single(Request $request, $slug)
     {
         /** @var ProductModel|null $product */
-        $product = $this->productService->getProductBySlugAndLanguage($slug, $request->getLocale());
+        $result = $this->productService->getProductBySlugAndLanguage($slug, $request->getLocale());
 
-        if(!$product) {
+        if(!$result) {
             return $this->createNotFoundException();
         }
 
-        return $this->render('product/single.html.twig', ['product' => $product]);
+        return $this->render('product/single.html.twig', $result);
     }
 }
