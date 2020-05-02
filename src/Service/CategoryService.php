@@ -8,6 +8,7 @@ use App\DataMapper\Category\CategoryFormMapper;
 use App\DataMapper\Category\CategoryOutputMapper as CategoryOutputMapper;
 use App\DataMapper\CategoryTranslation\CategoryTranslationFormMapper;
 use App\Entity\Category;
+use App\Entity\CategoryTranslation;
 use App\Entity\Language;
 use App\Model\FormModel\CategoryModel;
 use App\Repository\CategoryTranslationRepository;
@@ -168,4 +169,44 @@ class CategoryService
         $this->entityManager->remove($id);
         $this->entityManager->flush();
     }
+
+    /**
+     * @param Category[] $newCategories
+     * @param Category[] $oldCategories
+     */
+    public function updateMainPageCategories(array $newCategories, array $oldCategories)
+    {
+        foreach ($oldCategories as $oldCategory) {
+            $oldCategory->setIsOnMain(false);
+        }
+
+        foreach ($newCategories as $newCategory) {
+            $newCategory->setIsOnMain(true);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    public function getCategoryBySlugAndLanguage($slug, string $language, $subCategorySlug = null)
+    {
+        /** @var CategoryTranslation $categoryTranslation */
+        if ($categoryTranslation = $this->categoryTranslationRepository->getCategoryBySlugAndLanguage(
+            $slug,
+            $this->languageService->getLanguage($language)->getId(),
+            $subCategorySlug
+        )) {
+            $category = $categoryTranslation->getCategory();
+            if ((!empty($subCategorySlug) && $category->getCategory()->getSlug() !== $subCategorySlug)
+                || empty($subCategorySlug) && !empty($category->getCategory()
+                )) {
+                return false;
+            }
+
+            return $this->outputMapper::entityToModel($categoryTranslation);
+        }
+
+
+        return false;
+    }
+
 }

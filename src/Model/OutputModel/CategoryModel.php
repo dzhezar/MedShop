@@ -27,6 +27,10 @@ class CategoryModel
     /** @var string|null */
     private $sub_category;
 
+    private $link;
+
+    private $sub_category_link;
+
     /**
      * @return int|null
      */
@@ -153,5 +157,40 @@ class CategoryModel
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param mixed $link
+     * @return CategoryModel
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubCategoryLink()
+    {
+        return $this->sub_category_link;
+    }
+
+    /**
+     * @param mixed $sub_category_link
+     * @return CategoryModel
+     */
+    public function setSubCategoryLink($sub_category_link)
+    {
+        $this->sub_category_link = $sub_category_link;
+        return $this;
+    }
 
 }

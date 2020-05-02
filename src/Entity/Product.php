@@ -64,6 +64,11 @@ class Product
      */
     private $is_visible;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_on_main;
+
     public function __construct()
     {
         $this->related_products = new ArrayCollection();
@@ -249,6 +254,18 @@ class Product
     public function setIsVisible(bool $is_visible): self
     {
         $this->is_visible = $is_visible;
+
+        return $this;
+    }
+
+    public function getIsOnMain(): ?bool
+    {
+        return $this->is_on_main;
+    }
+
+    public function setIsOnMain(bool $is_on_main): self
+    {
+        $this->is_on_main = $is_on_main;
 
         return $this;
     }

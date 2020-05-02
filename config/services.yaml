@@ -1,11 +1,17 @@
 parameters:
     app.relative_uploads_dir: '/uploads/'
     app.uploads_dir: '%kernel.project_dir%/public%app.relative_uploads_dir%'
+    locale: en
+    locales: ru|en
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    _instanceof:
+        App\Strategy\Validation\ValidationStrategyInterface:
+            tags: ['app.validation']
 
     App\:
         resource: '../src/*'
@@ -31,3 +37,11 @@ services:
     App\Service\ArticleService:
         arguments:
             - '%app.relative_uploads_dir%'
+
+    App\Service\MainPageSliderService:
+        arguments:
+            - '%app.relative_uploads_dir%'
+
+    App\Service\ValidationService:
+        arguments:
+            - !tagged_iterator app.validation

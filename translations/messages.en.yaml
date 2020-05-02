@@ -1,0 +1,19 @@
+navbar:
+  product: 'Products'
+  about_us: 'About us'
+  blog: 'Blog'
+  contact: 'Contacts'
+cart:
+  my_cart: 'My cart'
+  total: 'Total'
+  make_order: 'MAKE ORDER'
+  continue: 'Continue'
+home:
+  add_to_cart: 'ADD TO CART'
+  popular_products: 'Popular products'
+product:
+  home: 'Home'
+  usage: 'Usage'
+  description: 'Description'
+  amount: 'Amount'
+  total: 'Total'

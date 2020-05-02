@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="{{ asset('stylesheets/index_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/index_page-responsive.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="swiper-container">
+        {% include 'elements/header.html.twig' %}
+        <div class="swiper-wrapper">
+            {% for slide in slides %}
+                <div class="swiper-slide swiper-lazy" data-background="{{ slide.image }}" style="background: center / cover no-repeat;">
+                    {{ slide.text|raw }}
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-footer">
+            <div class="lang-panel">
+                <div class="lang {% if app.request.locale == 'ru' %}active{% endif %}">
+                    <a href="{{ path('index', {_locale: 'ru'}) }}">
+                        RU
+                    </a>
+                </div>
+                <div class="lang {% if app.request.locale == 'en' %}active{% endif %}">
+                    <a href="{{ path('index', {_locale: 'en'}) }}">
+                        EN
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="popular_products-wrapper">
+        <div class="popular_products-title">{{ 'home.popular_products'|trans }}</div>
+        <div class="popular_products-grid">
+            {% for product in products %}
+                <div class="popular_products-grid_item">
+                    <a href="{{ path('single_product', {'slug': product.slug}) }}">
+                        <img class="image lazy" data-src="{{ product.image }}">
+                        <div class="title">
+                            {{ product.title }}
+                        </div>
+                        <div class="price">
+                            ${{ product.price }}
+                        </div>
+                    </a>
+                    <div class="add_to_cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
+                        <img class="cart_img lazy" data-src="{{ asset('img/icons/add_to_cart.png') }}">
+                        <p>{{ 'home.add_to_cart'|trans }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="popular_categories-wrapper">
+        <div class="popular_categories-title">
+            Популярные категории
+            <a href="#" class="all_categories">ВСЕ КАТЕГОРИИ</a>
+        </div>
+        <div class="popular_categories-grid">
+            <a href="#">
+                <div class="popular_categories-grid_item">
+                    <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                    <div class="title">Мази</div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="popular_categories-grid_item">
+                    <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                    <div class="title">Мази</div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="popular_categories-grid_item">
+                    <img class="image lazy" data-src="{{ asset('img/products/83 1.png') }}">
+                    <div class="title">Мази</div>
+                </div>
+            </a>
+        </div>
+        <a href="#" class="all_categories-mobile">ВСЕ КАТЕГОРИИ</a>
+    </div>
+    <div class="blog-wrapper">
+        <div class="blog-title">Блог</div>
+        <div class="blog-grid">
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+            <div class="blog-grid_item">
+                <div class="overlay"></div>
+                <img class="image lazy" data-src="{{ asset('img/blog/83 40.png') }}">
+                <div class="info">
+                    <div class="title">Заголовок</div>
+                    <div class="text">
+                        <div>
+                            <p>Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="more">ДАЛЬШЕ ›</a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="to_blog">ПЕРЕЙТИ К БЛОГУ</a>
+        <div class="mobile-overlay"></div>
+    </div>
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="{{ asset('js/index_page.js') }}"></script>
+{% endblock %}

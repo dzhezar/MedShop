@@ -9,11 +9,13 @@ use App\DataMapper\Product\ProductOutputMapper;
 use App\DataMapper\ProductTranslation\ProductTranslationFormMapper;
 use App\Entity\Language;
 use App\Entity\Product;
+use App\Entity\ProductTranslation;
 use App\Entity\Specification;
 use App\Entity\SpecificationValue;
 use App\Entity\SpecificationValueTranslation;
 use App\Model\FormModel\CategoryModel;
 use App\Model\FormModel\ProductModel;
+use App\Repository\ProductRepository;
 use App\Repository\ProductTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,6 +55,10 @@ class ProductService
      * @var ProductTranslationFormMapper
      */
     private $productTranslationFormMapper;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
     /**
      * CategoryService constructor.
@@ -64,6 +70,7 @@ class ProductService
      * @param ProductFormMapper $productFormMapper
      * @param EntityManagerInterface $entityManager
      * @param ProductTranslationFormMapper $productTranslationFormMapper
+     * @param ProductRepository $productRepository
      */
     public function __construct(
         string $relative_path,
@@ -73,7 +80,8 @@ class ProductService
         FileManagerInterface $fileManager,
         ProductFormMapper $productFormMapper,
         EntityManagerInterface $entityManager,
-        ProductTranslationFormMapper $productTranslationFormMapper
+        ProductTranslationFormMapper $productTranslationFormMapper,
+        ProductRepository $productRepository
     ) {
         $this->relative_path = $relative_path;
         $this->productTranslationRepository = $productTranslationRepository;
@@ -83,6 +91,7 @@ class ProductService
         $this->productFormMapper = $productFormMapper;
         $this->entityManager = $entityManager;
         $this->productTranslationFormMapper = $productTranslationFormMapper;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -95,7 +104,7 @@ class ProductService
         $products = $this->productTranslationRepository->findBy(['language' => $language], ['id' => 'DESC']);
         $result = [];
         foreach ($products as $product) {
-            $result[] = $this->outputMapper::entityToModel($product);
+            $result[] = $this->outputMapper->entityToModel($product, true);
         }
 
         return $result;
@@ -208,5 +217,97 @@ class ProductService
         }
 
         $this->entityManager->flush();
+    }
+
+    /**
+     * @param Product[] $newProducts
+     * @param Product[] $oldProducts
+     */
+    public function updateMainPageCategories(array $newProducts, array $oldProducts)
+    {
+        foreach ($oldProducts as $oldProduct) {
+            $oldProduct->setIsOnMain(false);
+        }
+
+        foreach ($newProducts as $newProduct) {
+            $newProduct->setIsOnMain(true);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    public function switchVisibility(int $id, bool $checked): bool
+    {
+        /** @var Product|null $product */
+        if ($product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id])) {
+            $product->setIsVisible($checked);
+            $this->entityManager->flush();
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getPopularProducts(string $language)
+    {
+        $productTranslations = $this->productTranslationRepository->getPopularProductsByLanguage(
+            $this->languageService->getLanguage($language)->getId()
+        );
+
+        $result = [];
+
+        foreach ($productTranslations as $productTranslation) {
+            $result[] = $this->outputMapper->entityToModel($productTranslation, true);
+        }
+
+        return $result;
+    }
+
+    public function findOneBy(array $criteria)
+    {
+        return $this->productRepository->findOneBy($criteria);
+    }
+
+    public function findVisibleProductByIdAndLanguage(int $id, string $language)
+    {
+        return $this->productTranslationRepository->findProductByIdAndLanguage(
+            $id,
+            $this->languageService->getLanguage(
+                $language
+            )->getId()
+        );
+    }
+
+    public function getBySessionIds(array $ids, string $language)
+    {
+        $language = $this->languageService->getLanguage($language);
+        $products = $this->productTranslationRepository->findByProductIds($language->getId(), $ids);
+        $result = [];
+        foreach ($products as $product) {
+            $result[] = $this->outputMapper->entityToModel($product, true);
+        }
+
+        return $result;
+    }
+
+    public function getProductBySlugAndLanguage(string $slug, string $language)
+    {
+        $language = $this->languageService->getLanguage($language)->getId();
+        /** @var ProductTranslation $product */
+        if ($product = $this->productTranslationRepository->findProductBySlugAndLanguage(
+            $slug,
+            $language
+        )) {
+            $rel_product = $this->productRepository->findRelatedProductsByLanguageAndId($product->getId(), $language);
+            if($rel_product) {
+                foreach ($rel_product->getRelatedProducts() as $item) {
+                    $product->getProduct()->addRelatedProduct($item);
+                }
+            }
+
+            return $this->outputMapper->entityToModel($product, true, true, true);
+        }
+
+        return false;
     }
 }

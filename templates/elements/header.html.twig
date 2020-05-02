@@ -1,0 +1,42 @@
+<header>
+    <input type="checkbox" id="menuToggle" autocomplete="off">
+    <label for="menuToggle" class="menuOpen">
+        <div class="open"></div>
+    </label>
+    <div class="menu menuEffects">
+        <div class="menuContent">
+            <a class="menu-item" href="#">{{ 'navbar.product'|trans }}</a>
+            <a class="menu-item" href="#">{{ 'navbar.about_us'|trans }}</a>
+            <a class="menu-item" href="#">{{ 'navbar.blog'|trans }}</a>
+            <a class="menu-item" href="#">{{ 'navbar.contact'|trans }}</a>
+        </div>
+        <a class="header_tel" href="tel:11">+38 (066) 052-14-36</a>
+    </div>
+    <div class="logo">
+        MDIClogo
+    </div>
+    {% set ru_params = app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) %}
+    {% set en_params = app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) %}
+    <div class="lang-panel">
+        <a class="lang {{ app.request.locale=='en' ? 'active' : null  }}" href="{{ path(app.request.attributes.get('_route'), en_params) }}">en</a>
+        <a class="lang {{ app.request.locale=='ru' ? 'active' : null  }}" href="{{ path(app.request.attributes.get('_route'), ru_params) }}">ru</a>
+    </div>
+    <div class="cart-trigger">
+        <img src="{{ asset('img/icons/cart.png') }}">
+    </div>
+    <div class="cart-wrapper">
+        <div class="shadow-filter"></div>
+        <div class="cart">
+            <div class="lds-dual-ring"></div>
+            <div class="title">{{ 'cart.my_cart'|trans }}</div>
+            <div class="cart_list">
+
+            </div>
+            <div class="total">
+                {{ 'cart.total'|trans }}:<span></span>
+            </div>
+            <a href="#" class="to_cart">{{ 'cart.make_order'|trans }}</a>
+            <a href="#" class="back_to_shopping">← {{ 'cart.continue'|trans }}</a>
+        </div>
+    </div>
+</header>

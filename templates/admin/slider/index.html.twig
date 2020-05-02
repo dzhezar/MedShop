@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Блог
+                                <a href="{{ path('admin_main_page_slider_create') }}" class="btn btn-primary">Создать слайд</a>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table card-text table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Фото</th>
+                                    <th>Текст</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for slide in slides %}
+                                    <tr>
+                                        <th scope="row">{{ slide.id }}</th>
+                                        <td><img style="width: 200px; height: 200px; object-fit: contain" src="{{ slide.image }}"></td>
+                                        <td>{{ slide.text|raw }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_main_page_slider_update', {id: slide.id}) }}" class="btn btn-primary">Редактировать</a>
+                                        </td>
+                                        <td>
+                                            <a data-id="{{ slide.id }}" style="color: white" class="btn btn-primary remove-slide">Удалить</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on('click', '.remove-slide', function () {
+            let id = $(this).attr('data-id');
+            if (confirm('Вы уверены что хотите удалить этот слайд?')) {
+                location.href = '/admin_panel/main_page_slider/remove/' + id;
+            }
+        });
+    </script>
+{% endblock %}

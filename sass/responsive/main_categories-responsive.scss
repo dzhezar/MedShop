@@ -1,0 +1,14 @@
+@media (max-width: 576px) {
+  .categories-wrapper {
+    grid-template-columns: repeat(1, 100%);
+    .category {
+      justify-content: flex-start;
+      .title .arrow_right {
+        display: inline-block;
+      }
+      .subcategories_wrapper {
+        display: none;
+      }
+    }
+  }
+}
