@@ -25,7 +25,7 @@ $(document).ready(function () {
                 let item = $(`<div class="item">
                     <img src="${product.image}">
                     <div class="info">
-                        <a href="#" class="name">${product.title}</a>
+                        <a href="/${language}/product/${product.slug}" class="name">${product.title}</a>
                         <div class="price">
                             <div class="quantity" data-id="${product.id}">
                                 <span class="minus">-</span><span class="number">${product.cartAmount}</span><span class="plus">+</span>
@@ -36,6 +36,7 @@ $(document).ready(function () {
                     </div>
                 </div>`);
                 $('.cart_list').append(item);
+                $(`.controls[data-id="${product.id}"]`).children('.product-amount').text(product.cartAmount);
             });
             $('.total').children('span').text(`$${cart.total.toFixed(2)}`);
             $('.lds-dual-ring').hide();
@@ -71,8 +72,11 @@ $(document).ready(function () {
             data: {
                 id: id
             }
-        }).done(function() {
+        }).done(function(data) {
             renderCart(false);
+            if(data.removed === true) {
+                $(`.add_to_cart[data-id="${id}"]`).removeClass('active');
+            }
         });
     });
 

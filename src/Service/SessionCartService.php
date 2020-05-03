@@ -41,16 +41,22 @@ class SessionCartService
 
     public function minus($id)
     {
+        $result = [];
         if($this->storage->offsetExists($id)) {
             $amount = $this->storage->get($id);
             if($amount-1 <= 0) {
                 $this->storage->remove($id);
+                $result = ['removed' => true];
+
             } else {
                 $this->storage->set($id, $amount-1);
+                $result = ['removed' => false];
             }
 
             $this->save();
         }
+
+        return $result;
     }
 
     public function remove($id)
