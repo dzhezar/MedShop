@@ -331,7 +331,7 @@ class ProductService
         $pagination = $this->paginator->paginate(
             $products,
             $page,
-            1 //TODO Changed to 20
+            1 //TODO Change to 20
         );
 
 

@@ -13,6 +13,8 @@ use App\Model\FormModel\ArticleModel;
 use App\Repository\ArticleTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ArticleService
 {
@@ -51,6 +53,10 @@ class ArticleService
      * @var ArticleTranslationFormMapper
      */
     private $articleTranslationFormMapper;
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
 
     public function __construct(
         string $relative_path,
@@ -60,7 +66,8 @@ class ArticleService
         FileManagerInterface $fileManager,
         ArticleFormMapper $articleFormMapper,
         EntityManagerInterface $entityManager,
-        ArticleTranslationFormMapper $articleTranslationFormMapper
+        ArticleTranslationFormMapper $articleTranslationFormMapper,
+        PaginatorInterface $paginator
     ) {
         $this->relative_path = $relative_path;
         $this->articleTranslationRepository = $articleTranslationRepository;
@@ -76,6 +83,7 @@ class ArticleService
         $this->tooltipsArray['article_form_shortDescriptionEN'] = TooltipService::createImageElement(
             '/admin/img/tooltips/short_description.png'
         );
+        $this->paginator = $paginator;
     }
 
     public function getAll(string $language)
@@ -101,6 +109,27 @@ class ArticleService
         }
 
         return $result;
+    }
+
+    public function getAllWithPagination(string $language, int $page = 1)
+    {
+        $language = $this->languageService->getLanguage($language);
+        $products = $this->articleTranslationRepository->getVisibleArticlesByLanguageQuery($language->getId());
+        $result = [];
+
+        $pagination = $this->paginator->paginate(
+            $products,
+            $page,
+            1 //TODO Change to 20
+        );
+
+        foreach ($pagination as $product) {
+            $result[] = $this->outputMapper::entityToModel($product);
+        }
+
+        $pagination->setItems($result);
+
+        return $pagination;
     }
 
     public function create(ArticleModel $articleModel)

@@ -12,5 +12,8 @@
     <div class="blog-wrapper">
         {% include 'elements/blog_grid.html.twig' %}
     </div>
+    <div class="navigation">
+        {{ knp_pagination_render(articles) }}
+    </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
