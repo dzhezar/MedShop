@@ -55,7 +55,7 @@
     <div class="blog-wrapper">
         <div class="blog-title">{{ 'home.blog'|trans }}</div>
         {% include 'elements/blog_grid.html.twig' %}
-        <a href="#" class="to_blog">{{ 'home.to_blog'|trans }}</a>
+        <a href="{{ path('blog_index') }}" class="to_blog">{{ 'home.to_blog'|trans }}</a>
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}

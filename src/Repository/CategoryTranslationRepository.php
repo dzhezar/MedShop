@@ -26,6 +26,7 @@ class CategoryTranslationRepository extends ServiceEntityRepository
             ->leftJoin('category_translation.category', 'category')
             ->leftJoin('category.categories', 'child_categories')
             ->leftJoin('child_categories.categoryTranslations', 'child_categories_translation')
+            ->andWhere('category.category is null')
             ->andWhere('category_translation.language = :langId')
             ->setParameter('langId', $langId)
             ->getQuery()->getResult();

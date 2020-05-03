@@ -51,6 +51,11 @@ class CategoryBreadCrumbStrategy implements BreadcrumbsStrategyInterface
             'url' => $this->router->generate('index')
         ];
 
+        $breadcrumbs[] = [
+            'name' => $this->translator->trans('navbar.product'),
+            'url' => $this->router->generate('main_categories')
+        ];
+
         $langId = $categoryTranslation->getLanguage()->getId();
 
         $subCategoryUrl = false;
