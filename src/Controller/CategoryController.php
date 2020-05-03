@@ -67,7 +67,7 @@ class CategoryController extends AbstractController
             $request->getLocale(),
             $subcategoryslug,
             true,
-            true
+            $request->query->getInt('page', 1)
         );
 
         if (!$result) {

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('stylesheets/blog/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/blog_grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/blog_grid-responsive.css') }}">
+{% endblock %}
+{% block body %}
+    {% include 'elements/header.html.twig' %}
+    {% include 'elements/page_title_with_breadcrumbs.html.twig' %}
+    <div class="blog-wrapper">
+        {% include 'elements/blog_grid.html.twig' %}
+    </div>
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}

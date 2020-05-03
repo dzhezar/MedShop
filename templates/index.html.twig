@@ -53,9 +53,9 @@
         <a href="{{ path('main_categories') }}" class="all_categories-mobile">{{ 'home.all_categories'|trans }}</a>
     </div>
     <div class="blog-wrapper">
-        <div class="blog-title">Блог</div>
+        <div class="blog-title">{{ 'home.blog'|trans }}</div>
         {% include 'elements/blog_grid.html.twig' %}
-        <a href="#" class="to_blog">ПЕРЕЙТИ К БЛОГУ</a>
+        <a href="#" class="to_blog">{{ 'home.to_blog'|trans }}</a>
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}

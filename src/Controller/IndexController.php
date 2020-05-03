@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\OutputModel\ProductModel;
+use App\Service\ArticleService;
 use App\Service\CategoryService;
 use App\Service\MainPageSliderService;
 use App\Service\ProductService;
@@ -23,21 +24,28 @@ class IndexController extends AbstractController
      * @var CategoryService
      */
     private $categoryService;
+    /**
+     * @var ArticleService
+     */
+    private $articleService;
 
     /**
      * IndexController constructor.
      * @param ProductService $productService
      * @param MainPageSliderService $mainPageSliderService
      * @param CategoryService $categoryService
+     * @param ArticleService $articleService
      */
     public function __construct(
         ProductService $productService,
         MainPageSliderService $mainPageSliderService,
-        CategoryService $categoryService
+        CategoryService $categoryService,
+        ArticleService $articleService
     ) {
         $this->productService = $productService;
         $this->mainPageSliderService = $mainPageSliderService;
         $this->categoryService = $categoryService;
+        $this->articleService = $articleService;
     }
 
     public function index(Request $request)
@@ -46,12 +54,14 @@ class IndexController extends AbstractController
         /** @var ProductModel[] $products */
         $products = $this->productService->getPopularProducts($request->getLocale());
         $categories = $this->categoryService->getPopularCategories($request->getLocale());
+        $articles = $this->articleService->getAllForMainPage($request->getLocale());
         return $this->render(
             'index.html.twig',
             [
                 'slides' => $slides,
                 'products' => $products,
-                'categories' => $categories
+                'categories' => $categories,
+                'articles' => $articles
             ]
         );
     }

@@ -19,6 +19,21 @@ class ArticleTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, ArticleTranslation::class);
     }
 
+    public function getVisibleArticlesByLanguage(int $langId)
+    {
+        return $this->createQueryBuilder('article_translation')
+            ->addSelect('article', 'language')
+            ->leftJoin('article_translation.article', 'article')
+            ->leftJoin('article_translation.language', 'language')
+            ->andWhere('article.is_visible = true')
+            ->andWhere('language.id = :langId')
+            ->orderBy('article.id', 'DESC')
+            ->setParameter('langId', $langId)
+            ->setMaxResults(6)
+            ->getQuery()->getResult();
+
+    }
+
     // /**
     //  * @return ArticleTranslation[] Returns an array of ArticleTranslation objects
     //  */

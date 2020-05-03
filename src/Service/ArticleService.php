@@ -90,6 +90,19 @@ class ArticleService
         return $result;
     }
 
+    public function getAllForMainPage(string $language)
+    {
+        $language = $this->languageService->getLanguage($language);
+        $products = $this->articleTranslationRepository->getVisibleArticlesByLanguage($language->getId());
+        $result = [];
+
+        foreach ($products as $product) {
+            $result[] = $this->outputMapper::entityToModel($product);
+        }
+
+        return $result;
+    }
+
     public function create(ArticleModel $articleModel)
     {
         $image = $this->fileManager->uploadFile($articleModel->getImage(), self::UPLOAD_FOLDER, true);

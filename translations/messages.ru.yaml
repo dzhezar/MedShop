@@ -13,6 +13,9 @@ home:
   popular_products: 'Популярные товары'
   popular_categories: 'Популярные категории'
   all_categories: 'ВСЕ КАТЕГОРИИ'
+  blog: 'Блог'
+  to_blog: 'ПЕРЕЙТИ К БЛОГУ'
+  more: 'MORE'
 product:
   home: 'Главная'
   usage: 'Применение'

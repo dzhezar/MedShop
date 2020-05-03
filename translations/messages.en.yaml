@@ -13,6 +13,9 @@ home:
   popular_products: 'Popular products'
   popular_categories: 'Popular categories'
   all_categories: 'ALL CATEGORIES'
+  blog: 'Blog'
+  to_blog: 'GO TO BLOG'
+  more: 'MORE'
 product:
   home: 'Home'
   usage: 'Usage'

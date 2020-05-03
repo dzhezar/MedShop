@@ -10,5 +10,8 @@
     {% include 'elements/header.html.twig' %}
     {% include 'elements/page_title_with_breadcrumbs.html.twig' %}
     {% include 'elements/products_grid.html.twig' %}
+    <div class="navigation">
+        {{ knp_pagination_render(products) }}
+    </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}

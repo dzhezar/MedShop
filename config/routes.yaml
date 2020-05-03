@@ -36,6 +36,13 @@ main_categories:
         _locale: "%locales%"
     controller: App\Controller\CategoryController::mainCategories
 
+blog_index:
+    path:
+        /{_locale}/blog
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\BlogController::index
+
 ######cart#####
 api_cart_all:
     methods: POST
