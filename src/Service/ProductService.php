@@ -20,6 +20,7 @@ use App\Repository\ProductRepository;
 use App\Repository\ProductTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ProductService
 {
@@ -60,6 +61,10 @@ class ProductService
      * @var ProductRepository
      */
     private $productRepository;
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
 
     /**
      * CategoryService constructor.
@@ -72,6 +77,7 @@ class ProductService
      * @param EntityManagerInterface $entityManager
      * @param ProductTranslationFormMapper $productTranslationFormMapper
      * @param ProductRepository $productRepository
+     * @param PaginatorInterface $paginator
      */
     public function __construct(
         string $relative_path,
@@ -82,7 +88,8 @@ class ProductService
         ProductFormMapper $productFormMapper,
         EntityManagerInterface $entityManager,
         ProductTranslationFormMapper $productTranslationFormMapper,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        PaginatorInterface $paginator
     ) {
         $this->relative_path = $relative_path;
         $this->productTranslationRepository = $productTranslationRepository;
@@ -93,6 +100,7 @@ class ProductService
         $this->entityManager = $entityManager;
         $this->productTranslationFormMapper = $productTranslationFormMapper;
         $this->productRepository = $productRepository;
+        $this->paginator = $paginator;
     }
 
     /**
@@ -312,7 +320,7 @@ class ProductService
         return false;
     }
 
-    public function getProductByCategory(CategoryTranslation $categoryTranslation)
+    public function getProductByCategory(CategoryTranslation $categoryTranslation, $page = 0)
     {
         /** @var ProductTranslation[] $products */
         $products = $this->productTranslationRepository->getProductsByCategoryIdAndLanguage(
@@ -320,12 +328,21 @@ class ProductService
             $categoryTranslation->getLanguage()->getId()
         );
 
-        $result = [];
+        $pagination = $this->paginator->paginate(
+            $products,
+            $page,
+            1 //TODO Change to 20
+        );
 
-        foreach ($products as $product) {
-            $result[] = $this->outputMapper->entityToModel($product, true);
+
+        $products = [];
+        foreach ($pagination->getItems() as $item) {
+            $products[] = $this->outputMapper->entityToModel($item, true);
         }
 
-        return $result;
+        $pagination->setItems($products);
+
+
+        return $pagination;
     }
 }

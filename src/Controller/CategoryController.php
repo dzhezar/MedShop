@@ -8,6 +8,7 @@ use App\Model\OutputModel\CategoryModel;
 use App\Service\BreadcrumbsService;
 use App\Service\CategoryService;
 use App\Service\ProductService;
+use App\Strategy\Breadcurmbs\CatalogBreadcrumbsStrategy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -44,7 +45,8 @@ class CategoryController extends AbstractController
     public function mainCategories(Request $request)
     {
         $categories = $this->categoryService->getAllWithSubcategories($request->getLocale());
-        return $this->render('categories/main.html.twig', ['categories' => $categories]);
+        $breadCrumbs = $this->breadcrumbsService->generateBreadcrumbs([], CatalogBreadcrumbsStrategy::TYPE_NAME);
+        return $this->render('categories/main.html.twig', ['categories' => $categories, 'breadcrumbs' => $breadCrumbs]);
     }
 
     public function singleCategory(Request $request, $slug)
@@ -67,7 +69,7 @@ class CategoryController extends AbstractController
             $request->getLocale(),
             $subcategoryslug,
             true,
-            true
+            $request->query->getInt('page', 1)
         );
 
         if (!$result) {
@@ -75,10 +77,5 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('categories/catalog.html.twig', $result);
-    }
-
-    public function subCategories()
-    {
-        return $this->render('categories/sub.html.twig');
     }
 }

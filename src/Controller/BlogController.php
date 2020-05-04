@@ -4,12 +4,43 @@
 namespace App\Controller;
 
 
+use App\Service\ArticleService;
+use App\Service\BreadcrumbsService;
+use App\Strategy\Breadcurmbs\BlogMainBreadCrumbsStrategy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends AbstractController
 {
-    public function index()
+    /**
+     * @var ArticleService
+     */
+    private $articleService;
+    /**
+     * @var BreadcrumbsService
+     */
+    private $breadcrumbsService;
+
+    /**
+     * BlogController constructor.
+     * @param ArticleService $articleService
+     * @param BreadcrumbsService $breadcrumbsService
+     */
+    public function __construct(ArticleService $articleService, BreadcrumbsService $breadcrumbsService)
     {
-        return $this->render('blog/index.html.twig');
+        $this->articleService = $articleService;
+        $this->breadcrumbsService = $breadcrumbsService;
+    }
+
+    public function index(Request $request)
+    {
+        $articles = $this->articleService->getAllWithPagination(
+            $request->getLocale(),
+            $request->query->getInt('page', 1)
+        );
+
+        $breadcrumbs = $this->breadcrumbsService->generateBreadcrumbs([], BlogMainBreadCrumbsStrategy::TYPE_NAME);
+
+        return $this->render('blog/index.html.twig', ['articles' => $articles, 'breadcrumbs' => $breadcrumbs]);
     }
 }

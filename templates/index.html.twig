@@ -46,16 +46,16 @@
     </div>
     <div class="popular_categories-wrapper">
         <div class="popular_categories-title">
-            Популярные категории
-            <a href="#" class="all_categories">ВСЕ КАТЕГОРИИ</a>
+            {{ 'home.popular_categories'|trans }}
+            <a href="{{ path('main_categories') }}" class="all_categories">{{ 'home.all_categories'|trans }}</a>
         </div>
         {% include 'elements/categories_grid.html.twig' %}
-        <a href="#" class="all_categories-mobile">ВСЕ КАТЕГОРИИ</a>
+        <a href="{{ path('main_categories') }}" class="all_categories-mobile">{{ 'home.all_categories'|trans }}</a>
     </div>
     <div class="blog-wrapper">
-        <div class="blog-title">Блог</div>
+        <div class="blog-title">{{ 'home.blog'|trans }}</div>
         {% include 'elements/blog_grid.html.twig' %}
-        <a href="#" class="to_blog">ПЕРЕЙТИ К БЛОГУ</a>
+        <a href="{{ path('blog_index') }}" class="to_blog">{{ 'home.to_blog'|trans }}</a>
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}

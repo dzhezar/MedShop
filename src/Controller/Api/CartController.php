@@ -8,6 +8,7 @@ use App\Service\CartService;
 use App\Service\ValidationService;
 use App\Strategy\Validation\AddToCartValidationStrategy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -56,9 +57,7 @@ class CartController extends AbstractController
             return new BadRequestHttpException();
         }
 
-        $this->cartService->minus($request->request->get('id'));
-
-        return new Response();
+        return new JsonResponse($this->cartService->minus($request->request->get('id')));
     }
 
     public function remove(Request $request)

@@ -207,7 +207,7 @@ class CategoryService
         string $language,
         $subCategorySlug = null,
         $with_breadcrumbs = false,
-        $with_product = false
+        $page = false
     ) {
         /** @var CategoryTranslation $categoryTranslation */
         if ($categoryTranslation = $this->categoryTranslationRepository->getCategoryBySlugAndLanguage(
@@ -233,8 +233,8 @@ class CategoryService
                 );
 
                 $products = [];
-                if($with_product) {
-                    $products = $this->productService->getProductByCategory($categoryTranslation);
+                if($page) {
+                    $products = $this->productService->getProductByCategory($categoryTranslation, $page);
                 }
 
                 return [

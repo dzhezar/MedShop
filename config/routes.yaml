@@ -36,21 +36,13 @@ main_categories:
         _locale: "%locales%"
     controller: App\Controller\CategoryController::mainCategories
 
-subcategories:
-    path:
-        /subcategories
-    controller: App\Controller\CategoryController::subCategories
-
-category_catalog:
-    path:
-        /category/catalog
-    controller: App\Controller\CategoryController::categoryCatalog
-
 blog_index:
     path:
-        /blog
+        /{_locale}/blog
+    requirements:
+        _locale: "%locales%"
     controller: App\Controller\BlogController::index
-    
+
 ######cart#####
 api_cart_all:
     methods: POST

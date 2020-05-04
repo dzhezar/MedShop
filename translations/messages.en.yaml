@@ -11,9 +11,16 @@ cart:
 home:
   add_to_cart: 'ADD TO CART'
   popular_products: 'Popular products'
+  popular_categories: 'Popular categories'
+  all_categories: 'ALL CATEGORIES'
+  blog: 'Blog'
+  to_blog: 'GO TO BLOG'
+  more: 'MORE'
 product:
   home: 'Home'
   usage: 'Usage'
   description: 'Description'
   amount: 'Amount'
   total: 'Total'
+category:
+  name: 'Categories'

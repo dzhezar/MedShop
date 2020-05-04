@@ -31,7 +31,7 @@ class ProductTranslationRepository extends ServiceEntityRepository
             ->andWhere('category.id = :category_id')
             ->setParameter('category_id', $categoryId)
             ->setParameter('lang_id', $languageId)
-            ->getQuery()->getResult();
+            ->getQuery();
     }
 
     public function getPopularProductsByLanguage(int $languageId)

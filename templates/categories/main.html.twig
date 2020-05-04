@@ -8,7 +8,7 @@
 {% block body %}
     {% include 'elements/header.html.twig' %}
     {% include 'elements/page_title_with_breadcrumbs.html.twig' %}
-    <div class="categories">Категории</div>
+{#    <div class="categories">{{ 'category.name'|trans }}</div>#}
     <div class="categories-wrapper">
         {% for category in categories %}
             <div class="category">
