@@ -23,20 +23,16 @@
                 </div>
                 <label>
                     Street Address
-                    <input type="text" name="address">
+                    <input class="search" data-type="address" type="text" name="address">
                 </label>
                 <div class="row">
                     <label class="half-w">
                         City/Town
-                        <input type="text" name="city/town">
+                        <input class="search" data-type="city" type="text" name="city/town">
                     </label>
                     <label class="half-w">
                         State
-                        <select style="height: 36px;" name="state">
-                            <option>North Dacota</option>
-                            <option>California</option>
-                            <option>Washington</option>
-                        </select>
+                        <input class="search" data-type="state" type="text" name="city/state">
                     </label>
                 </div>
                 <div class="row">
@@ -109,7 +105,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        console.log($('form#qq').serialize());
-    </script>
+    <script src="{{ asset('js/checkout.js') }}"></script>
 {% endblock %}
