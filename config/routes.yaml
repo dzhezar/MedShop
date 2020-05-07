@@ -42,6 +42,12 @@ blog_index:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\BlogController::index
+checkout_index:
+    path:
+        /{_locale}/checkout
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\CheckoutController::index
 
 ######cart#####
 api_cart_all:

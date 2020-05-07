@@ -1,0 +1,137 @@
+header {
+  position: relative;
+  margin-left: auto;
+}
+.page_title {
+  font-weight: bold;
+  font-size: 48px;
+  color: #486259;
+  width: 85%;
+  height: 8%;
+  margin: 0 auto;
+  padding: 1%;
+}
+.checkout_wrapper {
+  margin: auto;
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  .checkout_details {
+    width: 61%;
+    padding: 0 2%;
+    border-right: 1px solid black;
+    form {
+      .row {
+        display: flex;
+        justify-content: space-between;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        &.half-w {
+          width: 47%;
+        }
+        &.full-w {
+          width: 100%;
+        }
+        input {
+          height: 30px;
+          font-size: 20px;
+        }
+      }
+    }
+    .payment_select {
+      display: flex;
+      flex-direction: column;
+      label {
+        font-size: 24px;
+        padding: 5px ;
+      }
+    }
+  }
+  .place_order {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    background: #486259;
+    width: fit-content;
+    margin: 40px 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .cart {
+    padding: 2% 0;
+    width: 30%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    .cart_info {
+      height: 7%;
+      padding: 1% 0 2%;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      a {
+        font-weight: normal;
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      height: 64%;
+      padding-bottom: 4%;
+      overflow-y: auto;
+      .cart_item {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        width: 100%;
+        justify-content: space-evenly;
+
+        img {
+          height: 90%;
+          width: 40%;
+          object-fit: contain;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 60%;
+          justify-content: space-evenly;
+
+          .title {
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            color: #363636;
+          }
+
+          .price {
+            font-weight: 500;
+            font-size: 18px;
+            color: #363636;
+          }
+        }
+      }
+    }
+    hr {
+      width: 100%;
+    }
+    .price_details {
+      height: 17%;
+      padding-top: 3%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
