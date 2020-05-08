@@ -70,6 +70,10 @@ api_address_search:
     methods: POST
     path: /api/search
     controller: App\Controller\Api\SearchAddressController::search
+api_checkout:
+    methods: POST
+    path: /api/checkout
+    controller: App\Controller\Api\CheckoutController::checkout
 
 #admin_panel
 admin_index:

@@ -60,6 +60,7 @@ class ArticleController extends AbstractController
 
     public function update(Article $id, Request $request)
     {
+        dd($request->request->all());
         $model = $this->articleFormMapper->entityToModel($id);
         $form = $this->createForm(ArticleForm::class, $model);
         $form->handleRequest($request);

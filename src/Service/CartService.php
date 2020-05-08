@@ -8,6 +8,8 @@ use App\Model\OutputModel\ProductModel;
 
 class CartService
 {
+    const DELIVERY_PRICE = 15;
+    const TAX_COEFFICIENT = 0.2;
     /**
      * @var ProductService
      */
@@ -60,18 +62,32 @@ class CartService
         }
     }
 
-    public function getAll(string $language)
+    public function getAll(string $language, $with_tax = false)
     {
         $ids = array_keys($this->sessionCartService->all());
         /** @var ProductModel[] $products */
         $products = $this->productService->getBySessionIds($ids, $language);
         $total = 0;
+        $amount = 0;
         foreach ($products as $product) {
+            $amount += $product->getCartAmount();
             $total += $product->getCartAmount()*$product->getPrice();
         }
-        return [
+
+        $result = [
+            'amount' => $amount,
             'products' => $products,
             'total' => $total
         ];
+
+        if($with_tax) {
+            $result['shipping_price'] = self::DELIVERY_PRICE;
+            $totalBeforeTax = $result['total'] + $result['shipping_price'];
+            $result['total_before_tax'] = $totalBeforeTax;
+            $result['tax'] = self::TAX_COEFFICIENT * $totalBeforeTax;
+            $result['total_with_tax'] = $result['total_before_tax'] + $result['tax'];
+        }
+
+        return $result;
     }
 }

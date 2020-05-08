@@ -2,6 +2,11 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('stylesheets/checkout/main.css') }}">
+    <style>
+        .form-error {
+            color: red;
+        }
+    </style>
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
@@ -10,15 +15,15 @@
 
         <div class="checkout_details">
             <h2 class="shipping_title">Shipping details</h2>
-            <form id="qq">
+            <form id="checkout">
                 <div class="row">
                     <label class="half-w">
                         Full Name
-                        <input type="text" name="full_name" value="qqqq">
+                        <input type="text" name="full_name">
                     </label>
                     <label class="half-w">
                         Email
-                        <input type="email" name="email" value="qq@qq.com">
+                        <input type="email" name="email">
                     </label>
                 </div>
                 <label>
@@ -28,11 +33,11 @@
                 <div class="row">
                     <label class="half-w">
                         City/Town
-                        <input class="search" data-type="city" type="text" name="city/town">
+                        <input class="search" data-type="city" type="text" name="city">
                     </label>
                     <label class="half-w">
                         State
-                        <input class="search" data-type="state" type="text" name="city/state">
+                        <input class="search" data-type="state" type="text" name="state">
                     </label>
                 </div>
                 <div class="row">
@@ -45,59 +50,43 @@
                         <input type="tel" name="phone">
                     </label>
                 </div>
+                <div class="payment_select">
+                    <h2>Payment Selection</h2>
+                    <label>
+                        <input name="payment" value="paypal" type="radio" checked>
+                        Paypal
+                    </label>
+                    <label>
+                        <input name="payment" value="card" type="radio">
+                        Card
+                    </label>
+                </div>
+                <input type="hidden" name="language" value="{{ app.request.locale }}">
             </form>
-            <div class="payment_select">
-                <h2>Payment Selection</h2>
-                <label>
-                    <input type="radio">
-                    Paypal
-                </label>
-                <label>
-                    <input type="radio">
-                    Card
-                </label>
-            </div>
             <div class="place_order">Place Order</div>
         </div>
         <div class="cart">
             <div class="cart_info">
-                4 items <a href="#">Edit</a>
+                {{ amount }} items <a href="#">Edit</a>
             </div>
             <div class="list">
-                <div class="cart_item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
+                {% for product in products %}
+                    <div class="cart_item">
+                    <img src="{{ product.image }}">
                     <div class="info">
-                        <div class="title">Но-шпа ( Ношпа )</div>
-                        <div class="price">1шт / 80.50 $</div>
+                        <div class="title">{{ product.title }}</div>
+                        <div class="price">{{ product.cartAmount }}шт / ${{ product.price }}</div>
                     </div>
                 </div>
-                <div class="cart_item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="title">Но-шпа ( Ношпа )</div>
-                        <div class="price">1шт / 80.50 $</div>
-                    </div>
-                </div>
-                <div class="cart_item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="title">Но-шпа ( Ношпа )</div>
-                        <div class="price">1шт / 80.50 $</div>
-                    </div>
-                </div>
-                <div class="cart_item">
-                    <img src="{{ asset('img/products/83 1.png') }}">
-                    <div class="info">
-                        <div class="title">Но-шпа ( Ношпа )</div>
-                        <div class="price">1шт / 80.50 $</div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <hr>
             <div class="price_details">
-                <div class="subtotal">Subtotal: <span>$111</span></div>
-                <div class="delivery">Delivery: <span>$32</span></div>
-                <div class="total">Total: <span>$11111</span></div>
+                <div class="subtotal">Subtotal: <span>${{ total }}</span></div>
+                <div class="delivery">Delivery: <span>${{ shipping_price }}</span></div>
+                <div class="delivery">Total Before Tax: <span>{{ total_before_tax }}</span></div>
+                <div class="delivery">Estimated tax: <span>{{ tax }}</span></div>
+                <div class="total">Total: <span>${{ total_with_tax }}</span></div>
             </div>
         </div>
     </div>
