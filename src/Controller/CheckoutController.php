@@ -29,6 +29,8 @@ class CheckoutController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
+        $data['id'] = $this->cartService->setRandomCartId();
+
         return $this->render('checkout/index.html.twig', $data);
     }
 }

@@ -66,6 +66,7 @@
                 </div>
                 <input type="hidden" name="language" value="{{ app.request.locale }}">
             </form>
+            <div id="paypal-button-container"></div>
             <div class="price_details mobile">
                 <div class="subtotal">Subtotal: <span>${{ total | round(1,'common') }}</span></div>
                 <div class="delivery">Delivery: <span>${{ shipping_price | round(1,'common') }}</span></div>
@@ -104,5 +105,10 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script data-order-id="{{ id }}"
+            src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
+{#    <script src="https://js.braintreegateway.com/web/3.62.0/js/client.min.js"></script>#}
+{#    <script src="https://js.braintreegateway.com/web/3.62.0/js/paypal-checkout.min.js"></script>#}
     <script src="{{ asset('js/checkout.js') }}"></script>
 {% endblock %}
