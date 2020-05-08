@@ -31,8 +31,8 @@ class AddressService
     {
         $data = \json_decode($request->getContent(), true);
 
-        $data['country'] = 'US';
         $data['format'] = 'json';
+        $data['limit'] = 50;
 
         try {
             $response = \json_decode(
