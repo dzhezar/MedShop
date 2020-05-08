@@ -1,6 +1,13 @@
 header {
   position: relative;
   margin-left: auto;
+  height: 64px;
+  .cart-trigger {
+    display: none;
+  }
+}
+h2 {
+  color: #486259;
 }
 .page_title {
   font-weight: bold;
@@ -12,14 +19,16 @@ header {
   padding: 1%;
 }
 .checkout_wrapper {
-  margin: auto;
+  margin: 0 auto 50px;
   width: 85%;
   display: flex;
   justify-content: space-between;
   .checkout_details {
     width: 61%;
     padding: 0 2%;
-    border-right: 1px solid black;
+    background: white;
+    border: 2px solid lightgray;
+    border-radius: 10px;
     form {
       .row {
         display: flex;
@@ -28,7 +37,8 @@ header {
       label {
         display: flex;
         flex-direction: column;
-        padding: 10px 0;
+        font-style: italic;
+        padding: 5px 0;
         &.half-w {
           width: 47%;
         }
@@ -36,8 +46,13 @@ header {
           width: 100%;
         }
         input {
-          height: 30px;
+          height: 36px;
           font-size: 20px;
+          padding: 0 10px;
+          &:focus {
+            border: #879a7a solid 2px;
+            outline: none;
+          }
         }
       }
     }
@@ -46,23 +61,70 @@ header {
       flex-direction: column;
       label {
         font-size: 24px;
-        padding: 5px ;
+        padding: 5px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        width: fit-content;
+        input {
+          position: relative;
+          opacity: 0;
+          cursor: pointer;
+          &:checked ~ .checkmark:after {
+            display: block;
+          }
+        }
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: #b0c8a0;
+          border-radius: 50%;
+          transition: all .3s ease-in;
+          &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+          }
+        }
       }
     }
   }
   .place_order {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bold;
     color: white;
-    background: #486259;
-    width: fit-content;
-    margin: 40px 0;
+    background: linear-gradient(131.08deg, #859878 17.02%, #B7CFA6 104.92%);
+    box-shadow: 10px 10px 25px rgba(149, 149, 149, 0.3), -10px -10px 25px rgba(177, 177, 177, 0.4);
+    width: 80%;
+    text-align: center;
+    border-radius: 40px;
+    margin: 40px auto;
     padding: 10px;
     cursor: pointer;
+    transition: all .3s ease-in;
+    &:hover {
+      background: transparent;
+      color: #486259;
+      box-shadow: unset;
+    }
   }
   .cart {
-    padding: 2% 0;
-    width: 30%;
+    padding: 2% 1%;
+    margin: 0 1%;
+    background: white;
+    border: 2px solid #b2c9a1;
+    border-radius: 10px;
+    width: 28%;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -72,6 +134,7 @@ header {
       font-size: 24px;
       font-weight: bold;
       display: flex;
+      color: #486259;
       justify-content: space-between;
       a {
         font-weight: normal;
@@ -80,7 +143,7 @@ header {
     .list {
       display: flex;
       flex-direction: column;
-      height: 64%;
+      height: 53%;
       padding-bottom: 4%;
       overflow-y: auto;
       .cart_item {
@@ -105,16 +168,14 @@ header {
           justify-content: space-evenly;
 
           .title {
-            font-weight: bold;
             font-size: 24px;
-            text-align: center;
             color: #363636;
           }
 
           .price {
-            font-weight: 500;
             font-size: 18px;
             color: #363636;
+            text-decoration: underline;
           }
         }
       }
@@ -123,7 +184,7 @@ header {
       width: 100%;
     }
     .price_details {
-      height: 17%;
+      height: 30%;
       padding-top: 3%;
       display: flex;
       flex-direction: column;
@@ -131,6 +192,16 @@ header {
       div {
         display: flex;
         justify-content: space-between;
+        font-size: 24px;
+        font-style: italic;
+        span {
+          font-style: normal;
+        }
+      }
+      .total {
+        font-style: normal;
+        font-weight: bold;
+        color: #486259;
       }
     }
   }
