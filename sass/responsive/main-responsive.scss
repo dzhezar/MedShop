@@ -11,6 +11,12 @@
       }
       .cart {
         width: 80%;
+        .cart_list .item .info .price .quantity {
+            width: 35%;
+        }
+        .total span {
+          font-size: 30px;
+        }
       }
     }
   }
@@ -36,6 +42,12 @@
 
       .cart {
         width: 100%;
+        .cart_list {
+          height: 50%;
+          .item .info .name {
+            font-size: 18px;
+          }
+        }
       }
     }
     .logo {
