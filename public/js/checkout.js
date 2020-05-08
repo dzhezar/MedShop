@@ -5,16 +5,22 @@ $(document).ready(function () {
             url: "/api/checkout",
             data: $('form#checkout').serialize(),
             dataType: "json",
+            success: function(data) {
+                switch (data.type) {
+                    case 'paypal': {
+                        initPaypal();
+                        break;
+                    }
+                }
+            },
             error: function (jqXHR) {
                 $('.form-error').remove();
+                let data = JSON.parse(jqXHR.responseText);
                 if(jqXHR.status === 422) {
-                    let data = JSON.parse(jqXHR.responseText);
                     Object.keys(data).forEach(function (item) {
                         let input = $(`input[name=${item}]`);
                         input.after($(`<span class="form-error">${data[item]}</span>`));
                     });
-                } else if(jqXHR.status === 200) {
-                    alert('спасибо');
                 }
             }
         });
@@ -69,4 +75,34 @@ $(document).ready(function () {
     //     $(this).parent().parent().find('input').val(text);
     //     $(this).parent().remove();
     // });
+
+    function initPaypal() {
+        paypal.Buttons({
+            // createOrder: function(data, actions) {
+            //     // This function sets up the details of the transaction, including the amount and line item details.
+            //     return actions.order.create({
+            //         purchase_units: [{
+            //             amount: {
+            //                 value: '0.01'
+            //             }
+            //         }]
+            //     });
+            // },
+            onApprove: function(data) {
+                return fetch('/api/paypal/callback', {
+                    method: 'post',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        orderID: data.orderID
+                    })
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(details) {
+                    alert('Authorization created for ' + details.payer_given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+    }
 });

@@ -6,6 +6,7 @@ namespace App\Service;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 class SessionCartService
 {
@@ -83,5 +84,13 @@ class SessionCartService
     public function all()
     {
         return $this->storage->toArray();
+    }
+
+    public function setRandomCardIdToSession()
+    {
+        $string = sha1((new \DateTime())->format('Y-m-d H:i:s'));
+        $this->session->set('id', $string);
+
+        return $string;
     }
 }

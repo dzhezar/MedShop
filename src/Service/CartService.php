@@ -102,4 +102,9 @@ class CartService
 
         return $result;
     }
+
+    public function setRandomCartId()
+    {
+        return $this->sessionCartService->setRandomCardIdToSession();
+    }
 }

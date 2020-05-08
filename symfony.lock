@@ -1,4 +1,7 @@
 {
+    "braintree/braintree_php": {
+        "version": "5.0.0"
+    },
     "cocur/slugify": {
         "version": "v4.0.0"
     },
@@ -93,18 +96,6 @@
     "doctrine/reflection": {
         "version": "1.2.1"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        },
-        "files": [
-            "config/packages/dev/easy_log_handler.yaml"
-        ]
-    },
     "egulias/email-validator": {
         "version": "2.1.17"
     },
@@ -131,6 +122,12 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "paypal/paypal-checkout-sdk": {
+        "version": "1.0.1"
+    },
+    "paypal/paypalhttp": {
+        "version": "1.0.0"
     },
     "php": {
         "version": "7.3"

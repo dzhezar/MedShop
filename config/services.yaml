@@ -1,62 +1,70 @@
 parameters:
-    app.relative_uploads_dir: '/uploads/'
-    app.uploads_dir: '%kernel.project_dir%/public%app.relative_uploads_dir%'
-    locale: en
-    locales: ru|en
+  app.relative_uploads_dir: '/uploads/'
+  app.uploads_dir: '%kernel.project_dir%/public%app.relative_uploads_dir%'
+  locale: en
+  locales: ru|en
 
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
+  _defaults:
+    autowire: true
+    autoconfigure: true
 
-    _instanceof:
-        App\Strategy\Validation\ValidationStrategyInterface:
-            tags: ['app.validation']
+  _instanceof:
+    App\Strategy\Validation\ValidationStrategyInterface:
+      tags: ['app.validation']
 
-        App\Strategy\Breadcurmbs\BreadcrumbsStrategyInterface:
-            tags: ['app.breadcrumb']
+    App\Strategy\Breadcurmbs\BreadcrumbsStrategyInterface:
+      tags: ['app.breadcrumb']
 
-        App\Strategy\Pay\PayStrategyInterface:
-            tags: ['app.pay']
+    App\Strategy\Pay\PayStrategyInterface:
+      tags: ['app.pay']
 
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+  App\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+  App\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
 
-    App\Service\FileManager\FileManager:
-        arguments:
-            - '%app.uploads_dir%'
-            - '%kernel.project_dir%/public'
+  App\Service\FileManager\FileManager:
+    arguments:
+      - '%app.uploads_dir%'
+      - '%kernel.project_dir%/public'
 
-    App\Service\CategoryService:
-        arguments:
-            - '%app.relative_uploads_dir%'
+  App\Service\CategoryService:
+    arguments:
+      - '%app.relative_uploads_dir%'
 
-    App\Service\ProductService:
-        arguments:
-            - '%app.relative_uploads_dir%'
+  App\Service\ProductService:
+    arguments:
+      - '%app.relative_uploads_dir%'
 
-    App\Service\ArticleService:
-        arguments:
-            - '%app.relative_uploads_dir%'
+  App\Service\ArticleService:
+    arguments:
+      - '%app.relative_uploads_dir%'
 
-    App\Service\MainPageSliderService:
-        arguments:
-            - '%app.relative_uploads_dir%'
+  App\Service\MainPageSliderService:
+    arguments:
+      - '%app.relative_uploads_dir%'
 
-    App\Service\ValidationService:
-        arguments:
-            - !tagged_iterator app.validation
+  App\Service\ValidationService:
+    arguments:
+      - !tagged_iterator app.validation
 
-    App\Service\BreadcrumbsService:
-        arguments:
-            - !tagged_iterator app.breadcrumb
+  App\Service\BreadcrumbsService:
+    arguments:
+      - !tagged_iterator app.breadcrumb
 
-    App\Service\PayService:
-        arguments:
-            - !tagged_iterator app.pay
+  App\Service\PayService:
+    arguments:
+      - !tagged_iterator app.pay
+
+  App\Factory\PayPalClientFactory:
+    arguments:
+      - "%env(PAYPAL_CLIENT_ID)%"
+      - "%env(PAYPAL_SECRET)%"
+
+
+#%env(string:BRAINTREE_ENV)%
 

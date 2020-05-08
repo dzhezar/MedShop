@@ -74,6 +74,10 @@ api_checkout:
     methods: POST
     path: /api/checkout
     controller: App\Controller\Api\CheckoutController::checkout
+api_paypal_callback:
+    methods: GET
+    path: /api/paypal/callback/{orderId}
+    controller: App\Controller\Api\CheckoutController::handlePayPalCallback
 
 #admin_panel
 admin_index:

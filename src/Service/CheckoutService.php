@@ -8,7 +8,6 @@ use App\DataMapper\Order\OrderMapper;
 use App\Entity\Orders;
 use App\Model\FormModel\CheckoutModel;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class CheckoutService
 {
@@ -64,6 +63,8 @@ class CheckoutService
         $this->entityManager->persist($order);
         $this->entityManager->flush();
 
-        $this->payService->pay($order);
+        return ['type' => $checkoutModel->getPayment()];
+
+//        return $this->payService->pay($order);
     }
 }

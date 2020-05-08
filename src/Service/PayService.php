@@ -25,7 +25,7 @@ class PayService
     {
         foreach ($this->strategies as $strategy) {
             if($strategy->supports($order->getPayment())) {
-                $strategy->pay($order);
+                return $strategy->pay($order);
             }
         }
     }
