@@ -65,6 +65,11 @@ class Language implements EntityInterface
      */
     private $mainPageSliderTranslations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="language")
+     */
+    private $orders;
+
     public function __construct()
     {
         $this->categoryTranslations = new ArrayCollection();
@@ -73,6 +78,7 @@ class Language implements EntityInterface
         $this->specificationValueTranslations = new ArrayCollection();
         $this->articleTranslations = new ArrayCollection();
         $this->mainPageSliderTranslations = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -284,6 +290,37 @@ class Language implements EntityInterface
             // set the owning side to null (unless already changed)
             if ($mainPageSliderTranslation->getLanguage() === $this) {
                 $mainPageSliderTranslation->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Orders[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Orders $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Orders $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getLanguage() === $this) {
+                $order->setLanguage(null);
             }
         }
 

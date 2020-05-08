@@ -16,6 +16,9 @@ services:
         App\Strategy\Breadcurmbs\BreadcrumbsStrategyInterface:
             tags: ['app.breadcrumb']
 
+        App\Strategy\Pay\PayStrategyInterface:
+            tags: ['app.pay']
+
     App\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -52,4 +55,8 @@ services:
     App\Service\BreadcrumbsService:
         arguments:
             - !tagged_iterator app.breadcrumb
+
+    App\Service\PayService:
+        arguments:
+            - !tagged_iterator app.pay
 

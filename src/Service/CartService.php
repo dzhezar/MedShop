@@ -5,6 +5,7 @@ namespace App\Service;
 
 
 use App\Model\OutputModel\ProductModel;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class CartService
 {
@@ -22,21 +23,28 @@ class CartService
      * @var LanguageService
      */
     private $languageService;
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
 
     /**
      * CartService constructor.
      * @param SessionCartService $sessionCartService
      * @param ProductService $productService
      * @param LanguageService $languageService
+     * @param SerializerInterface $serializer
      */
     public function __construct(
         SessionCartService $sessionCartService,
         ProductService $productService,
-        LanguageService $languageService
+        LanguageService $languageService,
+        SerializerInterface $serializer
     ) {
         $this->sessionCartService = $sessionCartService;
         $this->productService = $productService;
         $this->languageService = $languageService;
+        $this->serializer = $serializer;
     }
 
     public function add(int $id)
@@ -62,7 +70,7 @@ class CartService
         }
     }
 
-    public function getAll(string $language, $with_tax = false)
+    public function getAll(string $language, $with_tax = false, $to_array = false)
     {
         $ids = array_keys($this->sessionCartService->all());
         /** @var ProductModel[] $products */
@@ -72,6 +80,10 @@ class CartService
         foreach ($products as $product) {
             $amount += $product->getCartAmount();
             $total += $product->getCartAmount()*$product->getPrice();
+        }
+
+        if($to_array) {
+            $products = $this->serializer->serialize($products, 'json');
         }
 
         $result = [

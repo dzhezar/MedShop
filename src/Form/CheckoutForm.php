@@ -4,6 +4,8 @@
 namespace App\Form;
 
 
+use App\Entity\Language;
+use App\Entity\Orders as Order;
 use App\Model\FormModel\CheckoutModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,11 +27,15 @@ class CheckoutForm  extends AbstractType
             ->add('phone')
             ->add('payment', ChoiceType::class, [
                 'choices' => [
-                    'paypal',
-                    'card'
+                    Order::PAY_TYPE_PAYPAL,
+                    Order::PAY_TYPE_CARD
                 ]
             ])
-            ->add('language');
+            ->add('language', ChoiceType::class, [
+                'choices' => [
+                    Language::LANGUAGES_ARRAY
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
