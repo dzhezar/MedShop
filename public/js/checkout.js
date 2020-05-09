@@ -1,17 +1,13 @@
 $(document).ready(function () {
     $(document).on('click', '.place_order', function () {
+        alert('preloader');
         $.ajax({
             method: 'POST',
             url: "/api/checkout",
             data: $('form#checkout').serialize(),
             dataType: "json",
             success: function(data) {
-                switch (data.type) {
-                    case 'paypal': {
-                        initPaypal();
-                        break;
-                    }
-                }
+                window.location.href='/paypal/pay/'+data.hash;
             },
             error: function (jqXHR) {
                 $('.form-error').remove();
@@ -78,17 +74,17 @@ $(document).ready(function () {
 
     function initPaypal() {
         paypal.Buttons({
-            // createOrder: function(data, actions) {
-            //     // This function sets up the details of the transaction, including the amount and line item details.
-            //     return actions.order.create({
-            //         purchase_units: [{
-            //             amount: {
-            //                 value: '0.01'
-            //             }
-            //         }]
-            //     });
-            // },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                        },
+                    }]
+                });
+            },
             onApprove: function(data) {
+                console.log(data);
                 return fetch('/api/paypal/callback', {
                     method: 'post',
                     headers: {

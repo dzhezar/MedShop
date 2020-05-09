@@ -6,7 +6,9 @@ namespace App\Form;
 
 use App\Entity\Language;
 use App\Entity\Orders as Order;
+use App\Entity\State;
 use App\Model\FormModel\CheckoutModel;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,15 +24,12 @@ class CheckoutForm  extends AbstractType
             ->add('email')
             ->add('address')
             ->add('city')
-            ->add('state')
+            ->add('state', EntityType::class, [
+                'class' => State::class,
+                'choice_value' => 'code'
+            ])
             ->add('zip')
             ->add('phone')
-            ->add('payment', ChoiceType::class, [
-                'choices' => [
-                    Order::PAY_TYPE_PAYPAL,
-                    Order::PAY_TYPE_CARD
-                ]
-            ])
             ->add('language', ChoiceType::class, [
                 'choices' => [
                     Language::LANGUAGES_ARRAY

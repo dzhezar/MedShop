@@ -13,7 +13,6 @@ class Orders
     const PAY_TYPE_CARD = 'card';
 
     const STATUS_CREATED = 'created';
-    const STATUS_WAITING_PAYMENT = 'waiting';
     const STATUS_SUCCESS_PAYMENT = 'success';
     const STATUS_FAILED_PAYMENT = 'failed';
 
@@ -45,11 +44,6 @@ class Orders
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $state;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $zip;
@@ -58,11 +52,6 @@ class Orders
      * @ORM\Column(type="string", length=255)
      */
     private $phone;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $payment;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Language", inversedBy="orders")
@@ -79,6 +68,32 @@ class Orders
      * @ORM\Column(type="json")
      */
     private $order_data = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $hash;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=State::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $state;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $pay_pal_data = [];
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_created;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_updated;
 
     public function getId(): ?int
     {
@@ -133,18 +148,6 @@ class Orders
         return $this;
     }
 
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
     public function getZip(): ?int
     {
         return $this->zip;
@@ -165,18 +168,6 @@ class Orders
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getPayment(): ?string
-    {
-        return $this->payment;
-    }
-
-    public function setPayment(string $payment): self
-    {
-        $this->payment = $payment;
 
         return $this;
     }
@@ -213,6 +204,66 @@ class Orders
     public function setOrderData(array $order_data): self
     {
         $this->order_data = $order_data;
+
+        return $this;
+    }
+
+    public function getHash(): ?string
+    {
+        return $this->hash;
+    }
+
+    public function setHash(string $hash): self
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    public function getState(): ?State
+    {
+        return $this->state;
+    }
+
+    public function setState(?State $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getPayPalData(): ?array
+    {
+        return $this->pay_pal_data;
+    }
+
+    public function setPayPalData(array $pay_pal_data): self
+    {
+        $this->pay_pal_data = $pay_pal_data;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->date_created;
+    }
+
+    public function setDateCreated(\DateTimeInterface $date_created): self
+    {
+        $this->date_created = $date_created;
+
+        return $this;
+    }
+
+    public function getDateUpdated(): ?\DateTimeInterface
+    {
+        return $this->date_updated;
+    }
+
+    public function setDateUpdated(\DateTimeInterface $date_updated): self
+    {
+        $this->date_updated = $date_updated;
 
         return $this;
     }

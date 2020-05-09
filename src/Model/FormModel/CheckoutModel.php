@@ -46,10 +46,6 @@ class CheckoutModel
     /**
      * @Assert\NotBlank()
      */
-    private $payment;
-    /**
-     * @Assert\NotBlank()
-     */
     private $language;
 
     /**
@@ -175,24 +171,6 @@ class CheckoutModel
     public function setPhone($phone)
     {
         $this->phone = $phone;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPayment()
-    {
-        return $this->payment;
-    }
-
-    /**
-     * @param mixed $payment
-     * @return CheckoutModel
-     */
-    public function setPayment($payment)
-    {
-        $this->payment = $payment;
         return $this;
     }
 

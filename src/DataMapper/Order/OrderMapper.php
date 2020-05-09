@@ -32,7 +32,6 @@ class OrderMapper
             ->setCity($checkoutModel->getCity())
             ->setEmail($checkoutModel->getEmail())
             ->setFullName($checkoutModel->getFullName())
-            ->setPayment($checkoutModel->getPayment())
             ->setPhone($checkoutModel->getPhone())
             ->setState($checkoutModel->getState())
             ->setZip($checkoutModel->getZip());

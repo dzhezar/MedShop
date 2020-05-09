@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\StateRepository;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,14 +13,20 @@ class CheckoutController extends AbstractController
      * @var CartService
      */
     private $cartService;
+    /**
+     * @var StateRepository
+     */
+    private $stateRepository;
 
     /**
      * CheckoutController constructor.
      * @param CartService $cartService
+     * @param StateRepository $stateRepository
      */
-    public function __construct(CartService $cartService)
+    public function __construct(CartService $cartService, StateRepository $stateRepository)
     {
         $this->cartService = $cartService;
+        $this->stateRepository = $stateRepository;
     }
 
     public function history(Request $request)
@@ -34,7 +41,7 @@ class CheckoutController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        $data['id'] = $this->cartService->setRandomCartId();
+        $data['states'] = $this->stateRepository->findAll();
 
         return $this->render('checkout/index.html.twig', $data);
     }
