@@ -22,6 +22,11 @@ class CheckoutController extends AbstractController
         $this->cartService = $cartService;
     }
 
+    public function history(Request $request)
+    {
+        return $this->render('checkout/history.html.twig');
+    }
+
     public function index(Request $request)
     {
         $data = $this->cartService->getAll($request->getLocale(), true);

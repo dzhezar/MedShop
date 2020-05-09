@@ -48,6 +48,12 @@ checkout_index:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\CheckoutController::index
+orders_history:
+    path:
+        /{_locale}/history
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\CheckoutController::history
 
 ######cart#####
 api_cart_all:
