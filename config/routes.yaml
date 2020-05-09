@@ -48,6 +48,10 @@ checkout_index:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\CheckoutController::index
+paypal_pay:
+    path:
+        /paypal/pay/{orderHash}
+    controller: App\Controller\PayController::paypalPay
 orders_history:
     path:
         /{_locale}/history
@@ -82,8 +86,8 @@ api_checkout:
     controller: App\Controller\Api\CheckoutController::checkout
 api_paypal_callback:
     methods: GET
-    path: /api/paypal/callback/{orderId}
-    controller: App\Controller\Api\CheckoutController::handlePayPalCallback
+    path: /api/paypal/callback/{orderId}/{paypalId}
+    controller: App\Controller\Api\PayController::handlePayPalCallback
 
 #admin_panel
 admin_index:

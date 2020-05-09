@@ -38,7 +38,11 @@
                     </label>
                     <label class="half-w">
                         State
-                        <input class="search" data-type="state" type="text" name="state">
+                        <select name="state">
+                            {% for state in states %}
+                                <option value="{{ state.code }}">{{ state.name }}</option>
+                            {% endfor %}
+                        </select>
                     </label>
                 </div>
                 <div class="row">
@@ -49,19 +53,6 @@
                     <label class="half-w">
                         Phone
                         <input type="tel" name="phone">
-                    </label>
-                </div>
-                <div class="payment_select">
-                    <h2>Payment Selection</h2>
-                    <label>
-                        <input name="payment" value="paypal" type="radio" checked>
-                        <span class="checkmark"></span>
-                        Paypal
-                    </label>
-                    <label>
-                        <input name="payment" value="card" type="radio">
-                        <span class="checkmark"></span>
-                        Card
                     </label>
                 </div>
                 <input type="hidden" name="language" value="{{ app.request.locale }}">
@@ -105,9 +96,9 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script data-order-id="{{ id }}"
-            src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
-    </script>
+{#    <script data-order-id="{{ id }}"#}
+{#            src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.#}
+{#    </script>#}
 {#    <script src="https://js.braintreegateway.com/web/3.62.0/js/client.min.js"></script>#}
 {#    <script src="https://js.braintreegateway.com/web/3.62.0/js/paypal-checkout.min.js"></script>#}
     <script src="{{ asset('js/checkout.js') }}"></script>

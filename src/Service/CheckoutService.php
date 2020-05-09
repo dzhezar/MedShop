@@ -8,6 +8,9 @@ use App\DataMapper\Order\OrderMapper;
 use App\Entity\Orders;
 use App\Model\FormModel\CheckoutModel;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class CheckoutService
 {
@@ -27,10 +30,6 @@ class CheckoutService
      * @var EntityManagerInterface
      */
     private $entityManager;
-    /**
-     * @var PayService
-     */
-    private $payService;
 
     /**
      * CheckoutService constructor.
@@ -38,33 +37,47 @@ class CheckoutService
      * @param CartService $cartService
      * @param OrderMapper $orderMapper
      * @param EntityManagerInterface $entityManager
-     * @param PayService $payService
      */
     public function __construct(
         SessionCartService $sessionCartService,
         CartService $cartService,
         OrderMapper $orderMapper,
-        EntityManagerInterface $entityManager,
-        PayService $payService
+        EntityManagerInterface $entityManager
     ) {
         $this->sessionCartService = $sessionCartService;
         $this->cartService = $cartService;
         $this->orderMapper = $orderMapper;
         $this->entityManager = $entityManager;
-        $this->payService = $payService;
     }
 
-    public function create(CheckoutModel $checkoutModel)
+    public function create(CheckoutModel $checkoutModel, Request $request)
     {
         $order = $this->orderMapper->modelToEntity($checkoutModel);
         $order->setPayStatus(Orders::STATUS_CREATED);
         $order->setOrderData($this->cartService->getAll($checkoutModel->getLanguage(), true, true));
+        $order->setHash($this->hashOrder());
+        $order->setDateCreated(new \DateTime());
+        $order->setDateUpdated(new \DateTime());
 
         $this->entityManager->persist($order);
         $this->entityManager->flush();
 
-        return ['type' => $checkoutModel->getPayment()];
 
-//        return $this->payService->pay($order);
+        $orders = \json_decode($request->cookies->get('orders'), true);
+        $orders[] = $order->getHash();
+
+        $cookie = new Cookie('orders', \json_encode($orders), strtotime('tomorrow'));
+
+        $response = new JsonResponse(['hash' => $order->getHash()]);
+
+        $response->headers->setCookie($cookie);
+
+
+        return $response;
+    }
+
+    private function hashOrder()
+    {
+        return md5(uniqid((new \DateTime())->format('Y-m-d H:i:s')));
     }
 }

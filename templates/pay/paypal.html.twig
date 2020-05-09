@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+        <div id="paypal-button-container">Wait...</div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        custom_id: '{{ order.hash }}',
+                        amount: {
+                            value: '{{ order.orderData.total_with_tax }}'
+                        }
+                    }],
+                    application_context: { shipping_preference: "NO_SHIPPING" }
+                });
+            },
+            onApprove: function(data) {
+                $.ajax({
+                    method: 'GET',
+                    url: '/api/paypal/callback/{{ order.hash }}/'+data.orderID,
+                }).done(function(data) {
+                    switch (data.status) {
+                        case 'success':{
+                            alert('успешно');
+                            break
+                        }
+                        case 'failed':
+                            alert('неудачно');
+                            break;
+                    }
+                });
+                return fetch('/api/paypal/callback/{{ order.hash }}/'+data.orderID, {
+                    method: 'get'
+                }).then(function(res) {
+                }).then(function(details) {
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+{% endblock %}

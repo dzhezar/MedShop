@@ -16,9 +16,6 @@ services:
     App\Strategy\Breadcurmbs\BreadcrumbsStrategyInterface:
       tags: ['app.breadcrumb']
 
-    App\Strategy\Pay\PayStrategyInterface:
-      tags: ['app.pay']
-
   App\:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -56,14 +53,15 @@ services:
     arguments:
       - !tagged_iterator app.breadcrumb
 
-  App\Service\PayService:
-    arguments:
-      - !tagged_iterator app.pay
-
   App\Factory\PayPalClientFactory:
     arguments:
       - "%env(PAYPAL_CLIENT_ID)%"
       - "%env(PAYPAL_SECRET)%"
+
+  App\Command\SyncStatesCommand:
+    arguments: ['%kernel.project_dir%',]
+    tags:
+      - { name: console.command }
 
 
 #%env(string:BRAINTREE_ENV)%
