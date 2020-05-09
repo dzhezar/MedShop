@@ -97,7 +97,7 @@ class CartService
             $totalBeforeTax = $result['total'] + $result['shipping_price'];
             $result['total_before_tax'] = $totalBeforeTax;
             $result['tax'] = self::TAX_COEFFICIENT * $totalBeforeTax;
-            $result['total_with_tax'] = $result['total_before_tax'] + $result['tax'];
+            $result['total_with_tax'] = round($result['total_before_tax'] + $result['tax'], 2);
         }
 
         return $result;

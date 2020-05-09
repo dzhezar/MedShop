@@ -38,11 +38,6 @@
                             break;
                     }
                 });
-                return fetch('/api/paypal/callback/{{ order.hash }}/'+data.orderID, {
-                    method: 'get'
-                }).then(function(res) {
-                }).then(function(details) {
-                });
             }
         }).render('#paypal-button-container');
     </script>
