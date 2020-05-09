@@ -102,12 +102,14 @@ h1 {
             display: flex;
             justify-content: space-between;
             .shipping_info {
+              width: 45%;
               div {
                 font-size: 18px;
                 padding: 5px 0;
               }
             }
             .payment_info {
+              width: 45%;
               div {
                 display: flex;
                 justify-content: space-between;
