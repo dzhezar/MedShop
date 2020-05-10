@@ -12,7 +12,7 @@
 
     <script>
         paypal.Buttons({
-            createOrder: function(data, actions) {
+            createOrder: function (data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         custom_id: '{{ order.hash }}',
@@ -20,16 +20,18 @@
                             value: '{{ order.orderData.total_with_tax }}'
                         }
                     }],
-                    application_context: { shipping_preference: "NO_SHIPPING" }
+                    application_context: {
+                        shipping_preference: "NO_SHIPPING"
+                    },
                 });
             },
-            onApprove: function(data) {
+            onApprove: function (data) {
                 $.ajax({
                     method: 'GET',
-                    url: '/api/paypal/callback/{{ order.hash }}/'+data.orderID,
-                }).done(function(data) {
+                    url: '/api/paypal/callback/{{ order.hash }}/' + data.orderID,
+                }).done(function (data) {
                     switch (data.status) {
-                        case 'success':{
+                        case 'success': {
                             alert('успешно');
                             break
                         }

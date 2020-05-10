@@ -35,7 +35,7 @@
             <div class="total">
                 {{ 'cart.total'|trans }}:<span></span>
             </div>
-            <a href="#" class="to_cart">{{ 'cart.make_order'|trans }}</a>
+            <a href="{{ path('checkout_index') }}" class="to_cart">{{ 'cart.make_order'|trans }}</a>
             <a href="#" class="back_to_shopping">← {{ 'cart.continue'|trans }}</a>
         </div>
     </div>

@@ -7,192 +7,183 @@
     {% include 'elements/header.html.twig' %}
     <h1>Мои заказы</h1>
     <div class="history_wrapper">
-        <div class="history_item done">
+        {% for order in orders %}
+            <div class="history_item {{ order.status == 'success' ? 'done' }}">
             <div class="header">
                 <div class="info">
-                    <div class="number"><span></span>№ 563793428</div>
-                    <div class="date">25 апреля 2019 03:47</div>
+                    <div class="number"><span></span>№ {{ order.id }}</div>
+                    <div class="date">{{ order.dateCreated|date('Y-m-d') }}</div>
                 </div>
-                <div class="status">ВЫПОЛНЕН</div>
+                <div class="status">{{ order.statusText }}</div>
             </div>
             <div class="body_wrapper">
                 <div class="body">
                     <div class="full_info">
                         <div class="list">
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
+                            {% for product in order.orderData.products %}
+                                <div class="list_item">
+                                    <img src="{{ product.image }}">
+                                    <div class="information">
+                                        <div class="title">{{ product.title }}</div>
+                                        <div class="price">${{ product.price }}</div>
+                                        <div class="total">{{ product.cartAmount }}шт / ${{ product.cartAmount*product.price }}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                         <div class="summary">
                             <div class="shipping_info">
                                 <h2>Shipping Details:</h2>
-                                <div class="name">Dzhezar</div>
-                                <div class="email">qq@qq.com</div>
-                                <div class="address">street/city/state/zip</div>
-                                <div class="phone">111111</div>
+                                <div class="name">{{ order.fullName }}</div>
+                                <div class="email">{{ order.email }}</div>
+                                <div class="address">{{ order.street }}/{{ order.city }}/{{ order.state }}/{{ order.zip }}</div>
+                                <div class="phone">{{ order.phone }}</div>
                             </div>
                             <div class="payment_info">
                                 <h2>Payment Details:</h2>
-                                <div class="subtotal">Subtotal: <span>$11</span></div>
-                                <div class="delivery">Delivery: <span>$1</span></div>
-                                <div class="delivery">Total Before Tax: <span>$24</span></div>
-                                <div class="delivery">Estimated tax: <span>$12</span></div>
-                                <div class="total">Total: <span>$11111</span></div>
+                                <div class="subtotal">Subtotal: <span>${{ order.orderData.total }}</span></div>
+                                <div class="delivery">Delivery: <span>${{ order.orderData.shipping_price }}</span></div>
+                                <div class="delivery">Total Before Tax: <span>${{ order.orderData.total_before_tax }}</span></div>
+                                <div class="delivery">Estimated tax: <span>${{ order.orderData.tax }}</span></div>
+                                <div class="total">Total: <span>${{ order.orderData.total_with_tax }}</span></div>
                             </div>
                         </div>
                     </div>
                     <div class="status_wrapper">
                         <div class="title">Статус заказа</div>
-                        <div class="status done" data-status="done"></div>
+                        <div class="status {{ order.status == 'success' ? 'done' }}" data-status="{{ order.statusText }}"></div>
+                        {% if order.paymentLink is not empty %}
+                            <a href="{{ order.paymentLink }}">Оплатить</a>
+                       {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="history_item">
-            <div class="header">
-                <div class="info">
-                    <div class="number"><span></span>№ 563793428</div>
-                    <div class="date">25 апреля 2019 03:47</div>
-                </div>
-                <div class="status">ОТМЕНЕН</div>
-            </div>
-            <div class="body_wrapper">
-                <div class="body">
-                    <div class="full_info">
-                        <div class="list">
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="summary">
-                            <div class="shipping_info">
-                                <h2>Shipping Details:</h2>
-                                <div class="name">Dzhezar</div>
-                                <div class="email">qq@qq.com</div>
-                                <div class="address">street/city/state/zip</div>
-                                <div class="phone">111111</div>
-                            </div>
-                            <div class="payment_info">
-                                <h2>Payment Details:</h2>
-                                <div class="subtotal">Subtotal: <span>$11</span></div>
-                                <div class="delivery">Delivery: <span>$1</span></div>
-                                <div class="delivery">Total Before Tax: <span>$24</span></div>
-                                <div class="delivery">Estimated tax: <span>$12</span></div>
-                                <div class="total">Total: <span>$11111</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status_wrapper">
-                        <div class="title">Статус заказа</div>
-                        <div class="status cancel" data-status="cancel"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="history_item done">
-            <div class="header">
-                <div class="info">
-                    <div class="number"><span></span>№ 563793428</div>
-                    <div class="date">25 апреля 2019 03:47</div>
-                </div>
-                <div class="status">ВЫПОЛНЕН</div>
-            </div>
-            <div class="body_wrapper">
-                <div class="body">
-                    <div class="full_info">
-                        <div class="list">
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                            <div class="list_item">
-                                <img src="{{ asset('img/products/83 1.png') }}">
-                                <div class="information">
-                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>
-                                    <div class="price">80.50 $</div>
-                                    <div class="total">1шт / 80.50 $</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="summary">
-                            <div class="shipping_info">
-                                <h2>Shipping Details:</h2>
-                                <div class="name">Dzhezar</div>
-                                <div class="email">qq@qq.com</div>
-                                <div class="address">street/city/state/zip</div>
-                                <div class="phone">111111</div>
-                            </div>
-                            <div class="payment_info">
-                                <h2>Payment Details:</h2>
-                                <div class="subtotal">Subtotal: <span>$11</span></div>
-                                <div class="delivery">Delivery: <span>$1</span></div>
-                                <div class="delivery">Total Before Tax: <span>$24</span></div>
-                                <div class="delivery">Estimated tax: <span>$12</span></div>
-                                <div class="total">Total: <span>$11111</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status_wrapper">
-                        <div class="title">Статус заказа</div>
-                        <div class="status done" data-status="done"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+{#        <div class="history_item">#}
+{#            <div class="header">#}
+{#                <div class="info">#}
+{#                    <div class="number"><span></span>№ 563793428</div>#}
+{#                    <div class="date">25 апреля 2019 03:47</div>#}
+{#                </div>#}
+{#                <div class="status">ОТМЕНЕН</div>#}
+{#            </div>#}
+{#            <div class="body_wrapper">#}
+{#                <div class="body">#}
+{#                    <div class="full_info">#}
+{#                        <div class="list">#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="summary">#}
+{#                            <div class="shipping_info">#}
+{#                                <h2>Shipping Details:</h2>#}
+{#                                <div class="name">Dzhezar</div>#}
+{#                                <div class="email">qq@qq.com</div>#}
+{#                                <div class="address">street/city/state/zip</div>#}
+{#                                <div class="phone">111111</div>#}
+{#                            </div>#}
+{#                            <div class="payment_info">#}
+{#                                <h2>Payment Details:</h2>#}
+{#                                <div class="subtotal">Subtotal: <span>$11</span></div>#}
+{#                                <div class="delivery">Delivery: <span>$1</span></div>#}
+{#                                <div class="delivery">Total Before Tax: <span>$24</span></div>#}
+{#                                <div class="delivery">Estimated tax: <span>$12</span></div>#}
+{#                                <div class="total">Total: <span>$11111</span></div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="status_wrapper">#}
+{#                        <div class="title">Статус заказа</div>#}
+{#                        <div class="status cancel" data-status="cancel"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="history_item done">#}
+{#            <div class="header">#}
+{#                <div class="info">#}
+{#                    <div class="number"><span></span>№ 563793428</div>#}
+{#                    <div class="date">25 апреля 2019 03:47</div>#}
+{#                </div>#}
+{#                <div class="status">ВЫПОЛНЕН</div>#}
+{#            </div>#}
+{#            <div class="body_wrapper">#}
+{#                <div class="body">#}
+{#                    <div class="full_info">#}
+{#                        <div class="list">#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="list_item">#}
+{#                                <img src="{{ asset('img/products/83 1.png') }}">#}
+{#                                <div class="information">#}
+{#                                    <div class="title">Но-шпа Но-шпа ( Ношпа ) ношпа ношпа( Ношпа ) ношпа</div>#}
+{#                                    <div class="price">80.50 $</div>#}
+{#                                    <div class="total">1шт / 80.50 $</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="summary">#}
+{#                            <div class="shipping_info">#}
+{#                                <h2>Shipping Details:</h2>#}
+{#                                <div class="name">Dzhezar</div>#}
+{#                                <div class="email">qq@qq.com</div>#}
+{#                                <div class="address">street/city/state/zip</div>#}
+{#                                <div class="phone">111111</div>#}
+{#                            </div>#}
+{#                            <div class="payment_info">#}
+{#                                <h2>Payment Details:</h2>#}
+{#                                <div class="subtotal">Subtotal: <span>$11</span></div>#}
+{#                                <div class="delivery">Delivery: <span>$1</span></div>#}
+{#                                <div class="delivery">Total Before Tax: <span>$24</span></div>#}
+{#                                <div class="delivery">Estimated tax: <span>$12</span></div>#}
+{#                                <div class="total">Total: <span>$11111</span></div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="status_wrapper">#}
+{#                        <div class="title">Статус заказа</div>#}
+{#                        <div class="status done" data-status="done"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
