@@ -7,7 +7,10 @@ $(document).ready(function () {
             data: $('form#checkout').serialize(),
             dataType: "json",
             success: function(data) {
-                window.location.href='/paypal/pay/'+data.hash;
+                $('.popup').css('display','flex');
+                $('.payment_variants').fadeIn();
+                $('#to_payment').attr('href', '/paypal/pay/'+data.hash);
+               // window.location.href='/paypal/pay/'+data.hash;
             },
             error: function (jqXHR) {
                 $('.form-error').remove();

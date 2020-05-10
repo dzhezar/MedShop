@@ -224,3 +224,36 @@ h2 {
     }
   }
 }
+.popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background: rgba(211, 211, 211, 0.5);
+  .payment_variants {
+    display: none;
+    height: 300px;
+    width: 300px;
+    background: white;
+    border: 3px rgba(133, 152, 120, 0.7) solid;
+    border-radius: 40px;
+    .variants {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      a {
+        padding: 10px 20px;
+        background: linear-gradient(131.08deg, #859878 17.02%, #B7CFA6 104.92%);
+        color: white;
+        font-size: 30px;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+    }
+  }
+}

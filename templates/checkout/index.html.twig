@@ -92,6 +92,14 @@
             </div>
         </div>
     </div>
+    <div class="popup">
+        <div class="payment_variants">
+            <div class="variants">
+                <a href="#" id="to_payment">Pay now</a>
+                <a onclick="window.location.href='/'+language+'/history'" class="to_history">Review order</a>
+            </div>
+        </div>
+    </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
 {% block javascripts %}
