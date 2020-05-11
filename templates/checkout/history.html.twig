@@ -2,6 +2,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('stylesheets/checkout/history.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/checkout/history-responsive.css') }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
@@ -53,7 +54,7 @@
                         <div class="title">Статус заказа</div>
                         <div class="status {{ order.status == 'success' ? 'done' }}" data-status="{{ order.statusText }}"></div>
                         {% if order.paymentLink is not empty %}
-                            <a href="{{ order.paymentLink }}">Оплатить</a>
+                            <a class="pay" href="{{ order.paymentLink }}">Оплатить</a>
                        {% endif %}
                     </div>
                 </div>

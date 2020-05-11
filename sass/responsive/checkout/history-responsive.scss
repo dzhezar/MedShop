@@ -1,0 +1,32 @@
+@media (max-width: 900px) {
+  .history_wrapper {
+    width: 90%;
+    .history_item {
+      width: 95%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .history_wrapper .history_item .body_wrapper .body {
+    .full_info {
+      width: 70%;
+    }
+    .status_wrapper {
+      width: 25%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .history_wrapper .history_item .body_wrapper .body {
+    flex-direction: column;
+    .full_info {
+      width: 96%;
+      padding: 2%;
+    }
+    .status_wrapper {
+      width: 100%;
+    }
+  }
+}
