@@ -91,6 +91,7 @@ $(document).ready(function () {
             }
         }).done(function() {
             renderCart(false);
+            $(`.add_to_cart[data-id=${id}]`).removeClass('active');
         });
     });
 
@@ -105,7 +106,7 @@ $(document).ready(function () {
             }
         }).done(function() {
             this_elem.addClass('active');
-            $('.cart-trigger').click();
+            // $('.cart-trigger').click();
         });
     })
 });
