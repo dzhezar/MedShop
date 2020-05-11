@@ -44,7 +44,6 @@ class OrderService
         /** @var OrderModel[] $result */
         $result = [];
         $language = $request->getLocale();
-//        dd($request->cookies->get('orders', []));
         $orders = \json_decode($request->cookies->get('orders', []), true);
         foreach ($orders as $item) {
             if ($order = $this->ordersRepository->findOneBy(['hash' => $item])) {

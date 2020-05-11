@@ -30,3 +30,9 @@
     }
   }
 }
+
+@media (max-width: 340px) {
+  .history_wrapper .history_item .body_wrapper .body .full_info .summary .payment_info div {
+    font-size: 14px;
+  }
+}

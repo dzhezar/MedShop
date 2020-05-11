@@ -24,10 +24,12 @@ h1 {
     }
     .header {
       display: flex;
+      padding: 8px;
       .info {
         display: flex;
         justify-content: space-between;
-        width: 65%;
+        width: 61%;
+        padding: 0 2%;
         font-weight: 500;
         font-size: 18px;
         color: #486158;
@@ -72,6 +74,8 @@ h1 {
               justify-content: space-between;
               img {
                 width: 20%;
+                height: 100%;
+                object-fit: contain;
               }
               .information {
                 width: 70%;
