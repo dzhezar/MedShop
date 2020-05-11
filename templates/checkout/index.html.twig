@@ -19,7 +19,7 @@
             <form id="checkout">
                 <div class="row">
                     <label class="half-w">
-                        Full Name
+                        {{ 'checkout.full_name'|trans }}
                         <input type="text" name="full_name">
                     </label>
                     <label class="half-w">
@@ -28,16 +28,16 @@
                     </label>
                 </div>
                 <label>
-                    Street Address
+                    {{ 'checkout.street'|trans }}
                     <input class="search" data-type="address" type="text" name="address">
                 </label>
                 <div class="row">
                     <label class="half-w">
-                        City/Town
+                        {{ 'checkout.city'|trans }}
                         <input class="search" data-type="city" type="text" name="city">
                     </label>
                     <label class="half-w">
-                        State
+                        {{ 'checkout.state'|trans }}
                         <select name="state">
                             {% for state in states %}
                                 <option value="{{ state.code }}">{{ state.name }}</option>
@@ -47,11 +47,11 @@
                 </div>
                 <div class="row">
                     <label class="half-w">
-                        Zip Code
+                        {{ 'checkout.zip'|trans }}
                         <input type="text" name="zip">
                     </label>
                     <label class="half-w">
-                        Phone
+                        {{ 'checkout.phone'|trans }}
                         <input type="tel" name="phone">
                     </label>
                 </div>
@@ -59,17 +59,17 @@
             </form>
             <div id="paypal-button-container"></div>
             <div class="price_details mobile">
-                <div class="subtotal">Subtotal: <span>${{ total | round(1,'common') }}</span></div>
-                <div class="delivery">Delivery: <span>${{ shipping_price | round(1,'common') }}</span></div>
-                <div class="delivery">Total Before Tax: <span>{{ total_before_tax | round(1,'common') }}</span></div>
-                <div class="delivery">Estimated tax: <span>{{ tax | round(1,'common') }}</span></div>
-                <div class="total">Total: <span>${{ total_with_tax | round(1,'common') }}</span></div>
+                <div class="subtotal">{{ 'checkout.subtotal'|trans }}: <span>${{ total | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.delivery'|trans }}: <span>${{ shipping_price | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>{{ total_before_tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>{{ tax | round(1,'common') }}</span></div>
+                <div class="total">{{ 'checkout.total'|trans }}: <span>${{ total_with_tax | round(1,'common') }}</span></div>
             </div>
-            <div class="place_order">Place Order</div>
+            <div class="place_order">{{ 'checkout.place_order'|trans }}</div>
         </div>
         <div class="cart">
             <div class="cart_info">
-                {{ amount }} items <a href="#">Edit</a>
+                {{ amount }} {{ 'history.pieces'|trans }} <a href="#">Edit</a>
             </div>
             <div class="list">
                 {% for product in products %}
@@ -84,19 +84,19 @@
             </div>
             <hr>
             <div class="price_details">
-                <div class="subtotal">Subtotal: <span>${{ total | round(1,'common') }}</span></div>
-                <div class="delivery">Delivery: <span>${{ shipping_price | round(1,'common') }}</span></div>
-                <div class="delivery">Total Before Tax: <span>{{ total_before_tax | round(1,'common') }}</span></div>
-                <div class="delivery">Estimated tax: <span>{{ tax | round(1,'common') }}</span></div>
-                <div class="total">Total: <span>${{ total_with_tax | round(1,'common') }}</span></div>
+                <div class="subtotal">{{ 'checkout.subtotal'|trans }}: <span>${{ total | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.delivery'|trans }}: <span>${{ shipping_price | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>{{ total_before_tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>{{ tax | round(1,'common') }}</span></div>
+                <div class="total">{{ 'checkout.total'|trans }}: <span>${{ total_with_tax | round(1,'common') }}</span></div>
             </div>
         </div>
     </div>
     <div class="popup">
         <div class="payment_variants">
             <div class="variants">
-                <a href="#" id="to_payment">Pay now</a>
-                <a onclick="window.location.href='/'+language+'/history'" class="to_history">Review order</a>
+                <a href="#" id="to_payment">{{ 'checkout.pay_now'|trans }}</a>
+                <a onclick="window.location.href='{{ path('orders_history') }}'" class="to_history">{{ 'checkout.review_order'|trans }}</a>
             </div>
         </div>
     </div>
@@ -104,10 +104,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-{#    <script data-order-id="{{ id }}"#}
-{#            src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.#}
-{#    </script>#}
-{#    <script src="https://js.braintreegateway.com/web/3.62.0/js/client.min.js"></script>#}
-{#    <script src="https://js.braintreegateway.com/web/3.62.0/js/paypal-checkout.min.js"></script>#}
     <script src="{{ asset('js/checkout.js') }}"></script>
 {% endblock %}

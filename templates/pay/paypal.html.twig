@@ -8,7 +8,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id=AecLKlCawKIIK-SE-cJdzOm7wiK4r-N7WA6GC-pMLgL7MBc63aLUtGvFOOtFkB5oeunFTHNlzGyz-TrI"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}"></script>
 
     <script>
         paypal.Buttons({

@@ -64,7 +64,7 @@ class CheckoutService
 
 
         $orders = \json_decode($request->cookies->get('orders'), true);
-        $orders[] = $order->getHash();
+        array_unshift($orders, $order->getHash());
 
         $cookie = new Cookie('orders', \json_encode($orders), strtotime('tomorrow'));
 
