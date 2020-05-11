@@ -27,7 +27,9 @@ class SettingsController extends AbstractController
 
     public function index()
     {
+        $data = $this->service->getAll();
 
+        return $this->render('admin/settings/settings.html.twig', ['settings' => $data]);
     }
 
     public function update(Request $request)
