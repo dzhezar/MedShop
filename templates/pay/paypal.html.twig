@@ -1,15 +1,83 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    #paypal-button-container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #preloader {
+        display: flex;
+    }
+    .popup {
+        display: none;
+        position: absolute;
+        height: 100vh;
+        z-index: 1000;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
 
+    }
+    .variants {
+        height: 300px;
+        width: 300px;
+        background: white;
+        border: 2px solid #0c525d;
+        border-radius: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 24px;
+    }
+    .variants a{
+        cursor: pointer;
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 18px;
+        background: linear-gradient(131.08deg, #859878 17.02%, #B7CFA6 104.92%);
+        border-radius: 40px;
+        border: 2px solid #0c525d;
+    }
+</style>
+{% endblock %}
 {% block body %}
     <div class="wrapper">
-        <div id="paypal-button-container">Wait...</div>
+        <div id="paypal-button-container"></div>
+        <div class="popup">
+            <div class="variants">
+                Ошибка оплаты!
+                <a onclick="goToHistory()">Перейти в историю</a>
+                <a onclick="closePopup()">Попробовать еще раз</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}"></script>
-
+    <script>
+        var onAppend = function(elem, f) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(m) {
+                    if (m.addedNodes.length) {
+                        f(m.addedNodes)
+                    }
+                })
+            })
+            observer.observe(elem, {childList: true})
+        }
+        onAppend(document.getElementById('paypal-button-container'), function(added) {
+            $('#preloader').fadeOut();
+        })
+    </script>
     <script>
         paypal.Buttons({
             createOrder: function (data, actions) {
@@ -26,23 +94,33 @@
                 });
             },
             onApprove: function (data) {
+                $('#preloader').css('display','flex');
                 $.ajax({
                     method: 'GET',
                     url: '/api/paypal/callback/{{ order.hash }}/' + data.orderID,
                 }).done(function (data) {
                     switch (data.status) {
                         case 'success': {
-                            alert('успешно');
+                            window.close();
+                            goToHistory();
                             break
                         }
                         case 'failed':
-                            alert('неудачно');
+                            $('#preloader').css('display','flex');
+                            $('.popup').css('display','flex');
                             break;
                     }
-                    window.close();
-                    window.location.href = '/' + language+'/history';
+
                 });
             }
         }).render('#paypal-button-container');
+
+        function goToHistory() {
+            window.location.href = '/' + language+'/history';
+        }
+        function closePopup() {
+            $('#preloader').fadeOut();
+            $('.popup').fadeOut();
+        }
     </script>
 {% endblock %}

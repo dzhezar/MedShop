@@ -170,3 +170,14 @@ admin_settings_index:
 admin_setting_update:
     path: /admin_panel/settings/update
     controller: App\Controller\Admin\SettingsController::update
+
+######orders########
+admin_orders_index:
+    path: /admin_panel/orders
+    controller: App\Controller\Admin\OrdersController::index
+admin_orders_update:
+    path: /admin_panel/orders/show/{id}
+    controller: App\Controller\Admin\OrdersController::show
+admin_orders_change_status:
+    path: /admin_panel/orders/change_status/{id}/{status}
+    controller: App\Controller\Admin\OrdersController::changeStatus
