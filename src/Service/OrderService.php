@@ -31,7 +31,7 @@ class OrderService
      * @param Environment $environment
      * @param OrderMapper $orderMapper
      */
-    
+
     public function __construct(OrdersRepository $ordersRepository, Environment $environment, OrderMapper $orderMapper)
     {
         $this->ordersRepository = $ordersRepository;
