@@ -63,6 +63,21 @@ services:
     tags:
       - { name: console.command }
 
+  App\Service\SettingsService:
+    arguments:
+      - '%kernel.project_dir%'
 
-#%env(string:BRAINTREE_ENV)%
+  App\Service\SettingsCRUDService:
+    arguments:
+      - '%kernel.project_dir%/config/settings/'
+
+  app.service.settings:
+    alias: App\Service\SettingsCRUDService
+    public: true
+
+#  App\Twig\SettingsTwigExtension:
+#    arguments:
+#      - '%request%'
+
+
 

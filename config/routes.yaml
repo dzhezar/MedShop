@@ -163,3 +163,10 @@ admin_main_page_slider_update:
 admin_main_page_slider_remove:
     path: /admin_panel/main_page_slider/remove/{id}
     controller: App\Controller\Admin\MainPageSliderController::remove
+######settings########
+admin_settings_index:
+    path: /admin_panel/settings
+    controller: App\Controller\Admin\SettingsController::index
+admin_setting_update:
+    path: /admin_panel/settings/update
+    controller: App\Controller\Admin\SettingsController::update
