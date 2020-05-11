@@ -1,18 +1,20 @@
 $(document).ready(function () {
     $(document).on('click', '.place_order', function () {
-        alert('preloader');
+        $('#preloader').css('display', 'flex');
         $.ajax({
             method: 'POST',
             url: "/api/checkout",
             data: $('form#checkout').serialize(),
             dataType: "json",
             success: function(data) {
+                $('#preloader').fadeOut();
                 $('.popup').css('display','flex');
                 $('.payment_variants').fadeIn();
                 $('#to_payment').attr('href', '/paypal/pay/'+data.hash);
                // window.location.href='/paypal/pay/'+data.hash;
             },
             error: function (jqXHR) {
+                $('#preloader').fadeOut();
                 $('.form-error').remove();
                 let data = JSON.parse(jqXHR.responseText);
                 if(jqXHR.status === 422) {
