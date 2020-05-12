@@ -38,3 +38,11 @@ schedule_RU:
   value: ''
   label: 'График работы'
   text_editor: true
+shipping_EN:
+  value: ''
+  label: 'Оплата и доставка'
+  text_editor: true
+shipping_RU:
+  value: ''
+  label: 'Оплата и доставка'
+  text_editor: true
