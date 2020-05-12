@@ -32,6 +32,11 @@ class BlogController extends AbstractController
         $this->breadcrumbsService = $breadcrumbsService;
     }
 
+    public function aboutUs()
+    {
+        return $this->render('blog/about_us.html.twig');
+    }
+
     public function index(Request $request)
     {
         $articles = $this->articleService->getAllWithPagination(

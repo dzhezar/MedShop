@@ -58,6 +58,12 @@ orders_history:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\CheckoutController::history
+about_us:
+    path:
+        /{_locale}/about
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\BlogController::aboutUs
 
 ######cart#####
 api_cart_all:
