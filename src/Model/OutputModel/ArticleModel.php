@@ -7,6 +7,7 @@ namespace App\Model\OutputModel;
 class ArticleModel
 {
     private $id;
+    private $slug;
     private $image;
     private $title;
     private $short_description;
@@ -29,6 +30,24 @@ class ArticleModel
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     * @return ArticleModel
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
         return $this;
     }
 
@@ -139,6 +158,5 @@ class ArticleModel
         $this->seo_description = $seo_description;
         return $this;
     }
-
 
 }

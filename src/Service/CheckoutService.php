@@ -63,10 +63,10 @@ class CheckoutService
         $this->entityManager->flush();
 
 
-        $orders = \json_decode($request->cookies->get('orders'), true);
+        $orders = \json_decode($request->cookies->get('orders', '{}'), true);
         array_unshift($orders, $order->getHash());
 
-        $cookie = new Cookie('orders', \json_encode($orders), strtotime('tomorrow'));
+        $cookie = new Cookie('orders', \json_encode($orders));
 
         $response = new JsonResponse(['hash' => $order->getHash()]);
 

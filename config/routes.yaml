@@ -181,3 +181,9 @@ admin_orders_update:
 admin_orders_change_status:
     path: /admin_panel/orders/change_status/{id}/{status}
     controller: App\Controller\Admin\OrdersController::changeStatus
+
+#######sitemap#######
+admin_sitemap_generate:
+    path: /admin_panel/sitemap/generate
+    controller: App\Controller\Admin\SitemapController::generate
+
