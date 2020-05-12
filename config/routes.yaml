@@ -187,3 +187,8 @@ admin_sitemap_generate:
     path: /admin_panel/sitemap/generate
     controller: App\Controller\Admin\SitemapController::generate
 
+#########robots.txt#######
+admin_robotsTxt_update:
+    path: /admin_panel/robots/update
+    controller: App\Controller\Admin\SitemapController::uploadRobotsTxt
+

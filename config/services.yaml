@@ -75,6 +75,10 @@ services:
     arguments:
       - '%kernel.project_dir%/public/sitemap/'
 
+  App\Service\RobotsTxtService:
+    arguments:
+      - '%kernel.project_dir%/public'
+
   app.service.settings:
     alias: App\Service\SettingsCRUDService
     public: true
