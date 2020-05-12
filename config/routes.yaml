@@ -76,7 +76,12 @@ shipping_and_payment:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\BlogController::shippingAndPayment
-
+contacts:
+    path:
+        /{_locale}/contacts
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\BlogController::contacts
 ######cart#####
 api_cart_all:
     methods: POST

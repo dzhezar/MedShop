@@ -1,0 +1,72 @@
+.contacts_wrapper {
+  background: url("/img/pawel-czerwinski-2Y8ol_OBS1I-unsplash 1.png") no-repeat center;
+  background-size: cover;
+  height: 80vh;
+  width: 100vw;
+  .info {
+    height: 100%;
+    display: flex;
+    width: auto;
+    background: #fafafa;
+    align-items: center;
+    clip-path: circle(60% at 9% 65%);
+    .content {
+      height: 60%;
+      width: 85%;
+      margin: auto;
+      h1 {
+        font-weight: bold;
+        font-size: 48px;
+        color: #486259;
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        .item {
+          font-weight: 500;
+          font-size: 36px;
+          color: #363636;
+          margin: 20px 0;
+          width: 50%;
+          display: flex;
+        }
+      }
+    }
+  }
+}
+footer {
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .contacts_wrapper .info {
+    clip-path: circle(70% at 9% 65%);
+    .content .list .item {
+      width: 60%;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .contacts_wrapper .info {
+    h1 {
+      margin-bottom: 0;
+    }
+    .content {
+      height: 80%;
+
+      .list .item {
+        width: 80%;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .contacts_wrapper .info {
+    clip-path: circle(80% at 9% 65%);
+    .content .list .item {
+      font-size: 18px;
+    }
+  }
+}

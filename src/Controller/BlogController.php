@@ -37,6 +37,11 @@ class BlogController extends AbstractController
         return $this->render('blog/about_us.html.twig');
     }
 
+    public function contacts($_locale)
+    {
+        return $this->render('blog/contacts.html.twig');
+    }
+
     public function index(Request $request)
     {
         $articles = $this->articleService->getAllWithPagination(
