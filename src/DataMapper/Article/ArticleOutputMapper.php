@@ -13,6 +13,7 @@ class ArticleOutputMapper
     {
         return (new ArticleModel())
             ->setId($product->getArticle()->getId())
+            ->setSlug($product->getArticle()->getSlug())
             ->setImage($product->getArticle()->getImage())
             ->setTitle($product->getTitle())
             ->setShortDescription($product->getShortDescription())

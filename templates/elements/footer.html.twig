@@ -2,13 +2,13 @@
     <div class="first-col">
         <div class="hrefs">
             <a href="#">octowice</a>
-            <a href="tel:11">+38 (066) 052-14-36</a>
+            <a href="tel:11">{{ settings('phone') }}</a>
         </div>
         <div class="social_net">
             <div class="title">Социальные сети</div>
             <div class="logos">
-                <a href="#"><img src="{{ asset('img/icons/fb.png') }}"></a>
-                <a href="#"><img src="{{ asset('img/icons/insta.png') }}"></a>
+                <a href="{{ settings('facebook') }}"><img src="{{ asset('img/icons/fb.png') }}"></a>
+                <a href="{{ settings('instagram') }}"><img src="{{ asset('img/icons/insta.png') }}"></a>
             </div>
         </div>
     </div>

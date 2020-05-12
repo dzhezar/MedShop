@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
-    <h1>Мои заказы</h1>
+    <h1>{{ 'history.my_orders'|trans }}</h1>
     <div class="history_wrapper">
         {% for order in orders %}
             <div class="history_item {{ order.status == 'success' ? 'done' }}">
@@ -27,21 +27,21 @@
                                     <div class="information">
                                         <div class="title">{{ product.title }}</div>
                                         <div class="price">${{ product.price }}</div>
-                                        <div class="total">{{ product.cartAmount }}шт / ${{ product.cartAmount*product.price }}</div>
+                                        <div class="total">{{ product.cartAmount }}{{ 'history.pieces'|trans }} / ${{ product.cartAmount*product.price }}</div>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
                         <div class="summary">
                             <div class="shipping_info">
-                                <h2>Shipping Details:</h2>
+                                <h2>{{ 'history.shipping_details'|trans }}:</h2>
                                 <div class="name">{{ order.fullName }}</div>
                                 <div class="email">{{ order.email }}</div>
                                 <div class="address">{{ order.street }}/{{ order.city }}/{{ order.state }}/{{ order.zip }}</div>
                                 <div class="phone">{{ order.phone }}</div>
                             </div>
                             <div class="payment_info">
-                                <h2>Payment Details:</h2>
+                                <h2>{{ 'history.payment_details'|trans }}:</h2>
                                 <div class="subtotal">Subtotal: <span>${{ order.orderData.total }}</span></div>
                                 <div class="delivery">Delivery: <span>${{ order.orderData.shipping_price }}</span></div>
                                 <div class="delivery">Total Before Tax: <span>${{ order.orderData.total_before_tax }}</span></div>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="status_wrapper">
-                        <div class="title">Статус заказа</div>
+                        <div class="title">{{ 'history.order_status'|trans }}</div>
                         <div class="status {{ order.status == 'success' ? 'done' }}" data-status="{{ order.statusText }}"></div>
                         {% if order.paymentLink is not empty %}
                             <a class="pay" href="{{ order.paymentLink }}">Оплатить</a>

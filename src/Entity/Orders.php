@@ -12,9 +12,23 @@ class Orders
     const PAY_TYPE_PAYPAL = 'paypal';
     const PAY_TYPE_CARD = 'card';
 
-    const STATUS_CREATED = 'created';
+    const STATUS_CREATED = 'waiting_for_pay';
     const STATUS_SUCCESS_PAYMENT = 'success';
     const STATUS_FAILED_PAYMENT = 'failed';
+    const STATUS_CANCELED_PAYMENT = 'canceled';
+    const STATUS_APPROVED_PAYMENT = 'approved';
+    const STATUS_SENT_PAYMENT = 'sent';
+    const STATUS_COMPLETED_PAYMENT = 'completed';
+
+    const STATUSES_ARRAY = [
+        self::STATUS_CREATED,
+        self::STATUS_SUCCESS_PAYMENT,
+        self::STATUS_FAILED_PAYMENT,
+        self::STATUS_APPROVED_PAYMENT,
+        self::STATUS_SENT_PAYMENT,
+        self::STATUS_COMPLETED_PAYMENT,
+        self::STATUS_CANCELED_PAYMENT,
+    ];
 
     /**
      * @ORM\Id()

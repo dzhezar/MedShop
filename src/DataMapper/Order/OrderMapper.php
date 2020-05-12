@@ -14,14 +14,24 @@ class OrderMapper
 {
     const ARRAY_STATUSES = [
         'ru' => [
+            'created' => 'Ожидает оплаты',
             Order::STATUS_CREATED => 'Ожидает оплаты',
             Order::STATUS_FAILED_PAYMENT => 'Неуспешная оплата',
-            Order::STATUS_SUCCESS_PAYMENT => 'Успешная оплата'
+            Order::STATUS_SUCCESS_PAYMENT => 'Успешная оплата',
+            Order::STATUS_APPROVED_PAYMENT => 'Подтверждено менеджером',
+            Order::STATUS_CANCELED_PAYMENT => 'Заказ отменён',
+            Order::STATUS_SENT_PAYMENT => 'Заказ отправлен',
+            Order::STATUS_COMPLETED_PAYMENT => 'Заказ доставлен'
         ],
         'en' => [
+            'created' => 'Ожидает оплаты',
             Order::STATUS_CREATED => 'Waiting for pay',
             Order::STATUS_FAILED_PAYMENT => 'Failed payment',
-            Order::STATUS_SUCCESS_PAYMENT => 'Success payment'
+            Order::STATUS_SUCCESS_PAYMENT => 'Success payment',
+            Order::STATUS_APPROVED_PAYMENT => 'Approved by manager',
+            Order::STATUS_CANCELED_PAYMENT => 'Order canceled',
+            Order::STATUS_SENT_PAYMENT => 'Order sent',
+            Order::STATUS_COMPLETED_PAYMENT => 'Order delivered'
         ]
     ];
     /**
@@ -81,7 +91,11 @@ class OrderMapper
     private function generatePaymentLink(Order $order)
     {
         $link = null;
-        if ($order->getPayStatus() !== Order::STATUS_SUCCESS_PAYMENT) {
+        if (
+            $order->getPayStatus() === Order::STATUS_FAILED_PAYMENT
+            || $order->getPayStatus() === Order::STATUS_CREATED
+            || $order->getPayStatus() === 'created'
+        ) {
             $link = $this->urlGenerator->generate('paypal_pay', ['orderHash' => $order->getHash()]);
         }
 

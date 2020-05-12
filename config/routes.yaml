@@ -169,3 +169,32 @@ admin_main_page_slider_update:
 admin_main_page_slider_remove:
     path: /admin_panel/main_page_slider/remove/{id}
     controller: App\Controller\Admin\MainPageSliderController::remove
+######settings########
+admin_settings_index:
+    path: /admin_panel/settings
+    controller: App\Controller\Admin\SettingsController::index
+admin_setting_update:
+    path: /admin_panel/settings/update
+    controller: App\Controller\Admin\SettingsController::update
+
+######orders########
+admin_orders_index:
+    path: /admin_panel/orders
+    controller: App\Controller\Admin\OrdersController::index
+admin_orders_update:
+    path: /admin_panel/orders/show/{id}
+    controller: App\Controller\Admin\OrdersController::show
+admin_orders_change_status:
+    path: /admin_panel/orders/change_status/{id}/{status}
+    controller: App\Controller\Admin\OrdersController::changeStatus
+
+#######sitemap#######
+admin_sitemap_generate:
+    path: /admin_panel/sitemap/generate
+    controller: App\Controller\Admin\SitemapController::generate
+
+#########robots.txt#######
+admin_robotsTxt_update:
+    path: /admin_panel/robots/update
+    controller: App\Controller\Admin\SitemapController::uploadRobotsTxt
+

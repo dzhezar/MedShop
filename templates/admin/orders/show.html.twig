@@ -1,0 +1,196 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Заказ №{{ order.id }}<br>
+                            </h6>
+                        </div>
+                        <div class="page-holder w-100 d-flex flex-wrap">
+                            <div class="container-fluid px-xl-5">
+                                <section class="py-5">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="text-uppercase mb-0">Общая информация о заказе</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table card-text">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>Статус</th>
+                                                            <td>{{ order.payStatus }}</td>
+                                                            <td>
+                                                                <select autocomplete="off" class="change-status-select">
+                                                                    {% for status in statuses %}
+                                                                        <option {{ status == order.payStatus ? 'selected' }} value="{{ status }}">{{ status }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <a data-id="{{ order.id }}" style="margin-top: 15px" id="change-status" class="btn btn-danger">Изменить статус</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Время создания заказа</th>
+                                                            <td>{{ order.dateCreated|date('Y-m-d H:i:s') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Время последней операции</th>
+                                                            <td>{{ order.dateUpdated|date('Y-m-d H:i:s') }}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="text-uppercase mb-0">Информация о продуктах</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table card-text">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Изображение</th>
+                                                            <th>Название</th>
+                                                            <th>Количество</th>
+                                                            <th>Цена</th>
+                                                            <th>Итого</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for product in order.orderData.products %}
+                                                            <tr>
+                                                                <th scope="row">{{ product.id }}</th>
+                                                                <td><img src="{{ product.image }}" style="width: 120px; height: 120px"></td>
+                                                                <td>{{ product.title }}</td>
+                                                                <td>{{ product.cartAmount }}</td>
+                                                                <td>{{ product.price }}</td>
+                                                                <td>{{ product.cartAmount*product.price }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                    <hr>
+                                                        <div class="subtotal">Subtotal: <span>${{ order.orderData.total }}</span></div>
+                                                        <div class="delivery">Delivery: <span>${{ order.orderData.shipping_price }}</span></div>
+                                                        <div class="delivery">Total Before Tax: <span>${{ order.orderData.total_before_tax }}</span></div>
+                                                        <div class="delivery">Estimated tax: <span>${{ order.orderData.tax }}</span></div>
+                                                        <div class="total">Total: <span>${{ order.orderData.total_with_tax }}</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="text-uppercase mb-0">Информация о покупателе</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table card-text">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Имя фамилия</th>
+                                                                <td>{{ order.fullName }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Телефон</th>
+                                                                <td><a href="tel:{{ order.phone }}">{{ order.phone }}</a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Почта</th>
+                                                                <td><a href="mailto:{{ order.email }}">{{ order.email }}</a><td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="text-uppercase mb-0">Информация о доставке</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table card-text">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>Штат</th>
+                                                            <td>{{ order.state.name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Город</th>
+                                                            <td>{{ order.city }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Улица</th>
+                                                            <td>{{ order.address }}<td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Почтовый индекс</th>
+                                                            <td>{{ order.zip }}<td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if order.payPalData.purchase_units.0.payments.captures.0.id is defined %}
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h6 class="text-uppercase mb-0">PayPal Информация</h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table card-text">
+                                                            <tbody>
+                                                            <tr>
+                                                                <th>ID PayPal Транзакции</th>
+                                                                <td>
+                                                                    <a target="_blank" href="{{ paypal_link }}/activity/payment/{{ order.payPalData.purchase_units.0.payments.captures.0.id }}">{{ order.payPalData.purchase_units.0.payments.captures.0.id }}</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Оплаченная сумма</th>
+                                                                <td>{{ order.payPalData.purchase_units.0.payments.captures.0.amount.value }} {{ order.payPalData.purchase_units.0.payments.captures.0.amount.currency_code }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Хэш заказа</th>
+                                                                <td>{{ order.payPalData.purchase_units.0.payments.captures.0.custom_id }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on('click', '#change-status', function () {
+            let id = $(this).attr('data-id');
+            let status = $('.change-status-select').val();
+            console.log(status);
+            if (confirm(`Вы уверены что хотите изменить статус заказа на "${status}"?`)) {
+                location.href = `/admin_panel/orders/change_status/${id}/${status}`;
+            }
+        })
+    </script>
+{% endblock %}

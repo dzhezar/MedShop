@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Настройки
+                                <a href="{{ path('admin_setting_update') }}" class="btn btn-primary">Изменить настройки</a>
+                                <a target="_blank" href="{{ path('admin_sitemap_generate') }}" class="btn btn-primary">Перегенирировать сайтмап</a>
+                                <a href="{{ path('admin_robotsTxt_update') }}" class="btn btn-primary">Обновить robots.txt</a>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table card-text table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>Код</th>
+                                    <th>Описание</th>
+                                    <th>Название</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in settings %}
+                                    <tr>
+                                        <th>
+                                            {{ key }}
+                                        </th>
+                                        <td>
+                                            {{ item.label }}
+                                        </td>
+                                        <td>
+                                            {{ item.value }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

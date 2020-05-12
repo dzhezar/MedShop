@@ -1,0 +1,59 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-uppercase mb-0">
+                                Заказы
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table card-text table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Статус</th>
+                                    <th>Время создания</th>
+                                    <th>Время последней операции</th>
+                                    <th>Итоговая сумма</th>
+                                    <th>PayPal ID</th>
+                                    <th>Язык</th>
+                                    <th>Имя фамилия</th>
+                                    <th>Телефон</th>
+                                    <th>Просмотреть/Изменить статус</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for order in orders %}
+                                    <tr>
+                                        <th>{{ order.id }}</th>
+                                        <td>{{ order.payStatus }}</td>
+                                        <td>{{ order.dateCreated|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ order.dateUpdated|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ order.orderData.total_with_tax }}</td>
+                                        {% set order_link =  order.payPalData.purchase_units.0.payments.captures.0.id is defined ? order.payPalData.purchase_units.0.payments.captures.0.id %}
+                                        <td><a target="_blank" href="{{ paypal_link }}/activity/payment/{{ order_link }}">{{ order_link }}</a></td>
+                                        <td>{{ order.language.name }}</td>
+                                        <td>{{ order.fullName }}</td>
+                                        <td><a href="tel:{{ order.phone }}">{{ order.phone }}</a></td>
+                                        <td>
+                                            <a href="{{ path('admin_orders_update', {id: order.id}) }}" class="btn btn-primary">Просмотреть</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="navigation">
+                                {{ knp_pagination_render(orders) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

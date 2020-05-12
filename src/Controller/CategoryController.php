@@ -36,12 +36,6 @@ class CategoryController extends AbstractController
         $this->breadcrumbsService = $breadcrumbsService;
     }
 
-    public function categoryCatalog(Request $request)
-    {
-        $products = $this->productService->getPopularProducts($request->getLocale());
-        return $this->render('categories/catalog.html.twig', ['products' => $products]);
-    }
-
     public function mainCategories(Request $request)
     {
         $categories = $this->categoryService->getAllWithSubcategories($request->getLocale());

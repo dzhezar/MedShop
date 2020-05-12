@@ -34,7 +34,7 @@ class CheckoutModel
      *     max="5"
      * )
      * @Assert\Type(
-     *     type="integer"
+     *     type="digit"
      * )
      * @Assert\NotBlank()
      */

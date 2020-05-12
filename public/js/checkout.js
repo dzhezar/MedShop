@@ -7,6 +7,7 @@ $(document).ready(function () {
             data: $('form#checkout').serialize(),
             dataType: "json",
             success: function(data) {
+                $('.form-error').remove();
                 $('#preloader').fadeOut();
                 $('.popup').css('display','flex');
                 $('.payment_variants').fadeIn();
