@@ -49,6 +49,11 @@ class BlogController extends AbstractController
         return $this->render('blog/index.html.twig', ['articles' => $articles, 'breadcrumbs' => $breadcrumbs]);
     }
 
+    public function post($_locale)
+    {
+        return $this->render('blog/single_post.html.twig');
+    }
+
     public function shippingAndPayment($_locale)
     {
         return $this->render('blog/shipping_and_payment.html.twig');
