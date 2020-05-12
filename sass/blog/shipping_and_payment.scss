@@ -1,0 +1,26 @@
+header {
+  position: relative;
+  margin-left: auto;
+}
+.page_title {
+  width: 75%;
+  margin: auto;
+  font-weight: bold;
+  font-size: 48px;
+  color: #486158;
+}
+.info {
+  width: 85%;
+  margin: 60px auto 100px;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .page_title {
+    width: 90%;
+  }
+  .info {
+    margin: 30px auto 100px;
+    width: 90%;
+  }
+}

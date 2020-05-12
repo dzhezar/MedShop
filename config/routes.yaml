@@ -64,6 +64,12 @@ about_us:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\BlogController::aboutUs
+shipping_and_payment:
+    path:
+        /{_locale}/shipping_and_payment
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\BlogController::shippingAndPayment
 
 ######cart#####
 api_cart_all:
