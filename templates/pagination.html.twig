@@ -1,0 +1,13 @@
+{% if pageCount > 1 %}
+    <div class="pagination">
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <span class="page">
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                </span>
+            {% else %}
+                <span class="page current">{{ page }}</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

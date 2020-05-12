@@ -524,4 +524,33 @@ footer {
   }
 }
 
-
+.navigation {
+  width: 85%;
+  margin: auto;
+  .pagination {
+    width: fit-content;
+    margin-left: auto;
+    span {
+      font-weight: bold;
+      font-size: 36px;
+      color: #848484;
+      opacity: 0.7;
+      &:after {
+        content: "•";
+      }
+      &.current {
+        font-size: 48px;
+        color: #859878;
+        opacity: 1;
+        &:after {
+          font-size: 36px;
+          color: #848484;
+          opacity: 0.7;
+        }
+      }
+      &.page:last-child:after{
+        display: none;
+      }
+    }
+  }
+}
