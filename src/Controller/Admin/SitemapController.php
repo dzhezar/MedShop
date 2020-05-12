@@ -26,6 +26,6 @@ class SitemapController extends AbstractController
     public function generate()
     {
         $this->sitemapService->generate();
-        return $this->redirectToRoute('admin_index');
+        die('Ready');
     }
 }
