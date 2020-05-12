@@ -16,3 +16,25 @@ instagram_RU:
 instagram_EN:
   value: ''
   label: 'Ссылка на instagram'
+about_us_EN:
+  value: ''
+  label: 'О нас'
+  text_editor: true
+about_us_RU:
+  value: ''
+  label: 'О нас'
+  text_editor: true
+address_EN:
+  value: ''
+  label: 'Адрес'
+address_RU:
+  value: ''
+  label: 'Адрес'
+schedule_EN:
+  value: ''
+  label: 'График работы'
+  text_editor: true
+schedule_RU:
+  value: ''
+  label: 'График работы'
+  text_editor: true

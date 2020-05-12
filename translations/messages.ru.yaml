@@ -25,6 +25,7 @@ product:
 category:
   name: 'Категории'
 checkout:
+  order_checkout: 'Оформление заказа'
   full_name: 'Имя фамилия'
   street: 'Улица'
   city: 'Город'
@@ -39,6 +40,10 @@ checkout:
   place_order: 'Создать Заказ'
   pay_now: 'Заплатить сейчас'
   review_order: 'Просмотреть заказ'
+paypal:
+  payment_failed: 'Ошибка оплаты!'
+  go_to_history: 'Перейти в историю'
+  try_again: 'Попробовать еще раз'
 history:
   my_orders: 'Мои заказы'
   pay: 'Оплатить'
@@ -46,3 +51,11 @@ history:
   payment_details: 'Подробная цена'
   order_status: 'Статус заказа'
   pieces: 'шт.'
+common:
+  social_networks: 'Социальные сети'
+  customers: 'Покупателям'
+  shipping_and_payment: 'Оплата и доставка'
+about_us:
+  payment: 'ОПЛАТА КАРТОЙ'
+  delivery: 'ДОСТАВКА'
+  quality: 'ГАРАНТИЯ КАЧЕСТВА'

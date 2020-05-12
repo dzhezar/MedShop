@@ -25,6 +25,7 @@ product:
 category:
   name: 'Categories'
 checkout:
+  order_checkout: 'Checkout'
   full_name: ' Full Name '
   street: 'Street Address'
   city: 'City/Town'
@@ -39,6 +40,10 @@ checkout:
   place_order: 'Place Order'
   pay_now: 'Pay now'
   review_order: 'Review order'
+paypal:
+  payment_failed: 'Payment failed!'
+  go_to_history: 'Go to history'
+  try_again: 'Try again'
 history:
   my_orders: 'My orders'
   pay: 'Pay'
@@ -46,3 +51,11 @@ history:
   payment_details: 'Payment Details'
   order_status: 'Order status'
   pieces: ' pc.'
+common:
+  social_networks: 'Social networks'
+  customers: 'For customers'
+  shipping_and_payment: 'Payment and delivery'
+about_us:
+  payment: 'CARD PAYMENT'
+  delivery: 'DELIVERY'
+  quality: 'QUALITY GUARANTEE'

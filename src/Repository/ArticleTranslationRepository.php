@@ -49,6 +49,21 @@ class ArticleTranslationRepository extends ServiceEntityRepository
 
     }
 
+    public function findBySlugAndLanguage(string $slug, int $langId)
+    {
+        return $this->createQueryBuilder('article_translation')
+            ->addSelect('article', 'language')
+            ->leftJoin('article_translation.article', 'article')
+            ->leftJoin('article_translation.language', 'language')
+            ->andWhere('article.is_visible = true')
+            ->andWhere('language.id = :langId')
+            ->andWhere('article.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->setParameter('langId', $langId)
+            ->setMaxResults(6)
+            ->getQuery()->getOneOrNullResult();
+    }
+
     // /**
     //  * @return ArticleTranslation[] Returns an array of ArticleTranslation objects
     //  */

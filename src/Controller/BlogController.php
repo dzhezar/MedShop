@@ -32,16 +32,6 @@ class BlogController extends AbstractController
         $this->breadcrumbsService = $breadcrumbsService;
     }
 
-    public function aboutUs()
-    {
-        return $this->render('blog/about_us.html.twig');
-    }
-
-    public function contacts($_locale)
-    {
-        return $this->render('blog/contacts.html.twig');
-    }
-
     public function index(Request $request)
     {
         $articles = $this->articleService->getAllWithPagination(
@@ -54,13 +44,14 @@ class BlogController extends AbstractController
         return $this->render('blog/index.html.twig', ['articles' => $articles, 'breadcrumbs' => $breadcrumbs]);
     }
 
-    public function post($_locale)
+    public function post(Request $request, $slug)
     {
-        return $this->render('blog/single_post.html.twig');
-    }
+        $article = $this->articleService->findOneBySlugAndLanguage($slug, $request->getLocale());
 
-    public function shippingAndPayment($_locale)
-    {
-        return $this->render('blog/shipping_and_payment.html.twig');
+        if(!$article) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('blog/single_post.html.twig', ['article' => $article]);
     }
 }

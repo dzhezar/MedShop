@@ -201,4 +201,13 @@ class ArticleService
         $this->entityManager->remove($article);
         $this->entityManager->flush();
     }
+
+    public function findOneBySlugAndLanguage(string $slug, string $language)
+    {
+        if($article = $this->articleTranslationRepository->findBySlugAndLanguage($slug, $this->languageService->getLanguage($language)->getId())) {
+            return $this->outputMapper->entityToModel($article);
+        }
+
+        return false;
+    }
 }

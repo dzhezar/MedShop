@@ -10,6 +10,7 @@
 /public/bundles/
 /public/stylesheets/
 /var/
+/config/settings/se
 /vendor/
 ###< symfony/framework-bundle ###
 

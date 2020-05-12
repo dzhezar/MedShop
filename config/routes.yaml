@@ -44,7 +44,7 @@ blog_index:
     controller: App\Controller\BlogController::index
 blog_post:
     path:
-        /{_locale}/blog/post
+        /{_locale}/blog/{slug}
     requirements:
         _locale: "%locales%"
     controller: App\Controller\BlogController::post
@@ -69,19 +69,19 @@ about_us:
         /{_locale}/about
     requirements:
         _locale: "%locales%"
-    controller: App\Controller\BlogController::aboutUs
+    controller: App\Controller\CommonPagesController::aboutUs
 shipping_and_payment:
     path:
         /{_locale}/shipping_and_payment
     requirements:
         _locale: "%locales%"
-    controller: App\Controller\BlogController::shippingAndPayment
+    controller: App\Controller\CommonPagesController::shippingAndPayment
 contacts:
     path:
         /{_locale}/contacts
     requirements:
         _locale: "%locales%"
-    controller: App\Controller\BlogController::contacts
+    controller: App\Controller\CommonPagesController::contacts
 ######cart#####
 api_cart_all:
     methods: POST
