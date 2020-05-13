@@ -147,7 +147,7 @@ class ProductService
         $product->addProductTranslation($ruProductTranslation);
         $product->addProductTranslation($enProductTranslation);
 
-        $this->createSpecifications($productModel, $product);
+//        $this->createSpecifications($productModel, $product);
     }
 
     public function update(ProductModel $productModel, Product $entity)
@@ -165,14 +165,14 @@ class ProductService
             $entity
         );
 
-        foreach ($product->getSpecificationValues() as $specificationValue) {
-            $product->removeSpecificationValue($specificationValue);
-            $this->entityManager->remove($specificationValue);
-        }
+//        foreach ($product->getSpecificationValues() as $specificationValue) {
+//            $product->removeSpecificationValue($specificationValue);
+//            $this->entityManager->remove($specificationValue);
+//        }
 
         $this->entityManager->flush();
 
-        $this->createSpecifications($productModel, $product);
+//        $this->createSpecifications($productModel, $product);
 
         foreach ($entity->getProductTranslations() as $categoryTranslation) {
             $this->productTranslationFormMapper->modelToEntity(

@@ -40,7 +40,7 @@ class MailService
     public function sendMail($mailTo, $body, $name)
     {
         $message = (new \Swift_Message($name))
-            ->setFrom('zhenya1995q@gmail.com')
+            ->setFrom('qq@gmail.com')
             ->setTo($mailTo)
             ->setBody(
                 $body,
