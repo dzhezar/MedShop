@@ -147,6 +147,8 @@ class ProductService
         $product->addProductTranslation($ruProductTranslation);
         $product->addProductTranslation($enProductTranslation);
 
+        $this->entityManager->flush();
+
 //        $this->createSpecifications($productModel, $product);
     }
 
@@ -172,7 +174,7 @@ class ProductService
 
         $this->entityManager->flush();
 
-//        $this->createSpecifications($productModel, $product);
+        $this->createSpecifications($productModel, $product);
 
         foreach ($entity->getProductTranslations() as $categoryTranslation) {
             $this->productTranslationFormMapper->modelToEntity(
