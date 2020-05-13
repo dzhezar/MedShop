@@ -10,6 +10,9 @@
 /public/bundles/
 /public/stylesheets/
 /var/
+/config/settings/settings.local.yaml
+/public/sitemap
+/public/robots.txt
 /vendor/
 ###< symfony/framework-bundle ###
 

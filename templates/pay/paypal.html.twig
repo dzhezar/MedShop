@@ -52,9 +52,9 @@
         <div id="paypal-button-container"></div>
         <div class="popup">
             <div class="variants">
-                Ошибка оплаты!
-                <a onclick="goToHistory()">Перейти в историю</a>
-                <a onclick="closePopup()">Попробовать еще раз</a>
+                {{ 'paypal.payment_failed'|trans }}
+                <a onclick="goToHistory()">{{ 'paypal.go_to_history'|trans }}</a>
+                <a onclick="closePopup()">{{ 'paypal.try_again'|trans }}</a>
             </div>
         </div>
     </div>

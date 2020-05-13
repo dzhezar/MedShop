@@ -11,11 +11,11 @@
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
-    <h1 class="page_title">Оформление заказа</h1>
+    <h1 class="page_title">{{ 'checkout.order_checkout'|trans }}</h1>
     <div class="checkout_wrapper">
 
         <div class="checkout_details">
-            <h2 class="shipping_title">Shipping details</h2>
+            <h2 class="shipping_title">{{ 'history.shipping_details'|trans }}</h2>
             <form id="checkout">
                 <div class="row">
                     <label class="half-w">
@@ -61,8 +61,8 @@
             <div class="price_details mobile">
                 <div class="subtotal">{{ 'checkout.subtotal'|trans }}: <span>${{ total | round(1,'common') }}</span></div>
                 <div class="delivery">{{ 'checkout.delivery'|trans }}: <span>${{ shipping_price | round(1,'common') }}</span></div>
-                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>{{ total_before_tax | round(1,'common') }}</span></div>
-                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>{{ tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>${{ total_before_tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>${{ tax | round(1,'common') }}</span></div>
                 <div class="total">{{ 'checkout.total'|trans }}: <span>${{ total_with_tax | round(1,'common') }}</span></div>
             </div>
             <div class="place_order">{{ 'checkout.place_order'|trans }}</div>
@@ -86,8 +86,8 @@
             <div class="price_details">
                 <div class="subtotal">{{ 'checkout.subtotal'|trans }}: <span>${{ total | round(1,'common') }}</span></div>
                 <div class="delivery">{{ 'checkout.delivery'|trans }}: <span>${{ shipping_price | round(1,'common') }}</span></div>
-                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>{{ total_before_tax | round(1,'common') }}</span></div>
-                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>{{ tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.total_before_tax'|trans }}: <span>${{ total_before_tax | round(1,'common') }}</span></div>
+                <div class="delivery">{{ 'checkout.estimated_tax'|trans }}: <span>${{ tax | round(1,'common') }}</span></div>
                 <div class="total">{{ 'checkout.total'|trans }}: <span>${{ total_with_tax | round(1,'common') }}</span></div>
             </div>
         </div>

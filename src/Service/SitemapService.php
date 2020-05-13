@@ -102,7 +102,7 @@ class SitemapService
         $this->getCommonPagesData($data);
         $this->getCategoriesData($data);
         $this->getProductsData($data);
-//        $this->getArticlesData($data);
+        $this->getArticlesData($data);
 
         return $data;
     }
@@ -132,6 +132,33 @@ class SitemapService
             $data[] = [
                 'loc' => $this->urlGenerator->generate(
                     'blog_index',
+                    ['_locale' => $language],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                'changefreq' => self::CHANGEFREQ,
+                'priority' => self::COMMON_PAGES_PRIORITY
+            ];
+            $data[] = [
+                'loc' => $this->urlGenerator->generate(
+                    'about_us',
+                    ['_locale' => $language],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                'changefreq' => self::CHANGEFREQ,
+                'priority' => self::COMMON_PAGES_PRIORITY
+            ];
+            $data[] = [
+                'loc' => $this->urlGenerator->generate(
+                    'contacts',
+                    ['_locale' => $language],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                'changefreq' => self::CHANGEFREQ,
+                'priority' => self::COMMON_PAGES_PRIORITY
+            ];
+            $data[] = [
+                'loc' => $this->urlGenerator->generate(
+                    'shipping_and_payment',
                     ['_locale' => $language],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
@@ -179,7 +206,7 @@ class SitemapService
             foreach (Language::LANGUAGES_ARRAY as $language) {
                 $data[] = $this->generateSitemapBlock(
                     $article->getSlug(),
-                    'single_blog', //TODO make route
+                    'blog_post',
                     self::ARTICLES_PRIORITY,
                     $language
                 );

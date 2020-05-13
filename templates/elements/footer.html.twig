@@ -1,11 +1,11 @@
 <footer>
     <div class="first-col">
         <div class="hrefs">
-            <a href="#">octowice</a>
+            <a href="https://octowice.com">octowice</a>
             <a href="tel:11">{{ settings('phone') }}</a>
         </div>
         <div class="social_net">
-            <div class="title">Социальные сети</div>
+            <div class="title">{{ 'common.social_networks'|trans }}</div>
             <div class="logos">
                 <a href="{{ settings('facebook') }}"><img src="{{ asset('img/icons/fb.png') }}"></a>
                 <a href="{{ settings('instagram') }}"><img src="{{ asset('img/icons/insta.png') }}"></a>
@@ -14,12 +14,13 @@
     </div>
     <div class="second_third-col">
         <div>MDIClogo</div>
-        <a href="#">Продукция</a>
-        <a href="#">О нас</a>
+        <a href="{{ path('main_categories') }}">{{ 'navbar.product'|trans }}</a>
+        <a href="{{ path('about_us') }}">{{ 'navbar.about_us'|trans }}</a>
     </div>
     <div class="second_third-col">
-        <div>Пациентам</div>
-        <a href="#">Блог</a>
-        <a href="#">Контакты</a>
+        <div>{{ 'common.customers'|trans }}</div>
+        <a href="{{ path('blog_index') }}">{{ 'navbar.blog'|trans }}</a>
+        <a href="{{ path('contacts') }}">{{ 'navbar.contact'|trans }}</a>
+        <a href="{{ path('shipping_and_payment') }}">{{ 'common.shipping_and_payment'|trans }}</a>
     </div>
 </footer>
