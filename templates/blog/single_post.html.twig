@@ -10,7 +10,9 @@
     {% include 'elements/page_title_with_breadcrumbs.html.twig' %}
     <div class="content_wrapper">
         <img src="{{ article.image }}">
+        <div class="text">
         {{ article.description|raw }}
+        </div>
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
