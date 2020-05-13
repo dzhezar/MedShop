@@ -67,6 +67,7 @@ h2 {
         flex-direction: row;
         cursor: pointer;
         width: fit-content;
+        width: -moz-fit-content;
         input {
           position: relative;
           opacity: 0;

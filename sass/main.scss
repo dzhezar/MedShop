@@ -443,6 +443,7 @@ footer {
       display: block;
       margin-right: auto;
       width: fit-content;
+      width: -moz-fit-content;
       height: 40px;
     }
   }
@@ -537,6 +538,7 @@ footer {
   margin: auto;
   .pagination {
     width: fit-content;
+    width: -moz-fit-content;
     margin-left: auto;
     span {
       font-weight: bold;
