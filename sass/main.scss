@@ -398,7 +398,6 @@ footer {
   margin: 0 auto 20px;
   display: flex;
   flex-direction: row;
-  height: 140px;
   justify-content: space-between;
   div{
     width: 30%;
@@ -439,24 +438,31 @@ footer {
         }
       }
     }
+    svg {
+      display: block;
+      margin-right: auto;
+      width: fit-content;
+    }
   }
   .second_third-col {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     div {
       font-weight: bold;
       font-size: 24px;
       text-align: justify;
       color: #486259;
+      width: 70%;
+      margin-left: auto;
     }
     a {
-      width: inherit;
       font-weight: 500;
       font-size: 24px;
-      text-align: justify;
       color: #859878;
+      width: 70%;
+      margin-left: auto;
     }
   }
 }

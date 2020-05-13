@@ -13,18 +13,22 @@
     flex-direction: column;
     justify-content: space-between;
     transition: all .2s ease-in;
+    padding: 0 1%;
     &:nth-child(odd) {
       margin-bottom: 20px;
     }
     &:nth-child(-n + 2) {
-      width: 55%;
+      width: 51%;
+      padding: 0 2%;
       flex-direction: row;
+      justify-content: space-between;
       .image {
         height: 100%;
-        width: inherit;
+        width: 45%;
       }
       .info {
         height: 100%;
+        width: 50%;
         .title {
           font-weight: bold;
           font-size: 24px;
@@ -55,6 +59,9 @@
         color: #363636;
         height: 15%;
         transition: all .2s ease-in;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .text {
         overflow: hidden;

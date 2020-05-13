@@ -43,6 +43,7 @@
 </div>
 <!-- JavaScript files-->
 {% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
     <script src="/admin/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -50,6 +51,11 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="/admin/js/front.js"></script>
     <script src="/admin/js/common.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
 {% endblock %}
 </body>
 </html>
