@@ -25,6 +25,8 @@ header {
     object-fit: contain;
     float: left;
     margin: 0 40px 20px 0;
+    flex-shrink: 0;
+    object-position: top;
   }
 }
 .icons_wrapper {

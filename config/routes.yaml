@@ -48,6 +48,12 @@ blog_post:
     requirements:
         _locale: "%locales%"
     controller: App\Controller\BlogController::post
+cart:
+    path:
+        /{_locale}/cart
+    requirements:
+        _locale: "%locales%"
+    controller: App\Controller\CheckoutController::cart
 checkout_index:
     path:
         /{_locale}/checkout
