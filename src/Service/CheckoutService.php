@@ -30,6 +30,10 @@ class CheckoutService
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var MailService
+     */
+    private $mailService;
 
     /**
      * CheckoutService constructor.
@@ -37,17 +41,20 @@ class CheckoutService
      * @param CartService $cartService
      * @param OrderMapper $orderMapper
      * @param EntityManagerInterface $entityManager
+     * @param MailService $mailService
      */
     public function __construct(
         SessionCartService $sessionCartService,
         CartService $cartService,
         OrderMapper $orderMapper,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        MailService $mailService
     ) {
         $this->sessionCartService = $sessionCartService;
         $this->cartService = $cartService;
         $this->orderMapper = $orderMapper;
         $this->entityManager = $entityManager;
+        $this->mailService = $mailService;
     }
 
     public function create(CheckoutModel $checkoutModel, Request $request)
@@ -61,6 +68,10 @@ class CheckoutService
 
         $this->entityManager->persist($order);
         $this->entityManager->flush();
+
+        try {
+            $this->mailService->sendNewOrderMail($order);
+        } catch (\Exception $exception) {}
 
 
         $orders = \json_decode($request->cookies->get('orders', '{}'), true);

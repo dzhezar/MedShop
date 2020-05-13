@@ -31,7 +31,44 @@ $(document).ready(function () {
 
     $('.enable-ckeditor').each(function () {
         let textarea = $(this);
-        ClassicEditor.create(textarea[0], {language: 'ru'});
+        ClassicEditor.create(textarea[0], {
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'bulletedList',
+                    'link',
+                    '|',
+                    'indent',
+                    'outdent',
+                    '|',
+                    'blockQuote',
+                    'imageUpload',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo'
+                ]
+            },
+            language: 'en',
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            },
+            licenseKey: '',
+        });
     });
 
     $('#preloader').hide();

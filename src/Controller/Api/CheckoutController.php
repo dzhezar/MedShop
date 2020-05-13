@@ -43,6 +43,8 @@ class CheckoutController extends AbstractController
             return new JsonResponse($data, 422);
         }
 
+        $request->setLocale($data->getLanguage());
+
         return $this->checkoutService->create($data, $request);
     }
 
