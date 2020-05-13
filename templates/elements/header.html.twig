@@ -15,6 +15,9 @@
     <div class="logo" onclick="location.href='{{ path('index') }}'">
         MDIClogo
     </div>
+    {% if app.request.cookies.get('orders') is not empty %}
+        <a href="{{ path('orders_history') }}">История заказов</a>
+    {% endif %}
     {% set ru_params = app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) %}
     {% set en_params = app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) %}
     <div class="lang-panel">

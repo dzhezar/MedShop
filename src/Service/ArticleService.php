@@ -120,7 +120,7 @@ class ArticleService
         $pagination = $this->paginator->paginate(
             $products,
             $page,
-            1 //TODO Change to 20
+            20
         );
 
         foreach ($pagination as $product) {

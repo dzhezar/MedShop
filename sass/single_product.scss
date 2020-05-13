@@ -105,9 +105,28 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease-in;
+    &.active {
+      background: #859878;
+      * {
+        display: none!important;
+      }
+      &:after {
+        transition: all .3s ease-in;
+        color: white;
+        position: absolute;
+        content: var(--in-cart);
+      }
+    }
+    &:hover {
+      color: white;
+      background: #859878;
+    }
     img {
       height: 60%;
       width: fit-content;
+      width: -moz-fit-content;
     }
     div {
       font-size: 18px;

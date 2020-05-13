@@ -90,6 +90,7 @@
       font-size: 18px;
       color: white;
       width: fit-content;
+      width: -moz-fit-content;
       height: fit-content;
       padding: 8px 15px;
       transition: all .3s ease-in;
@@ -109,6 +110,7 @@
     font-size: 18px;
     color: white;
     width: fit-content;
+    width: -moz-fit-content;
     height: fit-content;
     padding: 15px 35px;
     margin: 15px auto;
@@ -138,6 +140,7 @@
     box-shadow: 10px 10px 25px rgba(149, 149, 149, 0.3), -10px -10px 25px rgba(177, 177, 177, 0.4);
     border-radius: 40px;
     width: fit-content;
+    width: -moz-fit-content;
     margin: auto;
     padding: 15px 35px;
     color: white;
