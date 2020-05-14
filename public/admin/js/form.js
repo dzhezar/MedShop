@@ -8,6 +8,17 @@ $(document).ready(function () {
         }
     });
 
+    $('input').each(function () {
+        if($(this).prop('required')){
+            $('<span style="color: red"> *Обязательно</span>').appendTo($(this).labels()[0]);
+        }
+    });
+    $('textarea').each(function () {
+        if($(this).prop('required') || $(this).hasClass('enable-ckeditor')){
+            $('<span style="color: red"> *Обязательно</span>').appendTo($(this).labels()[0]);
+        }
+    });
+
     $('select').select2();
 
     $('.form-group').each(function () {
