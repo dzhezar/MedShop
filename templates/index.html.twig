@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ settings('home_page_title') }}{% endblock %}
+{% block seo_description %}{{ settings('home_page_description') }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">

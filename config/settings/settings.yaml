@@ -46,3 +46,27 @@ shipping_RU:
   value: ''
   label: 'Оплата и доставка'
   text_editor: true
+home_page_title_RU:
+  value: ''
+  label: 'Сео тайтл на главной'
+home_page_title_EN:
+  value: ''
+  label: 'Сео тайтл на главной'
+home_page_description_RU:
+  value: ''
+  label: 'Сео описание на главной'
+home_page_description_EN:
+  value: ''
+  label: 'Сео описание на главной'
+categories_title_RU:
+  value: ''
+  label: 'Сео тайтл в категориях'
+categories_title_EN:
+  value: ''
+  label: 'Сео тайтл в категориях'
+categories_description_RU:
+  value: ''
+  label: 'Сео описание в категориях'
+categories_description_EN:
+  value: ''
+  label: 'Сео описание в категориях'
