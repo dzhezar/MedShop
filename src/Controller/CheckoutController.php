@@ -41,6 +41,11 @@ class CheckoutController extends AbstractController
         $this->orderService = $orderService;
     }
 
+    public function cart($_locale)
+    {
+        return $this->render('checkout/cart.html.twig');
+    }
+
     public function history(Request $request)
     {
         return $this->render(
