@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+   <link rel="stylesheet" href="{{ asset('stylesheets/checkout/cart.css') }}">
+{% endblock %}
+{% block body %}
+    {% include 'elements/header.html.twig' %}
+    <h1 class="title">Cart</h1>
+    <div class="cart">
+        <div class="cart_list">
+            <div class="item">
+                <img src="{{ asset('img/products/83 1.png') }}">
+                <div class="name">Но-шпа( Ношпа ) ношпа</div>
+                <div class="info">
+                    <div class="quantity" data-id="${product.id}">
+                        <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
+                    </div>
+                    <div class="total">$1241</div>
+                </div>
+                <div class="close">✖</div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('img/products/83 1.png') }}">
+                <div class="name">Но-шпа( Ношпа ) ношпа</div>
+                <div class="info">
+                    <div class="quantity" data-id="${product.id}">
+                        <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
+                    </div>
+                    <div class="total">$1241</div>
+                </div>
+                <div class="close">✖</div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('img/products/83 1.png') }}">
+                <div class="name">Но-шпа( Ношпа ) ношпа</div>
+                <div class="info">
+                    <div class="quantity" data-id="${product.id}">
+                        <span class="minus">-</span><span class="number">1</span><span class="plus">+</span>
+                    </div>
+                    <div class="total">$1241</div>
+                </div>
+                <div class="close">✖</div>
+            </div>
+        </div>
+        <div class="conclussion">
+            <div class="total">
+                Total:<span>$11</span>
+            </div>
+            <a href="{{ path('checkout_index') }}" class="to_cart">Proceed to checkout</a>
+        </div>
+    </div>
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}
