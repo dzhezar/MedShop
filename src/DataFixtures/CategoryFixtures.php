@@ -46,30 +46,30 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $categoryPrevious = null;
-        for ($i = 0; $i < 30; $i++) {
-            $category = new Category();
-
-            $name = $this->faker->realText(20);
-            $slug = $this->slugService->slugify($name, Category::class, 'slug');
-            $category->setSlug($slug);
-            $category->setIsOnMain(rand(0, 1));
-            $category->setImage('https://i.picsum.photos/id/'.rand(500, 1000).'/300/300.jpg');
-            $manager->persist($category);
-            $manager->flush();
-            foreach ($this->languagesArray as $language) {
-                $categoryTranslation = new CategoryTranslation();
-                $categoryTranslation->setCategory($category);
-                $categoryTranslation->setTitle($this->faker->realText(20));
-                $categoryTranslation->setDescription($this->faker->realText(200));
-                $categoryTranslation->setSeoTitle($this->faker->realText(40));
-                $categoryTranslation->setSeoDescription($this->faker->realText(60));
-                $categoryTranslation->setLanguage($this->languageService->getLanguage($language));
-                $manager->persist($categoryTranslation);
-                $manager->flush();
-            }
-            $categoryPrevious = $category;
-        }
+//        $categoryPrevious = null;
+//        for ($i = 0; $i < 30; $i++) {
+//            $category = new Category();
+//
+//            $name = $this->faker->realText(20);
+//            $slug = $this->slugService->slugify($name, Category::class, 'slug');
+//            $category->setSlug($slug);
+//            $category->setIsOnMain(rand(0, 1));
+//            $category->setImage('https://i.picsum.photos/id/'.rand(500, 1000).'/300/300.jpg');
+//            $manager->persist($category);
+//            $manager->flush();
+//            foreach ($this->languagesArray as $language) {
+//                $categoryTranslation = new CategoryTranslation();
+//                $categoryTranslation->setCategory($category);
+//                $categoryTranslation->setTitle($this->faker->realText(20));
+//                $categoryTranslation->setDescription($this->faker->realText(200));
+//                $categoryTranslation->setSeoTitle($this->faker->realText(40));
+//                $categoryTranslation->setSeoDescription($this->faker->realText(60));
+//                $categoryTranslation->setLanguage($this->languageService->getLanguage($language));
+//                $manager->persist($categoryTranslation);
+//                $manager->flush();
+//            }
+//            $categoryPrevious = $category;
+//        }
     }
 
     public function getDependencies()

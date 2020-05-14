@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ article.seoTitle }}{% endblock %}
+{% block seo_description %}{{ article.seoDescription }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link>

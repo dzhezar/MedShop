@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ product.seoTitle }}{% endblock %}
+{% block seo_description %}{{ product.seoDescription }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('stylesheets/single_product.css') }}">
