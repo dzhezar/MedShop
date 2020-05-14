@@ -37,10 +37,10 @@
                                         <td>${{ product.price }}</td>
                                         <td>
                                             <input type="checkbox" {% if product.isVisible %}checked{% endif %}
-                                                   data-id="{{ product.id }}" id="toggle"
+                                                   data-id="{{ product.id }}" id="toggle-{{ product.id }}"
                                                    class="checkbox switch-product"
                                                    autocomplete="off"/>
-                                            <label for="toggle" class="switch"></label>
+                                            <label for="toggle-{{ product.id }}" class="switch"></label>
                                         </td>
                                         <td>
                                             <a href="{{ path('admin_product_update', {id: product.id}) }}"
