@@ -34,21 +34,21 @@ class CategoryForm extends AbstractType
                 'required' => $required,
                 'label' => 'Изображение'
             ])
-            ->add('products', EntityType::class, [
-                'label' => 'Товары',
-                'class' => Product::class,
-                'required'   => false,
-                'multiple' => true,
-                'expanded' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                        ->select('p', 'productTranslations')
-                        ->leftJoin('p.productTranslations', 'productTranslations');
-                },
-                'choice_label' => function (Product $product) {
-                    return $product->getProductTranslations()->first()->getTitle();
-                }
-            ])
+//            ->add('products', EntityType::class, [
+//                'label' => 'Товары',
+//                'class' => Product::class,
+//                'required'   => false,
+//                'multiple' => true,
+//                'expanded' => false,
+//                'query_builder' => function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('p')
+//                        ->select('p', 'productTranslations')
+//                        ->leftJoin('p.productTranslations', 'productTranslations');
+//                },
+//                'choice_label' => function (Product $product) {
+//                    return $product->getProductTranslations()->first()->getTitle();
+//                }
+//            ])
             ->add('category', EntityType::class, [
                 'label' => 'Категория',
                 'class' => Category::class,
