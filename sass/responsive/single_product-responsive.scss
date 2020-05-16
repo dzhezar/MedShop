@@ -62,7 +62,7 @@
         display: none;
       }
       .price {
-        font-size: 36 px;
+        font-size: 36px;
       }
     }
     .quantity {
@@ -82,6 +82,13 @@
       width: 50%;
       margin: 10px 0;
       flex-direction: row-reverse;
+      &.active {
+        margin: 0;
+        &:after {
+          color: #486259;
+          align-items: flex-end;
+        }
+      }
     }
     .usage {
       order: 6;
