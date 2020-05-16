@@ -46,12 +46,12 @@ class BlogController extends AbstractController
 
     public function post(Request $request, $slug)
     {
-        $article = $this->articleService->findOneBySlugAndLanguage($slug, $request->getLocale());
+        $data = $this->articleService->findOneBySlugAndLanguage($slug, $request->getLocale());
 
-        if(!$article) {
+        if(!$data) {
             throw $this->createNotFoundException();
         }
 
-        return $this->render('blog/single_post.html.twig', ['article' => $article]);
+        return $this->render('blog/single_post.html.twig', $data);
     }
 }

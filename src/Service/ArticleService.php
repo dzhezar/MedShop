@@ -12,6 +12,7 @@ use App\Entity\Language;
 use App\Model\FormModel\ArticleModel;
 use App\Repository\ArticleTranslationRepository;
 use App\Service\FileManager\FileManagerInterface;
+use App\Strategy\Breadcurmbs\SingleBlogBreadcrumbsStrategy;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -57,6 +58,10 @@ class ArticleService
      * @var PaginatorInterface
      */
     private $paginator;
+    /**
+     * @var BreadcrumbsService
+     */
+    private $breadcrumbsService;
 
     public function __construct(
         string $relative_path,
@@ -67,7 +72,8 @@ class ArticleService
         ArticleFormMapper $articleFormMapper,
         EntityManagerInterface $entityManager,
         ArticleTranslationFormMapper $articleTranslationFormMapper,
-        PaginatorInterface $paginator
+        PaginatorInterface $paginator,
+        BreadcrumbsService $breadcrumbsService
     ) {
         $this->relative_path = $relative_path;
         $this->articleTranslationRepository = $articleTranslationRepository;
@@ -84,6 +90,7 @@ class ArticleService
             '/admin/img/tooltips/short_description.png'
         );
         $this->paginator = $paginator;
+        $this->breadcrumbsService = $breadcrumbsService;
     }
 
     public function getAll(string $language)
@@ -204,8 +211,20 @@ class ArticleService
 
     public function findOneBySlugAndLanguage(string $slug, string $language)
     {
-        if($article = $this->articleTranslationRepository->findBySlugAndLanguage($slug, $this->languageService->getLanguage($language)->getId())) {
-            return $this->outputMapper->entityToModel($article);
+        if ($article = $this->articleTranslationRepository->findBySlugAndLanguage(
+            $slug,
+            $this->languageService->getLanguage(
+                $language
+            )->getId()
+        )) {
+            $article = $this->outputMapper->entityToModel($article);
+            return [
+                'article' => $article,
+                'breadcrumbs' => $this->breadcrumbsService->generateBreadcrumbs(
+                    $article,
+                    SingleBlogBreadcrumbsStrategy::TYPE_NAME
+                )
+            ];
         }
 
         return false;
