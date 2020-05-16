@@ -48,6 +48,13 @@ header {
     }
   }
 }
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}
 
 @media (max-width: 576px) {
   .content_wrapper {

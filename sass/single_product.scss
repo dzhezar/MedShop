@@ -14,22 +14,6 @@ header {
     width: 30%;
     object-fit: contain;
   }
-  ul {
-    list-style: none;
-    width: 30%;
-    padding-left: 0;
-    height: 10%;
-    margin: 0;
-    li {
-      display: inline;
-      font-size: 24px;
-      color: #848484;
-      &:first-child:after {
-        content: "•";
-        padding: 0 8px;
-      }
-    }
-  }
   .usage {
     width: 30%;
     text-align: justify;
@@ -47,13 +31,6 @@ header {
       height: 90%;
       text-overflow: ellipsis;
       white-space: break-spaces;
-      ul {
-        list-style: unset;
-        width: unset;
-        padding-left: unset;
-        height: unset;
-        margin: unset;
-      }
     }
   }
   .quantity {
@@ -162,4 +139,12 @@ header {
     color: #363636;
     text-align: justify;
   }
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
 }

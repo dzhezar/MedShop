@@ -9,6 +9,13 @@ header {
 .navigation {
   margin-bottom: 100px;
 }
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}
 
 @media (max-width: 768px) {
   .blog-wrapper {
