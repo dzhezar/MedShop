@@ -33,7 +33,7 @@ class ProductForm extends AbstractType
                 'label' => 'Изображение'
             ])
             ->add('isVisible', CheckboxType::class, [
-                'label' => 'Отображать',
+                'label' => 'Активировать',
                 'required' => false
             ])
             ->add('isOnMain', CheckboxType::class, [
