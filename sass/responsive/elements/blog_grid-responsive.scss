@@ -91,6 +91,7 @@
       .info {
         height: 100%;
         width: 50%;
+        padding: 0;
         .text {
           line-height: 18px;
           &:after {
@@ -105,6 +106,7 @@
       &:nth-child(-n+2){
         width: 100%;
         flex-direction: row-reverse;
+        padding: 0;
         .image {
           height: 100%;
           width: 50%;
