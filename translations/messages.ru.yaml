@@ -1,8 +1,10 @@
 navbar:
+  home: 'Главная'
   product: 'Продукция'
   about_us: 'О Нас'
   blog: 'Блог'
   contact: 'Контакты'
+  history: 'История заказов'
 cart:
   my_cart: 'Мои покупки'
   total: 'Всего к оплате'

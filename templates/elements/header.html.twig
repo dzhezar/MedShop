@@ -5,13 +5,13 @@
     </label>
     <div class="menu menuEffects">
         <div class="menuContent">
-            <a class="menu-item" href="{{ path('index') }}">Home</a>
+            <a class="menu-item" href="{{ path('index') }}">{{ 'navbar.home'|trans }}</a>
             <a class="menu-item" href="{{ path('main_categories') }}">{{ 'navbar.product'|trans }}</a>
             <a class="menu-item" href="{{ path('about_us') }}">{{ 'navbar.about_us'|trans }}</a>
             <a class="menu-item" href="{{ path('blog_index') }}">{{ 'navbar.blog'|trans }}</a>
             <a class="menu-item" href="{{ path('contacts') }}">{{ 'navbar.contact'|trans }}</a>
             {% if app.request.cookies.get('orders') is not empty %}
-                <a class="menu-item orders_history_mobile" href="{{ path('orders_history') }}">История заказов</a>
+                <a class="menu-item orders_history_mobile" href="{{ path('orders_history') }}">{{ 'navbar.history'|trans }}</a>
             {% endif %}
         </div>
         <a class="header_tel" href="tel:11">+38 (066) 052-14-36</a>
@@ -20,7 +20,7 @@
         MDIClogo
     </div>
     {% if app.request.cookies.get('orders') is not empty %}
-        <a class="orders_history" href="{{ path('orders_history') }}">История заказов</a>
+        <a class="orders_history" href="{{ path('orders_history') }}">{{ 'navbar.history'|trans }}</a>
     {% endif %}
     {% set ru_params = app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) %}
     {% set en_params = app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) %}

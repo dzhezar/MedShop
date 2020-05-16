@@ -1,8 +1,10 @@
 navbar:
+  home: 'Home'
   product: 'Products'
   about_us: 'About us'
   blog: 'Blog'
   contact: 'Contacts'
+  history: 'Orders history'
 cart:
   my_cart: 'My cart'
   total: 'Total'
