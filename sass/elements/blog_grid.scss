@@ -53,6 +53,7 @@
     .info {
       height: 40%;
       padding: 0 5px;
+      position: relative;
       .title{
         font-weight: bold;
         font-size: 18px;
@@ -109,6 +110,8 @@
         transition: all 0.2s ease-in;
         padding-right: 10px;
         font-size: 20px;
+        position: absolute;
+        right: 0;
       }
     }
     .overlay {
