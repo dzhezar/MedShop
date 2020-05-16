@@ -98,13 +98,16 @@ header {
       }
       &:after {
         transition: all 0.3s ease-in;
-        color: #859878;
+        color: white;
         position: absolute;
         content: var(--in-cart);
         height: inherit;
         display: flex;
-        align-items: flex-end;
+        width: 30%;
         font-size: 18px;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
       }
     }
     &:hover {
