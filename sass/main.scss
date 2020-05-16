@@ -251,6 +251,7 @@ header {
     }
     .cart {
       position: relative;
+      z-index: 10;
       width: 45%;
       height: 100%;
       padding: 25px;

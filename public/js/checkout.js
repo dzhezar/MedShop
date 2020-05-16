@@ -8,9 +8,12 @@ $(document).ready(function () {
             dataType: "json",
             success: function(data) {
                 $('.form-error').remove();
+                $('header').css('visibility', 'hidden');
                 $('#preloader').fadeOut();
+                $("html, body").animate({ scrollTop: 0 }, 0);
                 $('.popup').css('display','flex');
                 $('.payment_variants').fadeIn();
+                $('body').toggleClass('hidden');
                 $('#to_payment').attr('href', '/paypal/pay/'+data.hash);
                // window.location.href='/paypal/pay/'+data.hash;
             },
