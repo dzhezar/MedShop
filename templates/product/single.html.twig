@@ -15,8 +15,8 @@
     <div class="product_wrapper">
         <img src="{{ product.image }}">
         <div class="usage">
-            <div class="title">{{ 'product.usage'|trans }}</div>
-            <div class="text">{{ product.usage|raw }}</div>
+            <div class="title">{{ 'product.description'|trans }}</div>
+            <div class="text">{{ product.description|raw }}</div>
         </div>
         <div class="quantity">
             <div class="text">{{ 'product.amount'|trans }}:</div>
@@ -34,8 +34,8 @@
         </div>
     </div>
     <div class="description">
-        <div class="title">{{ 'product.description'|trans }}</div>
-        <div class="text">{{ product.description|raw }}</div>
+        <div class="title">{{ 'product.usage'|trans }}</div>
+        <div class="text">{{ product.usage|raw }}</div>
     </div>
     {% include 'elements/footer.html.twig' %}
 {% endblock %}
