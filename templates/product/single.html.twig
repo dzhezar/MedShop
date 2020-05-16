@@ -21,14 +21,14 @@
         <div class="quantity">
             <div class="text">{{ 'product.amount'|trans }}:</div>
             <div class="controls" data-id="{{ product.id }}">
-                <span class="minus">-</span><span class="number product-amount">{{ product.cartAmount ?? 1 }}</span><span class="plus">+</span>
+                <span class="minus toggle">-</span><span class="number product-amount">{{ product.cartAmount ?? 1 }}</span><span class="plus toggle">+</span>
             </div>
         </div>
         <div class="final_price">
             <div class="text">{{ 'product.total'|trans }}:</div>
             <div class="price">${{ product.price }}</div>
         </div>
-        <div class="add_to_cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
+        <div class="add_to_cart open-cart {% if product.inCart == true %}active{% endif %}" data-id="{{ product.id }}">
             <img src="{{ asset('img/icons/cart.png') }}">
             <div>{{ 'home.add_to_cart'|trans }}</div>
         </div>

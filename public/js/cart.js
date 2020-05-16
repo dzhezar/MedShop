@@ -51,6 +51,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.plus', function () {
         let id = $(this).parent().attr('data-id');
+        let toggle = $(this).hasClass('toggle');
 
         $.ajax({
             method: 'POST',
@@ -59,7 +60,7 @@ $(document).ready(function () {
                 id: id
             }
         }).done(function() {
-            renderCart(false);
+            renderCart(toggle);
         });
     });
 
@@ -106,7 +107,9 @@ $(document).ready(function () {
             }
         }).done(function() {
             this_elem.addClass('active');
-            // $('.cart-trigger').click();
+            if(this_elem.hasClass('open-cart')) {
+                $('.cart-trigger').click();
+            }
         });
     })
 });
