@@ -68,7 +68,7 @@ class ProductTranslationRepository extends ServiceEntityRepository
                 'category',
                 'category_translations',
                 'subcategory',
-                'subcategory_translations',
+                'subcategory_translations'
             )
             ->leftJoin('product_translation.product', 'product')
             ->leftJoin('product.category', 'category')
