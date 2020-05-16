@@ -29,6 +29,7 @@
 .products-grid .products-grid_item a .title {
   font-size: 18px;
   height: 15%;
+  text-align: center;
 }
 .products-grid .products-grid_item a .price {
   font-size: 24px;

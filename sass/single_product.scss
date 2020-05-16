@@ -47,6 +47,13 @@ header {
       height: 90%;
       text-overflow: ellipsis;
       white-space: break-spaces;
+      ul {
+        list-style: unset;
+        width: unset;
+        padding-left: unset;
+        height: unset;
+        margin: unset;
+      }
     }
   }
   .quantity {
@@ -113,10 +120,14 @@ header {
         display: none!important;
       }
       &:after {
-        transition: all .3s ease-in;
-        color: white;
+        transition: all 0.3s ease-in;
+        color: #859878;
         position: absolute;
         content: var(--in-cart);
+        height: inherit;
+        display: flex;
+        align-items: flex-end;
+        font-size: 18px;
       }
     }
     &:hover {
@@ -127,6 +138,7 @@ header {
       height: 60%;
       width: fit-content;
       width: -moz-fit-content;
+      transform: scale(0.7);
     }
     div {
       font-size: 18px;

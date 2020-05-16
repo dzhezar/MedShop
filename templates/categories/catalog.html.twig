@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}">
     <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}">
+    <style>
+        .products-grid {
+            width: 85%;
+            margin: auto;
+        }
+        @media (max-width: 768px) {
+            .products-grid {
+                width: 90%;
+            }
+        }
+    </style>
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}

@@ -108,34 +108,7 @@
         display: none;
         transition: all 0.2s ease-in;
         padding-right: 10px;
-      }
-    }
-    &:hover {
-      .overlay {
-        opacity: 0.7;
-      }
-      .info {
-        .title {
-          color: white;
-          position: relative;
-        }
-        .text {
-          color: white;
-          position: relative;
-          &:after {
-            background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0), #a8b69f 50%, #b1bea8);
-            background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), #a8b69f 50%, #b1bea8);
-            background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), #a8b69f 50%, #b1bea8);
-            background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), #a8b69f 50%, #b1bea8);
-            background: linear-gradient(to right, rgba(255, 255, 255, 0), #a8b69f 50%, #b1bea8);
-          }
-        }
-        .more {
-          display: flex;
-          position: absolute;
-          right: 0;
-          color: white;
-        }
+        font-size: 20px;
       }
     }
     .overlay {

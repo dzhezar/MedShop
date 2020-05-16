@@ -207,6 +207,7 @@ header {
     font-weight: bold;
     font-size: 30px;
     color: #486158;
+    cursor: pointer;
   }
   a.orders_history {
     text-align: center;
@@ -449,12 +450,11 @@ footer {
         }
       }
     }
-    svg {
-      display: block;
-      margin-right: auto;
-      width: fit-content;
-      width: -moz-fit-content;
-      height: 40px;
+    a.octowice {
+      width: 40%;
+      img {
+        width: 100%;
+      }
     }
   }
   .second_third-col {
@@ -481,6 +481,7 @@ footer {
 }
 
 #scroll {
+  display: none!important;
   position:fixed;
   right:0;
   bottom:20px;
@@ -488,7 +489,6 @@ footer {
   width:60px;
   height:50px;
   background-color:#486158;
-  display:none;
   justify-content: center;
   align-items: center;
   -webkit-border-radius:60px 0 0 60px;
