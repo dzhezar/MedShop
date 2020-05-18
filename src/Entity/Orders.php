@@ -30,6 +30,11 @@ class Orders
         self::STATUS_CANCELED_PAYMENT,
     ];
 
+    const NEED_PAYMENT_STATUSES_ARRAY = [
+        self::STATUS_FAILED_PAYMENT,
+        self::STATUS_CREATED
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

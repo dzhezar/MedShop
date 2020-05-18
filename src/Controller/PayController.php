@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Orders;
 use App\Repository\OrdersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -26,6 +27,9 @@ class PayController extends AbstractController
     public function paypalPay($orderHash)
     {
         if($order = $this->ordersRepository->findOneBy(['hash' => $orderHash])) {
+            if(!in_array($order->getPayStatus(), Orders::NEED_PAYMENT_STATUSES_ARRAY)) {
+                return $this->redirectToRoute('orders_history');
+            }
             return $this->render('pay/paypal.html.twig', ['order'=> $order]);
         }
 

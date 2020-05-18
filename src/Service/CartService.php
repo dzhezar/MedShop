@@ -103,6 +103,11 @@ class CartService
         return $result;
     }
 
+    public function clear()
+    {
+        $this->sessionCartService->clear();
+    }
+
     public function setRandomCartId()
     {
         return $this->sessionCartService->setRandomCardIdToSession();

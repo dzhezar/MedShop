@@ -83,6 +83,8 @@ class CheckoutService
 
         $response->headers->setCookie($cookie);
 
+        $this->cartService->clear();
+
 
         return $response;
     }

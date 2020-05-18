@@ -66,6 +66,11 @@ class SessionCartService
         $this->save();
     }
 
+    public function clear()
+    {
+        $this->session->remove('cart');
+    }
+
     public function save()
     {
         $this->session->set('cart', $this->storage->toArray());
