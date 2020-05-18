@@ -37,9 +37,10 @@
         <a class="lang {{ app.request.locale=='en' ? 'active' : null  }}" href="{{ path(app.request.attributes.get('_route'), en_params) }}">en</a>
         <a class="lang {{ app.request.locale=='ru' ? 'active' : null  }}" href="{{ path(app.request.attributes.get('_route'), ru_params) }}">ru</a>
     </div>
-    <div class="cart-trigger">
-        <img src="{{ asset('img/icons/cart.png') }}">
-    </div>
+    {% if disable_cart is not defined %}
+        <div class="cart-trigger">
+            <img src="{{ asset('img/icons/cart.png') }}">
+        </div>
     <div class="cart-wrapper">
         <div class="shadow-filter"></div>
         <div class="cart">
@@ -55,4 +56,5 @@
             <a href="#" class="back_to_shopping">← {{ 'cart.continue'|trans }}</a>
         </div>
     </div>
+    {% endif %}
 </header>

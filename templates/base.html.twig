@@ -28,7 +28,9 @@
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/cart.js') }}"></script>
+            {% if disable_cart is not defined %}
+                <script type="text/javascript" src="{{ asset('js/cart.js') }}"></script>
+            {% endif %}
         {% endblock %}
     </body>
 </html>

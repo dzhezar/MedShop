@@ -13,12 +13,12 @@
                     <img src="{{ product.image }}">
                     <div class="name">{{ product.title }}</div>
                     <div class="info">
-                        <div class="quantity" data-id="${product.id}">
+                        <div class="quantity" data-id="{{ product.id }}">
                             <span class="minus">-</span><span class="number">{{ product.cartAmount }}</span><span class="plus">+</span>
                         </div>
                         <div class="total">${{ product.price*product.cartAmount }}</div>
                     </div>
-                    <div class="close">✖</div>
+                    <div class="close delete" data-id="{{ product.id }}">✖</div>
                 </div>
             {% endfor %}
         </div>
@@ -30,4 +30,9 @@
         </div>
     </div>
     {% include 'elements/footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/full_page_cart.js') }}"></script>
 {% endblock %}
