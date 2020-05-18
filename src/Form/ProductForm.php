@@ -58,7 +58,11 @@ class ProductForm extends AbstractType
                         ->setParameter('product_id', $options['product_id']);
                 },
                 'choice_label' => function (Product $product) {
-                    return $product->getProductTranslations()->first()->getTitle();
+                    try{
+                        return $product->getProductTranslations()->first()->getTitle();
+                    } catch (\Exception $exception) {
+                        return null;
+                    }
                 }
             ])
             ->add('category', EntityType::class, [
@@ -71,7 +75,11 @@ class ProductForm extends AbstractType
                         ->leftJoin('c.categoryTranslations', 'categoryTranslations');
                 },
                 'choice_label' => function (Category $category) {
-                    return $category->getCategoryTranslations()->first()->getTitle();
+                    try {
+                        return $category->getCategoryTranslations()->first()->getTitle();
+                    } catch (\Exception $exception) {
+                        return null;
+                    }
                 }
             ])
             ->add('titleRU', TextType::class, [

@@ -41,9 +41,9 @@ class CheckoutController extends AbstractController
         $this->orderService = $orderService;
     }
 
-    public function cart($_locale)
+    public function cart(Request $request)
     {
-        return $this->render('checkout/cart.html.twig');
+        return $this->render('checkout/cart.html.twig', $this->cartService->getAll($request->getLocale()));
     }
 
     public function history(Request $request)

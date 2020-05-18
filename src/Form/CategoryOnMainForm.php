@@ -30,7 +30,11 @@ class CategoryOnMainForm extends AbstractType
                         ->leftJoin('c.categoryTranslations', 'categoryTranslations');
                 },
                 'choice_label' => function (Category $category) {
-                    return $category->getCategoryTranslations()->first()->getTitle();
+                    try{
+                        return $category->getCategoryTranslations()->first()->getTitle();
+                    } catch (\Exception $exception) {
+                        return null;
+                    }
                 }
             ])
             ->add('submit', SubmitType::class,[

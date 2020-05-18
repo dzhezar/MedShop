@@ -30,7 +30,11 @@ class ProductOnMainForm  extends AbstractType
                         ->leftJoin('p.productTranslations', 'productTranslations');
                 },
                 'choice_label' => function (Product $product) {
-                    return $product->getProductTranslations()->first()->getTitle();
+                    try{
+                        return $product->getProductTranslations()->first()->getTitle();
+                    } catch (\Exception $exception) {
+                        return null;
+                    }
                 }
             ])
             ->add('submit', SubmitType::class,[
