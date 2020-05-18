@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-   <link rel="stylesheet" href="{{ asset('stylesheets/checkout/cart.css') }}">
+   <link rel="stylesheet" href="{{ asset('stylesheets/checkout/cart.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
@@ -34,5 +34,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/full_page_cart.js') }}"></script>
+    <script src="{{ asset('js/full_page_cart.js') }}?v={{ fileVersion }}"></script>
 {% endblock %}

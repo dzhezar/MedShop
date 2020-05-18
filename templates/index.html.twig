@@ -7,14 +7,14 @@
     {{ parent() }}
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    <link rel="stylesheet" href="{{ asset('stylesheets/index_page.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/index_page-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/categories_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/categories_grid-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/blog_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/blog_grid-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/index_page.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/index_page-responsive.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/categories_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/categories_grid-responsive.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/blog_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/blog_grid-responsive.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     <div class="swiper-container">
@@ -67,5 +67,5 @@
     {{ parent() }}
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-    <script src="{{ asset('js/index_page.js') }}"></script>
+    <script src="{{ asset('js/index_page.js') }}?v={{ fileVersion }}"></script>
 {% endblock %}

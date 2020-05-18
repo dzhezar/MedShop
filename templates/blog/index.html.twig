@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('stylesheets/blog/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/blog_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/blog_grid-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/blog/main.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/blog_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/blog_grid-responsive.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}

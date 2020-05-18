@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('stylesheets/checkout/history.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/checkout/history-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/checkout/history.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/checkout/history-responsive.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}
@@ -66,5 +66,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/checkout_history.js') }}"></script>
+    <script src="{{ asset('js/checkout_history.js') }}?v={{ fileVersion }}"></script>
 {% endblock %}

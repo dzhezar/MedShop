@@ -5,10 +5,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('stylesheets/category/sub_categories.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/categories_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/categories_grid-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/category/sub_categories.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/categories_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/categories_grid-responsive.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}

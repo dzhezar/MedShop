@@ -11,8 +11,8 @@
                     --in-cart: '{% if app.request.locale == 'en' %}✓ Added to Cart{% else %}✓ В корзине{% endif %}';
                 }
             </style>
-            <link rel="stylesheet" href="{{ asset('stylesheets/main.css') }}">
-            <link rel="stylesheet" href="{{ asset('stylesheets/responsive/main-responsive.css') }}">
+            <link rel="stylesheet" href="{{ asset('stylesheets/main.css') }}?v={{ fileVersion }}">
+            <link rel="stylesheet" href="{{ asset('stylesheets/responsive/main-responsive.css') }}?v={{ fileVersion }}">
         {% endblock %}
     </head>
     <body>
@@ -27,9 +27,9 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
-            <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/main.js') }}?v={{ fileVersion }}"></script>
             {% if disable_cart is not defined %}
-                <script type="text/javascript" src="{{ asset('js/cart.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('js/cart.js') }}?v={{ fileVersion }}"></script>
             {% endif %}
         {% endblock %}
     </body>

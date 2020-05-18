@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('stylesheets/blog/contacts.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/blog/contacts.css') }}?v={{ fileVersion }}">
 {% endblock %}
 {% block body %}
     {% include 'elements/header.html.twig' %}

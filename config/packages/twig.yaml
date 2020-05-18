@@ -4,3 +4,4 @@ twig:
     globals:
         paypal_client_id: '%env(PAYPAL_CLIENT_ID)%'
         paypal_link: '%env(PAYPAL_LINK)%'
+        fileVersion: '%env(FILE_VERSION)%'

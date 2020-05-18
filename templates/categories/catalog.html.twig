@@ -5,10 +5,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('stylesheets/category/catalog.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/category/catalog.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/page_title_with_breadcrumbs.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/elements/products_grid.css') }}?v={{ fileVersion }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/responsive/elements/products_grid-responsive.css') }}?v={{ fileVersion }}">
     <style>
         .products-grid {
             width: 85%;
