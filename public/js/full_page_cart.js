@@ -11,16 +11,14 @@ $(document).ready(function () {
             cart.products.forEach(function (product) {
                 let item = $(`<div class="item">
                     <img src="${product.image}">
+                    <div class="name">${product.title}</div>
                     <div class="info">
-                        <a href="/${language}/product/${product.slug}" class="name">${product.title}</a>
-                        <div class="price">
-                            <div class="quantity" data-id="${product.id}">
-                                <span class="minus">-</span><span class="number">${product.cartAmount}</span><span class="plus">+</span>
-                            </div>
-                            <div class="final_price">$${product.price}</div>
+                        <div class="quantity" data-id="${product.id}">
+                            <span class="minus">-</span><span class="number">${product.cartAmount}</span><span class="plus">+</span>
                         </div>
-                        <div class="delete" data-id="${product.id}">✕</div>
+                        <div class="total">$${product.price}</div>
                     </div>
+                    <div class="close delete" data-id="${product.id}">✖</div>
                 </div>`);
                 $('.cart_list').append(item);
                 $(`.controls[data-id="${product.id}"]`).children('.product-amount').text(product.cartAmount);
