@@ -60,7 +60,7 @@ class ProductForm extends AbstractType
                 'choice_label' => function (Product $product) {
                     try{
                         return $product->getProductTranslations()->first()->getTitle();
-                    } catch (\Exception $exception) {
+                    } catch (\Throwable $exception) {
                         return null;
                     }
                 }
@@ -77,7 +77,7 @@ class ProductForm extends AbstractType
                 'choice_label' => function (Category $category) {
                     try {
                         return $category->getCategoryTranslations()->first()->getTitle();
-                    } catch (\Exception $exception) {
+                    } catch (\Throwable $exception) {
                         return null;
                     }
                 }

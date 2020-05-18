@@ -32,7 +32,7 @@ class CategoryOnMainForm extends AbstractType
                 'choice_label' => function (Category $category) {
                     try{
                         return $category->getCategoryTranslations()->first()->getTitle();
-                    } catch (\Exception $exception) {
+                    } catch (\Throwable $exception) {
                         return null;
                     }
                 }

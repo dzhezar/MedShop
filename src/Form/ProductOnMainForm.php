@@ -32,7 +32,7 @@ class ProductOnMainForm  extends AbstractType
                 'choice_label' => function (Product $product) {
                     try{
                         return $product->getProductTranslations()->first()->getTitle();
-                    } catch (\Exception $exception) {
+                    } catch (\Throwable $exception) {
                         return null;
                     }
                 }
