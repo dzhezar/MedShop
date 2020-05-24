@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ settings('about_us_title') }}{% endblock %}
+
+{% block seo_description %}{{ settings('about_us_description') }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('stylesheets/blog/about_us.css') }}?v={{ fileVersion }}">

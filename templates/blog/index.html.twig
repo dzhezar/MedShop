@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ settings('blog_title') }}{% endblock %}
+
+{% block seo_description %}{{ settings('blog_description') }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('stylesheets/blog/main.css') }}?v={{ fileVersion }}">

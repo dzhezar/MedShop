@@ -70,3 +70,39 @@ categories_description_RU:
 categories_description_EN:
   value: ''
   label: 'Сео описание в категориях'
+about_us_title_RU:
+  value: ''
+  label: 'Сео тайтл "О нас"'
+about_us_title_EN:
+  value: ''
+  label: 'Сео тайтл "О нас"'
+about_us_description_RU:
+  value: ''
+  label: 'Сео описание "О нас"'
+about_us_description_EN:
+  value: ''
+  label: 'Сео описание "О нас"'
+blog_title_RU:
+  value: ''
+  label: 'Сео тайтл в блоге'
+blog_title_EN:
+  value: ''
+  label: 'Сео тайтл в блоге'
+blog_description_RU:
+  value: ''
+  label: 'Сео описание в блоге'
+blog_description_EN:
+  value: ''
+  label: 'Сео описание в блоге'
+shipping_title_RU:
+  value: ''
+  label: 'Сео тайтл в "Деталях доставки"'
+shipping_title_EN:
+  value: ''
+  label: 'Сео тайтл в "Деталях доставки"'
+shipping_description_RU:
+  value: ''
+  label: 'Сео описание в "Деталях доставки"'
+shipping_description_EN:
+  value: ''
+  label: 'Сео описание в "Деталях доставки"'

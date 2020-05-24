@@ -33,7 +33,7 @@
                                             {{ item.label }}
                                         </td>
                                         <td>
-                                            {{ item.value }}
+                                            {{ item.value|striptags }}
                                         </td>
                                     </tr>
                                 {% endfor %}
